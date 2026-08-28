@@ -7,9 +7,20 @@ export default function PaymentRailsMatrix() {
   const [filterType, setFilterType] = useState("ALL");
   const [query, setQuery] = useState("");
   const [selectedRail, setSelectedRail] = useState(PAYMENT_RAILS_DATA[0]);
+  const [sortField, setSortField] = useState("id");
+  const [sortAsc, setSortAsc] = useState(true);
+
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortAsc(!sortAsc);
+    } else {
+      setSortField(field);
+      setSortAsc(false);
+    }
+  };
 
   const filteredRails = useMemo(() => {
-    return PAYMENT_RAILS_DATA.filter((rail) => {
+    let list = PAYMENT_RAILS_DATA.filter((rail) => {
       if (filterType === "RTGS" && !rail.type.includes("RTGS")) return false;
       if (filterType === "INSTANT" && !rail.type.toLowerCase().includes("instant")) return false;
       if (filterType === "MESSAGING" && !rail.type.toLowerCase().includes("messaging")) return false;
@@ -20,14 +31,23 @@ export default function PaymentRailsMatrix() {
       }
       return true;
     });
-  }, [filterType, query]);
+
+    return [...list].sort((a, b) => {
+      const valA = a[sortField] ?? "";
+      const valB = b[sortField] ?? "";
+      if (typeof valA === "string") {
+        return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      }
+      return sortAsc ? (valA || 0) - (valB || 0) : (valB || 0) - (valA || 0);
+    });
+  }, [filterType, query, sortField, sortAsc]);
 
   return (
     <section className="dashboard-panel rails-panel">
       <div className="panel-heading">
         <div className="rails-head-left">
           <span className="eyebrow">GLOBAL PAYMENT RAILS & CLEARING SYSTEMS</span>
-          <h2>Payment Infrastructure Matrix</h2>
+          <h2>Payment Infrastructure Matrix & Clearing Blotter</h2>
         </div>
         <div className="rails-head-right">
           <span className="rail-count-badge">{filteredRails.length} Rails Active</span>
@@ -57,16 +77,29 @@ export default function PaymentRailsMatrix() {
 
       <div className="rails-grid-container">
         <div className="rails-table-wrap">
-          <table className="rails-table">
+          <table className="rails-table bloomberg-table">
             <thead>
               <tr>
-                <th>Rail</th>
-                <th>Operator</th>
-                <th>Currency</th>
-                <th>Type</th>
-                <th>Hours</th>
-                <th>Daily Vol</th>
-                <th>Status</th>
+                <th onClick={() => handleSort("id")}>
+                  RAIL CODE {sortField === "id" ? (sortAsc ? "▲" : "▼") : ""}
+                </th>
+                <th onClick={() => handleSort("name")}>
+                  FULL SYSTEM NAME {sortField === "name" ? (sortAsc ? "▲" : "▼") : ""}
+                </th>
+                <th onClick={() => handleSort("operator")}>
+                  OPERATING AUTHORITY {sortField === "operator" ? (sortAsc ? "▲" : "▼") : ""}
+                </th>
+                <th onClick={() => handleSort("currency")}>
+                  CURRENCY {sortField === "currency" ? (sortAsc ? "▲" : "▼") : ""}
+                </th>
+                <th onClick={() => handleSort("type")}>
+                  CLEARING TYPE {sortField === "type" ? (sortAsc ? "▲" : "▼") : ""}
+                </th>
+                <th>OPERATING WINDOW</th>
+                <th onClick={() => handleSort("avgDailyVol")}>
+                  DAILY VOLUME {sortField === "avgDailyVol" ? (sortAsc ? "▲" : "▼") : ""}
+                </th>
+                <th>LIVE STATUS</th>
               </tr>
             </thead>
             <tbody>
@@ -78,13 +111,15 @@ export default function PaymentRailsMatrix() {
                 >
                   <td className="rail-cell-id">
                     <strong>{rail.id}</strong>
-                    <small>{rail.name}</small>
+                  </td>
+                  <td>
+                    <span className="entity-name-cell">{rail.name}</span>
                   </td>
                   <td>{rail.operator}</td>
                   <td><span className="currency-pill">{rail.currency.split(" ")[0]}</span></td>
                   <td><span className="type-tag">{rail.type.split("(")[0].trim()}</span></td>
-                  <td>{rail.hours}</td>
-                  <td><strong>{rail.avgDailyVol}</strong></td>
+                  <td className="timestamp-cell">{rail.hours}</td>
+                  <td><strong style={{ color: "#f0f7f4" }}>{rail.avgDailyVol}</strong></td>
                   <td>
                     <span className={`status-pill ${rail.status === "OPEN" ? "open" : "closed"}`}>
                       ● {rail.status}
