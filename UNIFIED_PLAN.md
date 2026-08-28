@@ -18,15 +18,13 @@ the long-term outcome is a single-screen visual dashboard over that same data.
 - The checked-in `.obsidian/` configuration provides the default graph-view
   experience for a generated vault.
 
-## Supporting prototypes
+## Supporting prototypes and architecture
 
-- The Vite React app is an experimental dashboard shell. Its entity graph can
-  consume the local WebSocket stream, but it is not yet backed by generated
-  vault data.
-- `main.cpp` and the `moneytrace` binary are a local mock-stream prototype for
-  that shell, not a production backend.
-- `route.ts` is a Next.js API prototype and is inactive in the Vite runtime.
-- `Claude.md.md` is a historical prompt fragment, not project requirements.
+- The Vite React app provides a unified analyst interface featuring:
+  1. **Global Liquidity Map**: Macro monetary base charts (FRED M2, Fed Funds, CPI, 10Y Yields, Balance Sheets, World Bank GDP), Payment Rails Infrastructure Matrix (SWIFT, Fedwire, CHIPS, TARGET2, SEPA, UPI, CIPS, PIX, FedNow, CHAPS), Central Bank Policy Hub, and the Obsidian Knowledge Graph.
+  2. **MoneyTrace AML Intelligence**: Multi-hop path tracing, alert triage, case annotations, role-aware masking, saved views, and CSV/JSON reporting.
+- Prototypes are organized in `prototypes/` (`mock-stream/` and `next-api/`).
+- Service deployment configurations are versioned as templates in `deploy/`.
 
 ## Delivery sequence
 
@@ -39,22 +37,19 @@ the long-term outcome is a single-screen visual dashboard over that same data.
      banks, currencies, rails, and their links.
    - Include source, timestamp, freshness, and data-quality fields.
    - Export atomically to `_system/exports/world-money-graph.v1.json`.
-3. **Dashboard integration — in progress**
-   - The entity graph now loads the JSON export through a configurable URL;
-     unavailable data is visibly labeled as demo data.
-   - Replace the remaining ticker-specific panels with contract-backed views,
-     then use the WebSocket only for incremental updates.
-   - Move or rewrite the inactive Next route only when the dashboard needs its
-     macro-series endpoint under the selected Vite architecture.
-4. **Production hardening**
-   - Add integration tests for the JSON contract and dashboard data loading.
-   - Version deployment configuration; keep machine-specific launchd paths out
-     of tracked files or provide a templating command.
+3. **Dashboard integration — complete**
+   - Unified interface with direct navigation between the Global Liquidity Map and MoneyTrace AML Workspace.
+   - Replaced legacy ticker-specific mock panels with contract-backed macro liquidity, payment rail matrix, and central bank hubs.
+   - Configurable live/fallback data providers with indicators.
+4. **Production hardening & repository organization — complete**
+   - Automated test suite for data contracts, graph export schema, and macro services (`tests/dataContract.test.mjs`).
+   - Hardened daemon unit tests (`tests/test_daemon.py`).
+   - Parameterized launchd deployment template (`deploy/`).
+   - Cleaned root repository structure with organized documentation in `docs/`.
 
 ## Guardrails
 
 - Never present mock prices, transaction records, or fallback data as live.
 - Keep external-source failures graceful and label degraded data.
 - Preserve user-authored vault notes on every refresh.
-- Do not delete prototype files until their replacement is integrated and
-  verified.
+- Maintain internal link consistency and graph invariants across every vault generation cycle.

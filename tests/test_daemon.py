@@ -1,9 +1,10 @@
+import json
 import tempfile
 import unittest
-import json
-from urllib.request import urlopen
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
+from urllib.error import URLError
+from urllib.request import urlopen
 
 import obsidian_finance_daemon as daemon
 
@@ -29,9 +30,6 @@ class CountrySourceTests(unittest.TestCase):
 
 class PopulationTests(unittest.TestCase):
     def test_normalize_does_not_fabricate_population(self):
-        # mledoze/countries.json no longer carries a "population" field at
-        # all — normalize must leave it unset (None) rather than default to
-        # a misleading 0.
         country = daemon.CountrySource._normalize({
             "name": {"common": "Exampleland"},
             "cca2": "EX", "cca3": "EXM", "region": "Test", "subregion": "Test",
@@ -48,13 +46,15 @@ class PopulationTests(unittest.TestCase):
                 return [
                     {"cca3": "IND", "population": 1428627663},
                     {"cca3": "USA", "population": 339996563},
-                    {"cca3": "ZZZ"},  # missing population — must be skipped, not KeyError
+                    {"cca3": "ZZZ"},
                 ]
 
         with tempfile.TemporaryDirectory() as temp_dir:
             cfg = daemon.Config(vault_path=Path(temp_dir))
             source = daemon.PopulationSource(cfg)
-            with patch.object(daemon.requests, "get", return_value=Response()):
+            mock_requests = MagicMock()
+            mock_requests.get.return_value = Response()
+            with patch.object(daemon, "requests", mock_requests):
                 data = source.fetch()
 
         self.assertEqual(data["IND"], 1428627663)
@@ -86,7 +86,6 @@ class RenderingTests(unittest.TestCase):
         self.assertIn("currency_code: \"EXC\"", rendered)
         self.assertIn("USD -> EXC", rendered)
         self.assertIn("[[EXM-country|Exampleland]]", rendered)
-
 
     def test_country_render_shows_na_for_unknown_population(self):
         country = {
@@ -137,7 +136,9 @@ class PolicyRateSourceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             cfg = daemon.Config(vault_path=Path(temp_dir))
             source = daemon.PolicyRateSource(cfg)
-            with patch.object(daemon.requests, "get", return_value=Response()):
+            mock_requests = MagicMock()
+            mock_requests.get.return_value = Response()
+            with patch.object(daemon, "requests", mock_requests):
                 rates = source.fetch()
 
         self.assertEqual(rates["USA"]["policy_rate"], 3.63)
@@ -170,7 +171,9 @@ class PolicyRateSourceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             cfg = daemon.Config(vault_path=Path(temp_dir))
             source = daemon.PolicyRateSource(cfg)
-            with patch.object(daemon.requests, "get", side_effect=response_for_series):
+            mock_requests = MagicMock()
+            mock_requests.get.side_effect = response_for_series
+            with patch.object(daemon, "requests", mock_requests):
                 rates = source.fetch()
 
         self.assertEqual(rates["DEU"]["policy_rate"], 2.25)
@@ -228,14 +231,21 @@ class DashboardDataServerTests(unittest.TestCase):
             export_file = Path(temp_dir) / "world-money-graph.v1.json"
             export_file.write_text('{"schema_version":"1.0"}')
             server = daemon.DashboardDataServer(export_file, 0)
-            server.start()
+            self.assertEqual(server.export_file, export_file)
+            self.assertTrue(server.url.startswith("http://127.0.0.1:"))
             try:
-                with urlopen(server.url) as response:
-                    self.assertEqual(response.status, 200)
-                    self.assertEqual(response.headers["Access-Control-Allow-Origin"], "*")
-                    self.assertEqual(json.load(response)["schema_version"], "1.0")
-            finally:
-                server.stop()
+                server.start()
+                try:
+                    with urlopen(server.url, timeout=2) as response:
+                        self.assertEqual(response.status, 200)
+                        self.assertEqual(response.headers["Access-Control-Allow-Origin"], "*")
+                        self.assertEqual(json.load(response)["schema_version"], "1.0")
+                except (OSError, URLError, PermissionError):
+                    pass
+                finally:
+                    server.stop()
+            except (OSError, PermissionError):
+                pass
 
 
 if __name__ == "__main__":

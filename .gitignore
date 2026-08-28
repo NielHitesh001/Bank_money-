@@ -5,4 +5,8 @@ __pycache__/
 .pytest_cache/
 *.pyc
 *.log
+*.o
+moneytrace
+.venv/
+.env.local
 .obsidian/workspace.json

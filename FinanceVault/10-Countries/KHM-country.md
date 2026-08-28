@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:34 UTC"
+last_updated: "2026-08-28 21:43 UTC"
 ---
 # 🏦 Cambodia — Financial Tear Sheet
 

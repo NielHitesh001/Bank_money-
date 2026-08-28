@@ -6,7 +6,7 @@ currency_symbol: "KM"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-28 21:34 UTC"
+last_updated: "2026-08-28 21:43 UTC"
 ---
 # Bosnia and Herzegovina convertible mark (BAM) Currency Hub
 

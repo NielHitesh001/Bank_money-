@@ -11,8 +11,8 @@ export const defaultLayout = {
         type: "tabset",
         weight: 50,
         children: [
-          { type: "tab", name: "Live Order Book", component: "orderGrid" },
-              { type: "tab", name: "Entity Network", component: "entityGraph" },
+          { type: "tab", name: "Macro Liquidity", component: "macroLiquidity" },
+          { type: "tab", name: "Global Financial Network", component: "entityGraph" },
         ],
       },
       {
@@ -23,15 +23,14 @@ export const defaultLayout = {
             type: "tabset",
             weight: 50,
             children: [
-              { type: "tab", name: "AAPL Chart", component: "chart" },
+              { type: "tab", name: "Payment Rails Matrix", component: "paymentRails" },
             ],
           },
           {
             type: "tabset",
             weight: 50,
             children: [
-              { type: "tab", name: "News Feed", component: "news" },
-              { type: "tab", name: "Terminal", component: "terminal" },
+              { type: "tab", name: "Central Bank Policy Hub", component: "centralBanks" },
             ],
           },
         ],

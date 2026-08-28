@@ -1,8 +1,7 @@
-# World Money — Obsidian Global Financial Architecture Daemon
+# World Money — Obsidian Global Financial Architecture Daemon & Global Liquidity Map
 
-> The current supported product is the Obsidian-first global liquidity map.
-> See [UNIFIED_PLAN.md](UNIFIED_PLAN.md) for the architecture decision,
-> prototype boundaries, and implementation sequence.
+> The current supported product is the Obsidian-first global liquidity map & unified analyst dashboard.
+> See [UNIFIED_PLAN.md](UNIFIED_PLAN.md) for architecture decisions, data contracts, and implementation milestones.
 
 A 24/7 background service that builds and continuously maintains an
 [Obsidian](https://obsidian.md) vault mapping the global financial system:
@@ -50,50 +49,44 @@ Vault/
 ├── 20-Central-Banks/     Policy rate, mandate, CBDC status
 ├── 30-Payment-Rails/     Live open/closed status per clearing system
 ├── 40-Currencies/        FX hub grouping every country sharing a currency
-└── _system/              Cache, logs, and daemon state (not vault content)
+└── _system/              Cache, logs, exports, and daemon state
 ```
 
 The daemon also writes a versioned dashboard data contract to
 `_system/exports/world-money-graph.v1.json`. It contains countries, central
 banks, currencies, payment rails, and typed links between them.
 
-To load that contract in the Vite dashboard, start the daemon with
+To load that contract in the dashboard, start the daemon with
 `--dashboard-port 8765` and set
 `VITE_GRAPH_EXPORT_URL=http://127.0.0.1:8765/world-money-graph.v1.json`.
-The endpoint binds only to localhost. Set `VITE_GRAPH_STREAM_URL` only for a
-compatible incremental-update WebSocket; otherwise the dashboard keeps the
-stream disabled. Without an export URL, the dashboard labels its sample graph
-as `DATA: DEMO`.
 
-## MoneyTrace analyst workspace
+## Global Liquidity Map & MoneyTrace Analyst Dashboard
 
-The repository also includes a desktop-first React prototype for visual
-transaction tracing. It uses Sigma.js/Graphology for a WebGL graph, local mock
-data by default, and an API-ready data shape documented in
-[`docs/api-contract.md`](docs/api-contract.md).
+The repository includes a unified React dashboard featuring:
+1. **Global Liquidity Map**:
+   - **Macro Liquidity Monitor**: Interactive charts for M2 money supply, Fed Funds policy rate, CPI index, 10-Year Treasury Yields, and Fed Balance Sheet (FRED API / deterministic fallback).
+   - **World Bank GDP Comparison**: Sovereign GDP breakdown across major global economies.
+   - **Payment Rails Infrastructure Matrix**: Real-time status for global payment clearing systems (SWIFT, Fedwire, CHIPS, TARGET2, SEPA Instant, UPI, CIPS, PIX, FedNow, CHAPS).
+   - **Central Bank Policy Hub**: Policy benchmarks, legal mandates, and CBDC development stages.
+   - **Obsidian Knowledge Graph**: WebGL relationship network loaded from the daemon data contract.
+2. **MoneyTrace AML Intelligence**:
+   - Multi-hop transaction path tracing, risk-based alert triage, case annotations, role-aware masking, saved views, and CSV/JSON export.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the Vite URL printed by the command. The prototype supports graph
-filtering, multi-hop path tracing, alert triage, case annotations, role-aware
-masking, saved views, CSV/JSON batch import, and CSV/JSON case and audit
-exports. Batch import is visible when the local role selector is set to
-**Admin**. The current role control is a frontend simulation only; production
-authorization must be enforced by the API.
-
-Use `npm run build` to create a production bundle. See
-[`docs/architecture.md`](docs/architecture.md) for the system design and data
-model.
+Open the Vite URL printed by the command. To build the production bundle:
+```bash
+npm run build
+```
 
 ## Requirements
 
 - Python 3.10+
 - The [Dataview](https://blacksmithgu.github.io/obsidian-dataview/) Obsidian
-  community plugin, to render the `TABLE ...` queries embedded in the MOC
-  pages
+  community plugin
 - `pip install -r requirements.txt`
 
 ## Usage
@@ -108,42 +101,9 @@ python3 obsidian_finance_daemon.py --vault-path ./FinanceVault
 
 Then open `./FinanceVault` as an Obsidian vault.
 
-Refresh intervals (FX every 15 min, rail status every 60s, policy rates
-every 6h, country metadata daily) are set in `Config` at the top of
-`obsidian_finance_daemon.py`.
-
 ### Run continuously with launchd (macOS)
 
-1. Clone this repo somewhere permanent, e.g. `~/Projects/World_money`.
-2. Create a virtualenv and install dependencies:
-   ```bash
-   cd ~/Projects/World_money
-   python3 -m venv .venv
-   .venv/bin/pip install -r requirements.txt
-   ```
-3. Copy `com.worldmoney.finance-daemon.plist` to
-   `~/Library/LaunchAgents/`, and replace every
-   `/ABSOLUTE/PATH/TO/World_money` placeholder in it with the real path
-   from step 1.
-4. Load it:
-   ```bash
-   launchctl load ~/Library/LaunchAgents/com.worldmoney.finance-daemon.plist
-   ```
-
-## Data sources
-
-| Data | Source | Notes |
-|---|---|---|
-| Country list, capitals, regions | [mledoze/countries](https://github.com/mledoze/countries) | Free, no key. Cached; falls back to an embedded seed offline. |
-| Population | [restcountries.com](https://restcountries.com) | Free, no key. mledoze's feed no longer includes population. |
-| FX rates | [frankfurter.app](https://www.frankfurter.app) | ECB reference rates, USD base. |
-| Policy rates (US, Eurozone) | [FRED](https://fred.stlouisfed.org) | Covers the Fed and ECB only today; everything else is the curated seed in `CURATED_CENTRAL_BANKS`. |
-| Central banks (mandate, CBDC status) | Hand-curated in `CURATED_CENTRAL_BANKS` | ~25 major economies today; anything else gets an auto-stub. |
-| Payment rails (hours, operator) | Hand-curated in `CURATED_PAYMENT_RAILS` | SWIFT, Fedwire, CHIPS, FedNow, TARGET2, SEPA Instant, CHAPS, UPI, CIPS, Pix. |
-
-To extend coverage, add entries to `CURATED_CENTRAL_BANKS` or
-`CURATED_PAYMENT_RAILS` in `obsidian_finance_daemon.py` — the template
-plumbing already supports any entity you add.
+See [`deploy/README.md`](deploy/README.md) and [`deploy/com.worldmoney.finance-daemon.plist.template`](deploy/com.worldmoney.finance-daemon.plist.template).
 
 ## Validating the vault
 
@@ -151,14 +111,14 @@ plumbing already supports any entity you add.
 python3 validate_vault.py ./FinanceVault
 ```
 
-Checks every generated file for YAML frontmatter, balanced Dataview
-blocks, and wikilinks that actually resolve to a file in the vault.
-
 ## Testing
 
 ```bash
-pip install pytest
-pytest tests/
+# Run JavaScript unit & data contract tests
+npm test
+
+# Run Python unit tests
+python3 -m unittest discover tests
 ```
 
 ## License
