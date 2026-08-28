@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Ukraine — Financial Tear Sheet
 

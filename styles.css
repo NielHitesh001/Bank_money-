@@ -696,6 +696,169 @@ fieldset legend { margin-bottom: 12px; }
   line-height: 1.45;
 }
 
+.live-dot.server-live {
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+/* FX & Policy Converter */
+.converter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.converter-workbench-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.converter-form-card, .differential-card {
+  background: #0c0c0c;
+  border: 1px solid #1e1e1e;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.form-row label, .amount-input-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.form-row span, .amount-input-row span, .col-label {
+  font: 9px 'DM Mono';
+  color: #71857f;
+  letter-spacing: 0.08em;
+}
+
+.form-row select, .amount-input-row input {
+  padding: 8px 10px;
+  background: #050505;
+  border: 1px solid #262626;
+  color: #e6eeeb;
+  font: 11px 'DM Mono';
+  outline: none;
+}
+
+.swap-btn {
+  width: 36px;
+  height: 34px;
+  margin-bottom: 1px;
+  background: #151515;
+  border: 1px solid #333;
+  color: #64dcb1;
+  font-size: 16px;
+}
+
+.conversion-result-box {
+  background: #060e0c;
+  border: 1px solid #1a382e;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-headline strong {
+  font: 500 24px 'DM Mono';
+  color: #64dcb1;
+}
+
+.fx-rate-quote {
+  font: 10px 'DM Mono';
+  color: #7c9990;
+}
+
+.card-head h3 {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: #f0f7f4;
+}
+
+.banks-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  border: 1px solid #1a1a1a;
+  background: #060606;
+  padding: 12px;
+}
+
+.bank-col, .spread-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bank-col strong, .spread-col strong {
+  font: 500 18px 'DM Mono';
+}
+
+.bank-col small, .spread-col small {
+  font: 9px 'DM Mono';
+  color: #6a7c77;
+}
+
+.cbdc-mini-tag {
+  font: 8px 'DM Mono';
+  color: #a78bfa;
+  margin-top: 4px;
+}
+
+.carry-estimate-box {
+  background: #0d1217;
+  border: 1px solid #173042;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.carry-estimate-box span {
+  font: 9px 'DM Mono';
+  color: #5ea8d4;
+  letter-spacing: 0.08em;
+}
+
+.carry-estimate-box strong {
+  font: 500 16px 'DM Mono';
+  color: #38bdf8;
+}
+
+.corridor-rails-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #1c1c1c;
+  padding-top: 10px;
+}
+
+.rails-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rail-pill-active {
+  padding: 3px 8px;
+  background: #17150c;
+  border: 1px solid #44371b;
+  color: #eab308;
+  font: 9px 'DM Mono';
+  border-radius: 2px;
+}
+
 /* Pitch-black surface overrides */
 :root { color: #e7ecea; background: #000; }
 .intel-app, body { background: #000; }

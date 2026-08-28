@@ -45,6 +45,7 @@ import hashlib
 import io
 import json
 import logging
+import os
 import re
 import signal
 import sys
@@ -252,6 +253,30 @@ CURATED_CENTRAL_BANKS: dict[str, dict] = {
     "NLD": {"name": "De Nederlandsche Bank", "code": "DNB", "est": 1814,
             "policy_rate": 3.65, "mandate": "Price stability within Eurosystem (ECB-aligned)",
             "digital_currency": "Digital Euro — Eurosystem project"},
+    "NZL": {"name": "Reserve Bank of New Zealand", "code": "RBNZ", "est": 1934,
+            "policy_rate": 5.25, "mandate": "Price stability (1-3% target) & maximum sustainable employment",
+            "digital_currency": "Digital Cash — consultation stage"},
+    "NOR": {"name": "Norges Bank", "code": "NB", "est": 1816,
+            "policy_rate": 4.50, "mandate": "Price stability (2% target) & financial stability",
+            "digital_currency": "Experimental testing phase"},
+    "SWE": {"name": "Sveriges Riksbank", "code": "RB", "est": 1668,
+            "policy_rate": 3.50, "mandate": "Price stability (2% CPIF target)",
+            "digital_currency": "e-krona — technical pilot completed"},
+    "THA": {"name": "Bank of Thailand", "code": "BOT", "est": 1942,
+            "policy_rate": 2.50, "mandate": "Price stability (1-3% target) & economic growth",
+            "digital_currency": "Retail CBDC pilot completed"},
+    "MYS": {"name": "Bank Negara Malaysia", "code": "BNM", "est": 1959,
+            "policy_rate": 3.00, "mandate": "Monetary & financial stability conducive to sustainable growth",
+            "digital_currency": "Project Dunbar — wholesale exploration"},
+    "PHL": {"name": "Bangko Sentral ng Pilipinas", "code": "BSP", "est": 1993,
+            "policy_rate": 6.25, "mandate": "Price stability (2-4% target) & financial system health",
+            "digital_currency": "Project Agila — wholesale pilot"},
+    "VNM": {"name": "State Bank of Vietnam", "code": "SBV", "est": 1951,
+            "policy_rate": 4.50, "mandate": "Currency value stability & economic development",
+            "digital_currency": "Research & legal framework study"},
+    "CHL": {"name": "Banco Central de Chile", "code": "BCCh", "est": 1925,
+            "policy_rate": 5.50, "mandate": "Currency stability (3% inflation target) & payment safety",
+            "digital_currency": "Exploration & technical assessment"},
 }
 
 # NOTE on the "policy_rate" figures above: they are illustrative seed values,
@@ -322,6 +347,42 @@ CURATED_PAYMENT_RAILS: dict[str, dict] = {
         "scope": "Brazil", "operator": "Banco Central do Brasil",
         "hours": {"tz": "UTC", "open": 0, "close": 24, "days": "7"},
         "settles_in": ["BRA"], "notes": "Central-bank-operated instant rail; mass retail adoption.",
+    },
+    "SPEI": {
+        "full_name": "Sistema de Pagos Electrónicos Interbancarios", "type": "Instant payment / RTGS hybrid",
+        "scope": "Mexico", "operator": "Banco de México (Banxico)",
+        "hours": {"tz": "UTC", "open": 0, "close": 24, "days": "7"},
+        "settles_in": ["MEX"], "notes": "24/7 domestic real-time interbank electronic payment rail.",
+    },
+    "PROMPTPAY": {
+        "full_name": "PromptPay Real-Time Payments", "type": "Instant payment (retail & merchant)",
+        "scope": "Thailand", "operator": "National ITMX / Bank of Thailand",
+        "hours": {"tz": "UTC", "open": 0, "close": 24, "days": "7"},
+        "settles_in": ["THA"], "notes": "High-penetration national instant payment ecosystem in Southeast Asia.",
+    },
+    "FAST": {
+        "full_name": "Fast And Secure Transfers (FAST)", "type": "Instant payment (retail & corporate)",
+        "scope": "Singapore", "operator": "Banking Computer Services / MAS",
+        "hours": {"tz": "UTC", "open": 0, "close": 24, "days": "7"},
+        "settles_in": ["SGP"], "notes": "24/7 instant SGD funds transfer rail between participating financial institutions.",
+    },
+    "SARIE": {
+        "full_name": "Saudi Arabian Interbank Express", "type": "RTGS & Instant IPS",
+        "scope": "Saudi Arabia", "operator": "Saudi Central Bank (SAMA)",
+        "hours": {"tz": "Asia/Riyadh", "open": 0, "close": 24, "days": "7"},
+        "settles_in": ["SAU"], "notes": "Core interbank payments backbone for the Kingdom of Saudi Arabia.",
+    },
+    "NPP": {
+        "full_name": "New Payments Platform (NPP / PayID)", "type": "Instant payment (retail & wholesale)",
+        "scope": "Australia", "operator": "Australian Payments Plus / RBA",
+        "hours": {"tz": "UTC", "open": 0, "close": 24, "days": "7"},
+        "settles_in": ["AUS"], "notes": "Data-rich, ISO 20022 24/7 real-time gross settlement infrastructure.",
+    },
+    "T2S": {
+        "full_name": "TARGET2-Securities", "type": "Securities Settlement / DvP",
+        "scope": "Eurozone / Pan-European", "operator": "Eurosystem (ECB)",
+        "hours": {"tz": "Europe/Frankfurt", "open": 0, "close": 24, "days": "Mon-Fri"},
+        "settles_in": ["DEU", "FRA", "ITA", "ESP", "NLD"], "notes": "Centralised Delivery-versus-Payment (DvP) platform across 20+ European CSDs.",
     },
 }
 
@@ -507,11 +568,15 @@ class PolicyRateSource(CachedSource):
 
     def fetch(self) -> dict[str, dict]:
         data = {}
+        api_key = os.environ.get("FRED_API_KEY")
         if requests is not None:
             for series_id, (country, source_name) in self.SERIES.items():
                 try:
+                    params = {"id": series_id}
+                    if api_key and api_key != "your_fred_api_key_here":
+                        params["api_key"] = api_key
                     response = requests.get(
-                        self.API_URL, params={"id": series_id}, timeout=self.cfg.http_timeout,
+                        self.API_URL, params=params, timeout=self.cfg.http_timeout,
                         headers={"User-Agent": USER_AGENT},
                     )
                     response.raise_for_status()

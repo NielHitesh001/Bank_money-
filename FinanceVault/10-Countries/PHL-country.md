@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Philippines — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:43 UTC"
 > **Region:** Asia / South-Eastern Asia
 > **Capital:** Manila
 > **Currency:** PHP
-> **Central Bank:** [[PHL-central-bank|Central Bank of Philippines (stub)]]
+> **Central Bank:** [[PHL-central-bank|Central Bank of Philippines]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,7 +30,7 @@ last_updated: "2026-08-28 21:43 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[PHL-central-bank|Central Bank of Philippines (stub)]]
+- [[PHL-central-bank|Central Bank of Philippines]]
 
 ## 🔗 Connected Payment Rails
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]

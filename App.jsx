@@ -1,11 +1,13 @@
 import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import CentralBankPolicyHub from "./components/CentralBankPolicyHub";
 import EntityGraph from "./components/EntityGraph";
+import FxPolicyConverter from "./components/FxPolicyConverter";
 import MacroLiquidityPanel from "./components/MacroLiquidityPanel";
 import NetworkCanvas from "./components/NetworkCanvas";
 import PaymentRailsMatrix from "./components/PaymentRailsMatrix";
 import { cases as initialCases, entities as initialEntities, transactions as initialTransactions } from "./data/intelligenceMock";
 import { findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
+import { addCaseNoteApi, checkServerHealth, fetchCasesApi, logAuditEventApi, syncCaseApi } from "./src/services/apiClient.js";
 import "./styles.css";
 
 const formats = { entity: "Entity", transaction: "Transaction" };
@@ -44,7 +46,8 @@ function loadSavedViews() {
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("liquidity"); // "liquidity" | "investigate"
-  const [liquiditySubView, setLiquiditySubView] = useState("macro"); // "macro" | "rails" | "centralbanks" | "network"
+  const [liquiditySubView, setLiquiditySubView] = useState("macro"); // "macro" | "rails" | "centralbanks" | "converter" | "network"
+  const [serverOnline, setServerOnline] = useState(false);
 
   const [workspace, setWorkspace] = useState({ entities: initialEntities, transactions: initialTransactions });
   const [query, setQuery] = useState("");
@@ -79,7 +82,23 @@ export default function Dashboard() {
   const transactions = workspace.transactions;
   const deferredQuery = useDeferredValue(query);
 
-  const recordAudit = (event) => setAudit((events) => [`09:49 — ${event}`, ...events]);
+  const recordAudit = (event) => {
+    setAudit((events) => [`09:49 — ${event}`, ...events]);
+    logAuditEventApi(event);
+  };
+
+  useEffect(() => {
+    checkServerHealth().then((isHealthy) => {
+      setServerOnline(isHealthy);
+      if (isHealthy) {
+        fetchCasesApi(caseItems).then((remoteCases) => {
+          if (Array.isArray(remoteCases) && remoteCases.length > 0) {
+            setCaseItems(remoteCases);
+          }
+        });
+      }
+    });
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem(savedViewStorageKey, JSON.stringify(savedViews.slice(0, 5)));
@@ -153,13 +172,14 @@ export default function Dashboard() {
 
   const addToCase = () => {
     if (activeCase.itemIds.includes(selected.value)) return;
-    setCaseItems((items) =>
-      items.map((item) =>
-        item.id === activeCaseId
-          ? { ...item, itemIds: [...item.itemIds, selected.value], transactions: item.transactions + 1, updated: "just now" }
-          : item
-      )
-    );
+    const updatedCase = {
+      ...activeCase,
+      itemIds: [...activeCase.itemIds, selected.value],
+      transactions: activeCase.transactions + 1,
+      updated: "just now",
+    };
+    setCaseItems((items) => items.map((item) => (item.id === activeCaseId ? updatedCase : item)));
+    syncCaseApi(updatedCase);
     recordAudit(`${selected.value} added to ${activeCaseId}`);
   };
 
@@ -176,7 +196,9 @@ export default function Dashboard() {
 
   const updateCaseStatus = (status) => {
     if (status === activeCase.status) return;
-    setCaseItems((items) => (items.map((item) => (item.id === activeCaseId ? { ...item, status, updated: "just now" } : item))));
+    const updatedCase = { ...activeCase, status, updated: "just now" };
+    setCaseItems((items) => items.map((item) => (item.id === activeCaseId ? updatedCase : item)));
+    syncCaseApi(updatedCase);
     recordAudit(`${activeCaseId} status changed to ${status}`);
   };
 
@@ -281,6 +303,7 @@ export default function Dashboard() {
     const trimmed = note.trim();
     if (!trimmed) return;
     setCaseNotes((notes) => [{ id: `${activeCaseId}-${notes.length}`, caseId: activeCaseId, text: trimmed }, ...notes]);
+    addCaseNoteApi(activeCaseId, trimmed);
     setNote("");
     recordAudit(`investigator note saved to ${activeCaseId}`);
   };
@@ -360,7 +383,7 @@ export default function Dashboard() {
           <button onClick={() => setAuditOpen(true)}>Audit Ledger</button>
         </nav>
         <div className="operator">
-          <span className="live-dot" /> Secure session
+          <span className={`live-dot ${serverOnline ? "server-live" : ""}`} /> {serverOnline ? "API Connected" : "Local Session"}
           <label className="role-switch">
             <span>ROLE</span>
             <select
@@ -390,6 +413,12 @@ export default function Dashboard() {
               Macro Liquidity (FRED / WB)
             </button>
             <button
+              className={liquiditySubView === "converter" ? "active" : ""}
+              onClick={() => setLiquiditySubView("converter")}
+            >
+              FX & Rate Arbitrage
+            </button>
+            <button
               className={liquiditySubView === "rails" ? "active" : ""}
               onClick={() => setLiquiditySubView("rails")}
             >
@@ -410,6 +439,7 @@ export default function Dashboard() {
           </nav>
 
           {liquiditySubView === "macro" && <MacroLiquidityPanel />}
+          {liquiditySubView === "converter" && <FxPolicyConverter />}
           {liquiditySubView === "rails" && <PaymentRailsMatrix />}
           {liquiditySubView === "centralbanks" && <CentralBankPolicyHub />}
           {liquiditySubView === "network" && <EntityGraph />}

@@ -1,10 +1,11 @@
 import React from "react";
 import CentralBankPolicyHub from "./CentralBankPolicyHub";
 import EntityGraph from "./EntityGraph";
+import FxPolicyConverter from "./FxPolicyConverter";
 import MacroLiquidityPanel from "./MacroLiquidityPanel";
 import PaymentRailsMatrix from "./PaymentRailsMatrix";
 
-export { CentralBankPolicyHub, EntityGraph, MacroLiquidityPanel, PaymentRailsMatrix };
+export { CentralBankPolicyHub, EntityGraph, FxPolicyConverter, MacroLiquidityPanel, PaymentRailsMatrix };
 
 export function dashboardFactory(node) {
   switch (node.getComponent()) {
@@ -17,6 +18,8 @@ export function dashboardFactory(node) {
     case "centralBanks":
     case "news":
       return <CentralBankPolicyHub />;
+    case "fxConverter":
+      return <FxPolicyConverter />;
     case "entityGraph":
     case "terminal":
       return <EntityGraph />;

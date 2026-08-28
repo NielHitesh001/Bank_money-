@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Chile — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:43 UTC"
 > **Region:** Americas / South America
 > **Capital:** Santiago
 > **Currency:** CLP
-> **Central Bank:** [[CHL-central-bank|Central Bank of Chile (stub)]]
+> **Central Bank:** [[CHL-central-bank|Central Bank of Chile]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,7 +30,7 @@ last_updated: "2026-08-28 21:43 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[CHL-central-bank|Central Bank of Chile (stub)]]
+- [[CHL-central-bank|Central Bank of Chile]]
 
 ## 🔗 Connected Payment Rails
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]

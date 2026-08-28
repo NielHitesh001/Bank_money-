@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Spain — Financial Tear Sheet
 
@@ -35,6 +35,7 @@ last_updated: "2026-08-28 21:43 UTC"
 ## 🔗 Connected Payment Rails
 - [[SEPA_INSTANT-rail|SEPA Instant Credit Transfer]]
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
+- [[T2S-rail|TARGET2-Securities]]
 - [[TARGET2-rail|Trans-European Automated Real-time Gross settlement Express Transfer]]
 
 ## 🗺️ Graph Context

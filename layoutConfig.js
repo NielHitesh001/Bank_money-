@@ -12,6 +12,7 @@ export const defaultLayout = {
         weight: 50,
         children: [
           { type: "tab", name: "Macro Liquidity", component: "macroLiquidity" },
+          { type: "tab", name: "FX & Policy Differential", component: "fxConverter" },
           { type: "tab", name: "Global Financial Network", component: "entityGraph" },
         ],
       },

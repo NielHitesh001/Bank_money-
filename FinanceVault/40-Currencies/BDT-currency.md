@@ -6,7 +6,7 @@ currency_symbol: "\u09f3"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # Bangladeshi taka (BDT) Currency Hub
 

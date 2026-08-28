@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Saudi Arabia — Financial Tear Sheet
 
@@ -33,6 +33,7 @@ last_updated: "2026-08-28 21:43 UTC"
 - [[SAU-central-bank|Central Bank of Saudi Arabia]]
 
 ## 🔗 Connected Payment Rails
+- [[SARIE-rail|Saudi Arabian Interbank Express]]
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
 
 ## 🗺️ Graph Context

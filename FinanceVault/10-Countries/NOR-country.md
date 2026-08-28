@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Norway — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:43 UTC"
 > **Region:** Europe / Northern Europe
 > **Capital:** Oslo
 > **Currency:** NOK
-> **Central Bank:** [[NOR-central-bank|Central Bank of Norway (stub)]]
+> **Central Bank:** [[NOR-central-bank|Central Bank of Norway]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,7 +30,7 @@ last_updated: "2026-08-28 21:43 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[NOR-central-bank|Central Bank of Norway (stub)]]
+- [[NOR-central-bank|Central Bank of Norway]]
 
 ## 🔗 Connected Payment Rails
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]

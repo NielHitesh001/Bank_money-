@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Vietnam — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:43 UTC"
 > **Region:** Asia / South-Eastern Asia
 > **Capital:** Hanoi
 > **Currency:** VND
-> **Central Bank:** [[VNM-central-bank|Central Bank of Vietnam (stub)]]
+> **Central Bank:** [[VNM-central-bank|Central Bank of Vietnam]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,7 +30,7 @@ last_updated: "2026-08-28 21:43 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[VNM-central-bank|Central Bank of Vietnam (stub)]]
+- [[VNM-central-bank|Central Bank of Vietnam]]
 
 ## 🔗 Connected Payment Rails
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]

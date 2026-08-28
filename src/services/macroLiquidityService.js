@@ -1,4 +1,4 @@
-// Macro Liquidity Data Provider & API Client
+// Macro Liquidity Data Provider & Live FRED Client
 
 export const MACRO_SERIES_CONFIG = [
   { id: "M2SL", key: "m2", label: "M2 Money Supply", unit: "$B", description: "Broad money stock (currency + checking + savings + money markets)" },
@@ -25,7 +25,7 @@ export function generateDeterministicFallback() {
 
   return {
     source: "demo",
-    asOf: "2026-08-28T00:00:00Z",
+    asOf: new Date().toISOString(),
     series: {
       m2: seed(20850, 32, 95),
       fedfunds: seed(5.25, -0.06, 0.04),
@@ -47,33 +47,67 @@ export function generateDeterministicFallback() {
   };
 }
 
+export async function fetchFredSeries(seriesId, apiKey) {
+  const url = `https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&api_key=${apiKey}&file_type=json`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(4000) });
+  if (!res.ok) throw new Error(`FRED HTTP error: ${res.status}`);
+  const json = await res.json();
+  const obs = (json.observations || [])
+    .filter((o) => o.value !== "." && o.value !== "")
+    .slice(-24)
+    .map((o) => ({ date: o.date, value: Number(o.value) }));
+  return obs;
+}
+
 export async function fetchMacroLiquidity(endpointUrl) {
-  const targetUrl = endpointUrl || import.meta.env.VITE_MACRO_API_URL;
-  if (!targetUrl) {
-    return generateDeterministicFallback();
+  const apiKey = (typeof process !== "undefined" && process.env?.FRED_API_KEY) ||
+    (typeof import.meta !== "undefined" && import.meta.env?.VITE_FRED_API_KEY);
+
+  const targetUrl = endpointUrl || (typeof import.meta !== "undefined" && import.meta.env?.VITE_MACRO_API_URL);
+
+  if (targetUrl) {
+    try {
+      const response = await fetch(targetUrl, { signal: AbortSignal.timeout(3000) });
+      if (response.ok) {
+        const data = await response.json();
+        return {
+          source: data.source || "live",
+          asOf: data.asOf || new Date().toISOString(),
+          series: data.series || generateDeterministicFallback().series,
+          gdp: data.gdp || generateDeterministicFallback().gdp,
+        };
+      }
+    } catch {
+      // Fall through to direct or demo fallback
+    }
   }
 
-  try {
-    const response = await fetch(targetUrl);
-    if (!response.ok) {
-      throw new Error(`Macro endpoint error: ${response.status}`);
+  // If live FRED API key is configured, query FRED endpoints
+  if (apiKey && apiKey !== "your_fred_api_key_here") {
+    try {
+      const fallback = generateDeterministicFallback();
+      const seriesPromises = MACRO_SERIES_CONFIG.map(async (cfg) => {
+        try {
+          const points = await fetchFredSeries(cfg.id, apiKey);
+          return [cfg.key, points.length > 0 ? points : fallback.series[cfg.key]];
+        } catch {
+          return [cfg.key, fallback.series[cfg.key]];
+        }
+      });
+
+      const results = await Promise.all(seriesPromises);
+      const liveSeries = Object.fromEntries(results);
+
+      return {
+        source: "live-fred",
+        asOf: new Date().toISOString(),
+        series: liveSeries,
+        gdp: fallback.gdp,
+      };
+    } catch {
+      return generateDeterministicFallback();
     }
-    const data = await response.json();
-    return {
-      source: data.source || "live",
-      asOf: data.asOf || new Date().toISOString(),
-      series: {
-        m2: data.m2 || generateDeterministicFallback().series.m2,
-        fedfunds: data.fedfunds || generateDeterministicFallback().series.fedfunds,
-        cpi: data.cpi || generateDeterministicFallback().series.cpi,
-        t10y: data.t10y || generateDeterministicFallback().series.t10y,
-        balansh: data.balansh || generateDeterministicFallback().series.balansh,
-        credit: data.credit || generateDeterministicFallback().series.credit,
-        deposits: data.deposits || generateDeterministicFallback().series.deposits,
-      },
-      gdp: data.gdp || generateDeterministicFallback().gdp,
-    };
-  } catch {
-    return generateDeterministicFallback();
   }
+
+  return generateDeterministicFallback();
 }

@@ -2,9 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import http from "node:http";
 import { generateDeterministicFallback, MACRO_SERIES_CONFIG } from "../src/services/macroLiquidityService.js";
 import { PAYMENT_RAILS_DATA } from "../data/paymentRailsData.js";
 import { CENTRAL_BANKS_DATA } from "../data/centralBanksData.js";
+import { server } from "../src/server/server.mjs";
 
 test("Macro Liquidity Service fallback generator produces required series", () => {
   const fallback = generateDeterministicFallback();
@@ -22,8 +24,11 @@ test("Macro Liquidity Service fallback generator produces required series", () =
 });
 
 test("Payment Rails dataset contains major global clearing systems with valid fields", () => {
-  assert.ok(PAYMENT_RAILS_DATA.length >= 8);
-  const requiredRails = ["SWIFT", "FEDWIRE", "CHIPS", "TARGET2", "SEPA_INSTANT", "UPI", "CIPS", "PIX", "FEDNOW", "CHAPS"];
+  assert.ok(PAYMENT_RAILS_DATA.length >= 15, "Expected at least 15 payment rails");
+  const requiredRails = [
+    "SWIFT", "FEDWIRE", "CHIPS", "TARGET2", "SEPA_INSTANT", "UPI", "CIPS", "PIX", "FEDNOW", "CHAPS",
+    "SPEI", "PROMPTPAY", "FAST", "SARIE", "NPP", "T2S"
+  ];
 
   const railIds = new Set(PAYMENT_RAILS_DATA.map((r) => r.id));
   for (const req of requiredRails) {
@@ -41,8 +46,11 @@ test("Payment Rails dataset contains major global clearing systems with valid fi
 });
 
 test("Central Banks dataset contains major monetary authorities with valid policy rates", () => {
-  assert.ok(CENTRAL_BANKS_DATA.length >= 8);
-  const majorCurrencies = ["USD", "EUR", "GBP", "JPY", "CNY", "INR", "CHF"];
+  assert.ok(CENTRAL_BANKS_DATA.length >= 18, "Expected at least 18 central banks");
+  const majorCurrencies = [
+    "USD", "EUR", "GBP", "JPY", "CNY", "INR", "CHF", "CAD", "AUD", "BRL",
+    "KRW", "MXN", "SAR", "AED", "SGD", "NZD", "NOK", "SEK", "ZAR", "TRY"
+  ];
 
   const currencies = new Set(CENTRAL_BANKS_DATA.map((cb) => cb.currency));
   for (const curr of majorCurrencies) {

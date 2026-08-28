@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:43 UTC"
+last_updated: "2026-08-28 21:58 UTC"
 ---
 # 🏦 Singapore — Financial Tear Sheet
 
@@ -33,6 +33,7 @@ last_updated: "2026-08-28 21:43 UTC"
 - [[SGP-central-bank|Central Bank of Singapore]]
 
 ## 🔗 Connected Payment Rails
+- [[FAST-rail|Fast And Secure Transfers (FAST)]]
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
 
 ## 🗺️ Graph Context

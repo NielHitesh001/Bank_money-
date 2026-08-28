@@ -1,0 +1,53 @@
+{
+  "cases": [
+    {
+      "id": "CASE-1842",
+      "title": "Baltic routing anomaly",
+      "severity": "Critical",
+      "status": "Open",
+      "transactions": 4,
+      "updated": "2 min ago",
+      "itemIds": [
+        "TX-2026-08492",
+        "TX-2026-08493",
+        "TX-2026-08494",
+        "TX-2026-08495"
+      ],
+      "notes": []
+    },
+    {
+      "id": "CASE-1837",
+      "title": "Orion Holdings exposure",
+      "severity": "High",
+      "status": "In review",
+      "transactions": 2,
+      "updated": "18 min ago",
+      "itemIds": [],
+      "notes": []
+    },
+    {
+      "id": "CASE-1829",
+      "title": "Unusual USD corridor",
+      "severity": "Medium",
+      "status": "Open",
+      "transactions": 7,
+      "updated": "42 min ago",
+      "itemIds": [],
+      "notes": []
+    }
+  ],
+  "audit": [
+    {
+      "sequence": 1,
+      "event": "09:42 — session authenticated",
+      "timestamp": "2026-08-28T21:52:19.671Z"
+    },
+    {
+      "sequence": 2,
+      "event": "09:44 — trace started: Baltic routing anomaly",
+      "timestamp": "2026-08-28T21:52:19.672Z"
+    }
+  ],
+  "triagedAlerts": [],
+  "savedViews": []
+}
