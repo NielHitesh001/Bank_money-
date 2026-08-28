@@ -1532,6 +1532,72 @@ fieldset legend { margin-bottom: 12px; }
   font-size: 9px;
 }
 
+/* Canvas Hover Inspection Card */
+.canvas-hover-card {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(5, 5, 5, 0.94);
+  border: 1px solid #2a3a35;
+  border-radius: 3px;
+  padding: 10px 14px;
+  z-index: 15;
+  pointer-events: none;
+  font: 11px 'DM Mono', monospace;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hover-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #f0fdf4;
+}
+
+.hover-flag {
+  font-size: 13px;
+}
+
+.hover-badge {
+  color: #38bdf8;
+  font-size: 10px;
+  margin-left: auto;
+}
+
+.hover-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #799088;
+}
+
+.hover-risk {
+  font-weight: 700;
+}
+
+.hover-foot {
+  font-size: 10px;
+  color: #a4b8b2;
+  border-top: 1px solid #1a2422;
+  padding-top: 4px;
+  margin-top: 2px;
+}
+
+.hover-flag-warning {
+  color: #ff5b6e;
+  background: rgba(255, 91, 110, 0.15);
+  padding: 3px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  margin-top: 4px;
+}
+
 /* Pitch-black surface overrides */
 :root { color: #e7ecea; background: #000; }
 .intel-app, body { background: #000; }
