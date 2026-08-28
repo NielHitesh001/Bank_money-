@@ -1,0 +1,7872 @@
+{
+  "generated_at": "2026-08-28 20:25 UTC",
+  "links": [
+    {
+      "source": "country:AFG",
+      "target": "central-bank:AFG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:AFG",
+      "target": "currency:AFN",
+      "type": "uses"
+    },
+    {
+      "source": "country:AGO",
+      "target": "central-bank:AGO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:AGO",
+      "target": "currency:AOA",
+      "type": "uses"
+    },
+    {
+      "source": "country:ALB",
+      "target": "central-bank:ALB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ALB",
+      "target": "currency:ALL",
+      "type": "uses"
+    },
+    {
+      "source": "country:AND",
+      "target": "central-bank:AND",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:AND",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:ARE",
+      "target": "central-bank:ARE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ARE",
+      "target": "currency:AED",
+      "type": "uses"
+    },
+    {
+      "source": "country:ARG",
+      "target": "central-bank:ARG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ARG",
+      "target": "currency:ARS",
+      "type": "uses"
+    },
+    {
+      "source": "country:ARM",
+      "target": "central-bank:ARM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ARM",
+      "target": "currency:AMD",
+      "type": "uses"
+    },
+    {
+      "source": "country:ATG",
+      "target": "central-bank:ATG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ATG",
+      "target": "currency:XCD",
+      "type": "uses"
+    },
+    {
+      "source": "country:AUS",
+      "target": "central-bank:AUS",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:AUS",
+      "target": "currency:AUD",
+      "type": "uses"
+    },
+    {
+      "source": "country:AUT",
+      "target": "central-bank:AUT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:AUT",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:AZE",
+      "target": "central-bank:AZE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:AZE",
+      "target": "currency:AZN",
+      "type": "uses"
+    },
+    {
+      "source": "country:BDI",
+      "target": "central-bank:BDI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BDI",
+      "target": "currency:BIF",
+      "type": "uses"
+    },
+    {
+      "source": "country:BEL",
+      "target": "central-bank:BEL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BEL",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:BEN",
+      "target": "central-bank:BEN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BEN",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:BFA",
+      "target": "central-bank:BFA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BFA",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:BGD",
+      "target": "central-bank:BGD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BGD",
+      "target": "currency:BDT",
+      "type": "uses"
+    },
+    {
+      "source": "country:BGR",
+      "target": "central-bank:BGR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BGR",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:BHR",
+      "target": "central-bank:BHR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BHR",
+      "target": "currency:BHD",
+      "type": "uses"
+    },
+    {
+      "source": "country:BHS",
+      "target": "central-bank:BHS",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BHS",
+      "target": "currency:BSD",
+      "type": "uses"
+    },
+    {
+      "source": "country:BIH",
+      "target": "central-bank:BIH",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BIH",
+      "target": "currency:BAM",
+      "type": "uses"
+    },
+    {
+      "source": "country:BLR",
+      "target": "central-bank:BLR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BLR",
+      "target": "currency:BYN",
+      "type": "uses"
+    },
+    {
+      "source": "country:BLZ",
+      "target": "central-bank:BLZ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BLZ",
+      "target": "currency:BZD",
+      "type": "uses"
+    },
+    {
+      "source": "country:BOL",
+      "target": "central-bank:BOL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BOL",
+      "target": "currency:BOB",
+      "type": "uses"
+    },
+    {
+      "source": "country:BRA",
+      "target": "central-bank:BRA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BRA",
+      "target": "currency:BRL",
+      "type": "uses"
+    },
+    {
+      "source": "country:BRB",
+      "target": "central-bank:BRB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BRB",
+      "target": "currency:BBD",
+      "type": "uses"
+    },
+    {
+      "source": "country:BRN",
+      "target": "central-bank:BRN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BRN",
+      "target": "currency:BND",
+      "type": "uses"
+    },
+    {
+      "source": "country:BTN",
+      "target": "central-bank:BTN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BTN",
+      "target": "currency:BTN",
+      "type": "uses"
+    },
+    {
+      "source": "country:BWA",
+      "target": "central-bank:BWA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:BWA",
+      "target": "currency:BWP",
+      "type": "uses"
+    },
+    {
+      "source": "country:CAF",
+      "target": "central-bank:CAF",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CAF",
+      "target": "currency:XAF",
+      "type": "uses"
+    },
+    {
+      "source": "country:CAN",
+      "target": "central-bank:CAN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CAN",
+      "target": "currency:CAD",
+      "type": "uses"
+    },
+    {
+      "source": "country:CHE",
+      "target": "central-bank:CHE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CHE",
+      "target": "currency:CHF",
+      "type": "uses"
+    },
+    {
+      "source": "country:CHL",
+      "target": "central-bank:CHL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CHL",
+      "target": "currency:CLP",
+      "type": "uses"
+    },
+    {
+      "source": "country:CHN",
+      "target": "central-bank:CHN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CHN",
+      "target": "currency:CNY",
+      "type": "uses"
+    },
+    {
+      "source": "country:CIV",
+      "target": "central-bank:CIV",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CIV",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:CMR",
+      "target": "central-bank:CMR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CMR",
+      "target": "currency:XAF",
+      "type": "uses"
+    },
+    {
+      "source": "country:COD",
+      "target": "central-bank:COD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:COD",
+      "target": "currency:CDF",
+      "type": "uses"
+    },
+    {
+      "source": "country:COG",
+      "target": "central-bank:COG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:COG",
+      "target": "currency:XAF",
+      "type": "uses"
+    },
+    {
+      "source": "country:COL",
+      "target": "central-bank:COL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:COL",
+      "target": "currency:COP",
+      "type": "uses"
+    },
+    {
+      "source": "country:COM",
+      "target": "central-bank:COM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:COM",
+      "target": "currency:KMF",
+      "type": "uses"
+    },
+    {
+      "source": "country:CPV",
+      "target": "central-bank:CPV",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CPV",
+      "target": "currency:CVE",
+      "type": "uses"
+    },
+    {
+      "source": "country:CRI",
+      "target": "central-bank:CRI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CRI",
+      "target": "currency:CRC",
+      "type": "uses"
+    },
+    {
+      "source": "country:CUB",
+      "target": "central-bank:CUB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CUB",
+      "target": "currency:CUC",
+      "type": "uses"
+    },
+    {
+      "source": "country:CYP",
+      "target": "central-bank:CYP",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CYP",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:CZE",
+      "target": "central-bank:CZE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:CZE",
+      "target": "currency:CZK",
+      "type": "uses"
+    },
+    {
+      "source": "country:DEU",
+      "target": "central-bank:DEU",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:DEU",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:DJI",
+      "target": "central-bank:DJI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:DJI",
+      "target": "currency:DJF",
+      "type": "uses"
+    },
+    {
+      "source": "country:DMA",
+      "target": "central-bank:DMA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:DMA",
+      "target": "currency:XCD",
+      "type": "uses"
+    },
+    {
+      "source": "country:DNK",
+      "target": "central-bank:DNK",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:DNK",
+      "target": "currency:DKK",
+      "type": "uses"
+    },
+    {
+      "source": "country:DOM",
+      "target": "central-bank:DOM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:DOM",
+      "target": "currency:DOP",
+      "type": "uses"
+    },
+    {
+      "source": "country:DZA",
+      "target": "central-bank:DZA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:DZA",
+      "target": "currency:DZD",
+      "type": "uses"
+    },
+    {
+      "source": "country:ECU",
+      "target": "central-bank:ECU",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ECU",
+      "target": "currency:USD",
+      "type": "uses"
+    },
+    {
+      "source": "country:EGY",
+      "target": "central-bank:EGY",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:EGY",
+      "target": "currency:EGP",
+      "type": "uses"
+    },
+    {
+      "source": "country:ERI",
+      "target": "central-bank:ERI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ERI",
+      "target": "currency:ERN",
+      "type": "uses"
+    },
+    {
+      "source": "country:ESP",
+      "target": "central-bank:ESP",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ESP",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:EST",
+      "target": "central-bank:EST",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:EST",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:ETH",
+      "target": "central-bank:ETH",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ETH",
+      "target": "currency:ETB",
+      "type": "uses"
+    },
+    {
+      "source": "country:FIN",
+      "target": "central-bank:FIN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:FIN",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:FJI",
+      "target": "central-bank:FJI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:FJI",
+      "target": "currency:FJD",
+      "type": "uses"
+    },
+    {
+      "source": "country:FRA",
+      "target": "central-bank:FRA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:FRA",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:FSM",
+      "target": "central-bank:FSM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GAB",
+      "target": "central-bank:GAB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GAB",
+      "target": "currency:XAF",
+      "type": "uses"
+    },
+    {
+      "source": "country:GBR",
+      "target": "central-bank:GBR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GBR",
+      "target": "currency:GBP",
+      "type": "uses"
+    },
+    {
+      "source": "country:GEO",
+      "target": "central-bank:GEO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GEO",
+      "target": "currency:GEL",
+      "type": "uses"
+    },
+    {
+      "source": "country:GHA",
+      "target": "central-bank:GHA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GHA",
+      "target": "currency:GHS",
+      "type": "uses"
+    },
+    {
+      "source": "country:GIN",
+      "target": "central-bank:GIN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GIN",
+      "target": "currency:GNF",
+      "type": "uses"
+    },
+    {
+      "source": "country:GMB",
+      "target": "central-bank:GMB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GMB",
+      "target": "currency:GMD",
+      "type": "uses"
+    },
+    {
+      "source": "country:GNB",
+      "target": "central-bank:GNB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GNB",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:GNQ",
+      "target": "central-bank:GNQ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GNQ",
+      "target": "currency:XAF",
+      "type": "uses"
+    },
+    {
+      "source": "country:GRC",
+      "target": "central-bank:GRC",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GRC",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:GRD",
+      "target": "central-bank:GRD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GRD",
+      "target": "currency:XCD",
+      "type": "uses"
+    },
+    {
+      "source": "country:GTM",
+      "target": "central-bank:GTM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GTM",
+      "target": "currency:GTQ",
+      "type": "uses"
+    },
+    {
+      "source": "country:GUY",
+      "target": "central-bank:GUY",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:GUY",
+      "target": "currency:GYD",
+      "type": "uses"
+    },
+    {
+      "source": "country:HND",
+      "target": "central-bank:HND",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:HND",
+      "target": "currency:HNL",
+      "type": "uses"
+    },
+    {
+      "source": "country:HRV",
+      "target": "central-bank:HRV",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:HRV",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:HTI",
+      "target": "central-bank:HTI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:HTI",
+      "target": "currency:HTG",
+      "type": "uses"
+    },
+    {
+      "source": "country:HUN",
+      "target": "central-bank:HUN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:HUN",
+      "target": "currency:HUF",
+      "type": "uses"
+    },
+    {
+      "source": "country:IDN",
+      "target": "central-bank:IDN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:IDN",
+      "target": "currency:IDR",
+      "type": "uses"
+    },
+    {
+      "source": "country:IND",
+      "target": "central-bank:IND",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:IND",
+      "target": "currency:INR",
+      "type": "uses"
+    },
+    {
+      "source": "country:IRL",
+      "target": "central-bank:IRL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:IRL",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:IRN",
+      "target": "central-bank:IRN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:IRN",
+      "target": "currency:IRR",
+      "type": "uses"
+    },
+    {
+      "source": "country:IRQ",
+      "target": "central-bank:IRQ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:IRQ",
+      "target": "currency:IQD",
+      "type": "uses"
+    },
+    {
+      "source": "country:ISL",
+      "target": "central-bank:ISL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ISL",
+      "target": "currency:ISK",
+      "type": "uses"
+    },
+    {
+      "source": "country:ISR",
+      "target": "central-bank:ISR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ISR",
+      "target": "currency:ILS",
+      "type": "uses"
+    },
+    {
+      "source": "country:ITA",
+      "target": "central-bank:ITA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ITA",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:JAM",
+      "target": "central-bank:JAM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:JAM",
+      "target": "currency:JMD",
+      "type": "uses"
+    },
+    {
+      "source": "country:JOR",
+      "target": "central-bank:JOR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:JOR",
+      "target": "currency:JOD",
+      "type": "uses"
+    },
+    {
+      "source": "country:JPN",
+      "target": "central-bank:JPN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:JPN",
+      "target": "currency:JPY",
+      "type": "uses"
+    },
+    {
+      "source": "country:KAZ",
+      "target": "central-bank:KAZ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KAZ",
+      "target": "currency:KZT",
+      "type": "uses"
+    },
+    {
+      "source": "country:KEN",
+      "target": "central-bank:KEN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KEN",
+      "target": "currency:KES",
+      "type": "uses"
+    },
+    {
+      "source": "country:KGZ",
+      "target": "central-bank:KGZ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KGZ",
+      "target": "currency:KGS",
+      "type": "uses"
+    },
+    {
+      "source": "country:KHM",
+      "target": "central-bank:KHM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KHM",
+      "target": "currency:KHR",
+      "type": "uses"
+    },
+    {
+      "source": "country:KIR",
+      "target": "central-bank:KIR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KIR",
+      "target": "currency:AUD",
+      "type": "uses"
+    },
+    {
+      "source": "country:KNA",
+      "target": "central-bank:KNA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KNA",
+      "target": "currency:XCD",
+      "type": "uses"
+    },
+    {
+      "source": "country:KOR",
+      "target": "central-bank:KOR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KOR",
+      "target": "currency:KRW",
+      "type": "uses"
+    },
+    {
+      "source": "country:KWT",
+      "target": "central-bank:KWT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:KWT",
+      "target": "currency:KWD",
+      "type": "uses"
+    },
+    {
+      "source": "country:LAO",
+      "target": "central-bank:LAO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LAO",
+      "target": "currency:LAK",
+      "type": "uses"
+    },
+    {
+      "source": "country:LBN",
+      "target": "central-bank:LBN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LBN",
+      "target": "currency:LBP",
+      "type": "uses"
+    },
+    {
+      "source": "country:LBR",
+      "target": "central-bank:LBR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LBR",
+      "target": "currency:LRD",
+      "type": "uses"
+    },
+    {
+      "source": "country:LBY",
+      "target": "central-bank:LBY",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LBY",
+      "target": "currency:LYD",
+      "type": "uses"
+    },
+    {
+      "source": "country:LCA",
+      "target": "central-bank:LCA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LCA",
+      "target": "currency:XCD",
+      "type": "uses"
+    },
+    {
+      "source": "country:LIE",
+      "target": "central-bank:LIE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LIE",
+      "target": "currency:CHF",
+      "type": "uses"
+    },
+    {
+      "source": "country:LKA",
+      "target": "central-bank:LKA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LKA",
+      "target": "currency:LKR",
+      "type": "uses"
+    },
+    {
+      "source": "country:LSO",
+      "target": "central-bank:LSO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LSO",
+      "target": "currency:LSL",
+      "type": "uses"
+    },
+    {
+      "source": "country:LTU",
+      "target": "central-bank:LTU",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LTU",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:LUX",
+      "target": "central-bank:LUX",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LUX",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:LVA",
+      "target": "central-bank:LVA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:LVA",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:MAR",
+      "target": "central-bank:MAR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MAR",
+      "target": "currency:MAD",
+      "type": "uses"
+    },
+    {
+      "source": "country:MCO",
+      "target": "central-bank:MCO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MCO",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:MDA",
+      "target": "central-bank:MDA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MDA",
+      "target": "currency:MDL",
+      "type": "uses"
+    },
+    {
+      "source": "country:MDG",
+      "target": "central-bank:MDG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MDG",
+      "target": "currency:MGA",
+      "type": "uses"
+    },
+    {
+      "source": "country:MDV",
+      "target": "central-bank:MDV",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MDV",
+      "target": "currency:MVR",
+      "type": "uses"
+    },
+    {
+      "source": "country:MEX",
+      "target": "central-bank:MEX",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MEX",
+      "target": "currency:MXN",
+      "type": "uses"
+    },
+    {
+      "source": "country:MHL",
+      "target": "central-bank:MHL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MHL",
+      "target": "currency:USD",
+      "type": "uses"
+    },
+    {
+      "source": "country:MKD",
+      "target": "central-bank:MKD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MKD",
+      "target": "currency:MKD",
+      "type": "uses"
+    },
+    {
+      "source": "country:MLI",
+      "target": "central-bank:MLI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MLI",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:MLT",
+      "target": "central-bank:MLT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MLT",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:MMR",
+      "target": "central-bank:MMR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MMR",
+      "target": "currency:MMK",
+      "type": "uses"
+    },
+    {
+      "source": "country:MNE",
+      "target": "central-bank:MNE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MNE",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:MNG",
+      "target": "central-bank:MNG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MNG",
+      "target": "currency:MNT",
+      "type": "uses"
+    },
+    {
+      "source": "country:MOZ",
+      "target": "central-bank:MOZ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MOZ",
+      "target": "currency:MZN",
+      "type": "uses"
+    },
+    {
+      "source": "country:MRT",
+      "target": "central-bank:MRT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MRT",
+      "target": "currency:MRU",
+      "type": "uses"
+    },
+    {
+      "source": "country:MUS",
+      "target": "central-bank:MUS",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MUS",
+      "target": "currency:MUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:MWI",
+      "target": "central-bank:MWI",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MWI",
+      "target": "currency:MWK",
+      "type": "uses"
+    },
+    {
+      "source": "country:MYS",
+      "target": "central-bank:MYS",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:MYS",
+      "target": "currency:MYR",
+      "type": "uses"
+    },
+    {
+      "source": "country:NAM",
+      "target": "central-bank:NAM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NAM",
+      "target": "currency:NAD",
+      "type": "uses"
+    },
+    {
+      "source": "country:NER",
+      "target": "central-bank:NER",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NER",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:NGA",
+      "target": "central-bank:NGA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NGA",
+      "target": "currency:NGN",
+      "type": "uses"
+    },
+    {
+      "source": "country:NIC",
+      "target": "central-bank:NIC",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NIC",
+      "target": "currency:NIO",
+      "type": "uses"
+    },
+    {
+      "source": "country:NLD",
+      "target": "central-bank:NLD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NLD",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:NOR",
+      "target": "central-bank:NOR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NOR",
+      "target": "currency:NOK",
+      "type": "uses"
+    },
+    {
+      "source": "country:NPL",
+      "target": "central-bank:NPL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NPL",
+      "target": "currency:NPR",
+      "type": "uses"
+    },
+    {
+      "source": "country:NRU",
+      "target": "central-bank:NRU",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NRU",
+      "target": "currency:AUD",
+      "type": "uses"
+    },
+    {
+      "source": "country:NZL",
+      "target": "central-bank:NZL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:NZL",
+      "target": "currency:NZD",
+      "type": "uses"
+    },
+    {
+      "source": "country:OMN",
+      "target": "central-bank:OMN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:OMN",
+      "target": "currency:OMR",
+      "type": "uses"
+    },
+    {
+      "source": "country:PAK",
+      "target": "central-bank:PAK",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PAK",
+      "target": "currency:PKR",
+      "type": "uses"
+    },
+    {
+      "source": "country:PAN",
+      "target": "central-bank:PAN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PAN",
+      "target": "currency:PAB",
+      "type": "uses"
+    },
+    {
+      "source": "country:PER",
+      "target": "central-bank:PER",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PER",
+      "target": "currency:PEN",
+      "type": "uses"
+    },
+    {
+      "source": "country:PHL",
+      "target": "central-bank:PHL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PHL",
+      "target": "currency:PHP",
+      "type": "uses"
+    },
+    {
+      "source": "country:PLW",
+      "target": "central-bank:PLW",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PLW",
+      "target": "currency:USD",
+      "type": "uses"
+    },
+    {
+      "source": "country:PNG",
+      "target": "central-bank:PNG",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PNG",
+      "target": "currency:PGK",
+      "type": "uses"
+    },
+    {
+      "source": "country:POL",
+      "target": "central-bank:POL",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:POL",
+      "target": "currency:PLN",
+      "type": "uses"
+    },
+    {
+      "source": "country:PRK",
+      "target": "central-bank:PRK",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PRK",
+      "target": "currency:KPW",
+      "type": "uses"
+    },
+    {
+      "source": "country:PRT",
+      "target": "central-bank:PRT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PRT",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:PRY",
+      "target": "central-bank:PRY",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PRY",
+      "target": "currency:PYG",
+      "type": "uses"
+    },
+    {
+      "source": "country:PSE",
+      "target": "central-bank:PSE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:PSE",
+      "target": "currency:EGP",
+      "type": "uses"
+    },
+    {
+      "source": "country:QAT",
+      "target": "central-bank:QAT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:QAT",
+      "target": "currency:QAR",
+      "type": "uses"
+    },
+    {
+      "source": "country:ROU",
+      "target": "central-bank:ROU",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ROU",
+      "target": "currency:RON",
+      "type": "uses"
+    },
+    {
+      "source": "country:RUS",
+      "target": "central-bank:RUS",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:RUS",
+      "target": "currency:RUB",
+      "type": "uses"
+    },
+    {
+      "source": "country:RWA",
+      "target": "central-bank:RWA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:RWA",
+      "target": "currency:RWF",
+      "type": "uses"
+    },
+    {
+      "source": "country:SAU",
+      "target": "central-bank:SAU",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SAU",
+      "target": "currency:SAR",
+      "type": "uses"
+    },
+    {
+      "source": "country:SDN",
+      "target": "central-bank:SDN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SDN",
+      "target": "currency:SDG",
+      "type": "uses"
+    },
+    {
+      "source": "country:SEN",
+      "target": "central-bank:SEN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SEN",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:SGP",
+      "target": "central-bank:SGP",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SGP",
+      "target": "currency:SGD",
+      "type": "uses"
+    },
+    {
+      "source": "country:SLB",
+      "target": "central-bank:SLB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SLB",
+      "target": "currency:SBD",
+      "type": "uses"
+    },
+    {
+      "source": "country:SLE",
+      "target": "central-bank:SLE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SLE",
+      "target": "currency:SLE",
+      "type": "uses"
+    },
+    {
+      "source": "country:SLV",
+      "target": "central-bank:SLV",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SLV",
+      "target": "currency:USD",
+      "type": "uses"
+    },
+    {
+      "source": "country:SMR",
+      "target": "central-bank:SMR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SMR",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:SOM",
+      "target": "central-bank:SOM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SOM",
+      "target": "currency:SOS",
+      "type": "uses"
+    },
+    {
+      "source": "country:SRB",
+      "target": "central-bank:SRB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SRB",
+      "target": "currency:RSD",
+      "type": "uses"
+    },
+    {
+      "source": "country:SSD",
+      "target": "central-bank:SSD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SSD",
+      "target": "currency:SSP",
+      "type": "uses"
+    },
+    {
+      "source": "country:STP",
+      "target": "central-bank:STP",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:STP",
+      "target": "currency:STN",
+      "type": "uses"
+    },
+    {
+      "source": "country:SUR",
+      "target": "central-bank:SUR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SUR",
+      "target": "currency:SRD",
+      "type": "uses"
+    },
+    {
+      "source": "country:SVK",
+      "target": "central-bank:SVK",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SVK",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:SVN",
+      "target": "central-bank:SVN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SVN",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:SWE",
+      "target": "central-bank:SWE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SWE",
+      "target": "currency:SEK",
+      "type": "uses"
+    },
+    {
+      "source": "country:SWZ",
+      "target": "central-bank:SWZ",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SWZ",
+      "target": "currency:SZL",
+      "type": "uses"
+    },
+    {
+      "source": "country:SYC",
+      "target": "central-bank:SYC",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SYC",
+      "target": "currency:SCR",
+      "type": "uses"
+    },
+    {
+      "source": "country:SYR",
+      "target": "central-bank:SYR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:SYR",
+      "target": "currency:SYP",
+      "type": "uses"
+    },
+    {
+      "source": "country:TCD",
+      "target": "central-bank:TCD",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TCD",
+      "target": "currency:XAF",
+      "type": "uses"
+    },
+    {
+      "source": "country:TGO",
+      "target": "central-bank:TGO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TGO",
+      "target": "currency:XOF",
+      "type": "uses"
+    },
+    {
+      "source": "country:THA",
+      "target": "central-bank:THA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:THA",
+      "target": "currency:THB",
+      "type": "uses"
+    },
+    {
+      "source": "country:TJK",
+      "target": "central-bank:TJK",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TJK",
+      "target": "currency:TJS",
+      "type": "uses"
+    },
+    {
+      "source": "country:TKM",
+      "target": "central-bank:TKM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TKM",
+      "target": "currency:TMT",
+      "type": "uses"
+    },
+    {
+      "source": "country:TLS",
+      "target": "central-bank:TLS",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TLS",
+      "target": "currency:USD",
+      "type": "uses"
+    },
+    {
+      "source": "country:TON",
+      "target": "central-bank:TON",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TON",
+      "target": "currency:TOP",
+      "type": "uses"
+    },
+    {
+      "source": "country:TTO",
+      "target": "central-bank:TTO",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TTO",
+      "target": "currency:TTD",
+      "type": "uses"
+    },
+    {
+      "source": "country:TUN",
+      "target": "central-bank:TUN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TUN",
+      "target": "currency:TND",
+      "type": "uses"
+    },
+    {
+      "source": "country:TUR",
+      "target": "central-bank:TUR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TUR",
+      "target": "currency:TRY",
+      "type": "uses"
+    },
+    {
+      "source": "country:TUV",
+      "target": "central-bank:TUV",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TUV",
+      "target": "currency:AUD",
+      "type": "uses"
+    },
+    {
+      "source": "country:TZA",
+      "target": "central-bank:TZA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:TZA",
+      "target": "currency:TZS",
+      "type": "uses"
+    },
+    {
+      "source": "country:UGA",
+      "target": "central-bank:UGA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:UGA",
+      "target": "currency:UGX",
+      "type": "uses"
+    },
+    {
+      "source": "country:UKR",
+      "target": "central-bank:UKR",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:UKR",
+      "target": "currency:UAH",
+      "type": "uses"
+    },
+    {
+      "source": "country:URY",
+      "target": "central-bank:URY",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:URY",
+      "target": "currency:UYU",
+      "type": "uses"
+    },
+    {
+      "source": "country:USA",
+      "target": "central-bank:USA",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:USA",
+      "target": "currency:USD",
+      "type": "uses"
+    },
+    {
+      "source": "country:UZB",
+      "target": "central-bank:UZB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:UZB",
+      "target": "currency:UZS",
+      "type": "uses"
+    },
+    {
+      "source": "country:VAT",
+      "target": "central-bank:VAT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:VAT",
+      "target": "currency:EUR",
+      "type": "uses"
+    },
+    {
+      "source": "country:VCT",
+      "target": "central-bank:VCT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:VCT",
+      "target": "currency:XCD",
+      "type": "uses"
+    },
+    {
+      "source": "country:VEN",
+      "target": "central-bank:VEN",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:VEN",
+      "target": "currency:VES",
+      "type": "uses"
+    },
+    {
+      "source": "country:VNM",
+      "target": "central-bank:VNM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:VNM",
+      "target": "currency:VND",
+      "type": "uses"
+    },
+    {
+      "source": "country:VUT",
+      "target": "central-bank:VUT",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:VUT",
+      "target": "currency:VUV",
+      "type": "uses"
+    },
+    {
+      "source": "country:WSM",
+      "target": "central-bank:WSM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:WSM",
+      "target": "currency:WST",
+      "type": "uses"
+    },
+    {
+      "source": "country:YEM",
+      "target": "central-bank:YEM",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:YEM",
+      "target": "currency:YER",
+      "type": "uses"
+    },
+    {
+      "source": "country:ZAF",
+      "target": "central-bank:ZAF",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ZAF",
+      "target": "currency:ZAR",
+      "type": "uses"
+    },
+    {
+      "source": "country:ZMB",
+      "target": "central-bank:ZMB",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ZMB",
+      "target": "currency:ZMW",
+      "type": "uses"
+    },
+    {
+      "source": "country:ZWE",
+      "target": "central-bank:ZWE",
+      "type": "governed-by"
+    },
+    {
+      "source": "country:ZWE",
+      "target": "currency:BWP",
+      "type": "uses"
+    },
+    {
+      "source": "payment-rail:CHAPS",
+      "target": "country:GBR",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:CHIPS",
+      "target": "country:USA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:CIPS",
+      "target": "country:CHN",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:FEDNOW",
+      "target": "country:USA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:FEDWIRE",
+      "target": "country:USA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:PIX",
+      "target": "country:BRA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:SEPA_INSTANT",
+      "target": "country:DEU",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:SEPA_INSTANT",
+      "target": "country:FRA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:SEPA_INSTANT",
+      "target": "country:ITA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:SEPA_INSTANT",
+      "target": "country:ESP",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:SEPA_INSTANT",
+      "target": "country:NLD",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:TARGET2",
+      "target": "country:DEU",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:TARGET2",
+      "target": "country:FRA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:TARGET2",
+      "target": "country:ITA",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:TARGET2",
+      "target": "country:ESP",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:TARGET2",
+      "target": "country:NLD",
+      "type": "settles-for"
+    },
+    {
+      "source": "payment-rail:UPI",
+      "target": "country:IND",
+      "type": "settles-for"
+    }
+  ],
+  "nodes": [
+    {
+      "attributes": {
+        "iso2": "AF",
+        "iso3": "AFG",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:AFG",
+      "label": "Afghanistan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "AFG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:AFG",
+      "label": "Central Bank of Afghanistan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AO",
+        "iso3": "AGO",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:AGO",
+      "label": "Angola",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "AGO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:AGO",
+      "label": "Central Bank of Angola",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AL",
+        "iso3": "ALB",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:ALB",
+      "label": "Albania",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ALB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ALB",
+      "label": "Central Bank of Albania",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AD",
+        "iso3": "AND",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:AND",
+      "label": "Andorra",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "AND",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:AND",
+      "label": "Central Bank of Andorra",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AE",
+        "iso3": "ARE",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:ARE",
+      "label": "United Arab Emirates",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ARE",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:ARE",
+      "label": "Central Bank of the UAE",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AR",
+        "iso3": "ARG",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:ARG",
+      "label": "Argentina",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ARG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ARG",
+      "label": "Central Bank of Argentina",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AM",
+        "iso3": "ARM",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:ARM",
+      "label": "Armenia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ARM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ARM",
+      "label": "Central Bank of Armenia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AG",
+        "iso3": "ATG",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:ATG",
+      "label": "Antigua and Barbuda",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ATG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ATG",
+      "label": "Central Bank of Antigua and Barbuda",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AU",
+        "iso3": "AUS",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:AUS",
+      "label": "Australia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "AUS",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:AUS",
+      "label": "Reserve Bank of Australia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AT",
+        "iso3": "AUT",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:AUT",
+      "label": "Austria",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "AUT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:AUT",
+      "label": "Central Bank of Austria",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "AZ",
+        "iso3": "AZE",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:AZE",
+      "label": "Azerbaijan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "AZE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:AZE",
+      "label": "Central Bank of Azerbaijan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BI",
+        "iso3": "BDI",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:BDI",
+      "label": "Burundi",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BDI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BDI",
+      "label": "Central Bank of Burundi",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BE",
+        "iso3": "BEL",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:BEL",
+      "label": "Belgium",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BEL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BEL",
+      "label": "Central Bank of Belgium",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BJ",
+        "iso3": "BEN",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:BEN",
+      "label": "Benin",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BEN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BEN",
+      "label": "Central Bank of Benin",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BF",
+        "iso3": "BFA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:BFA",
+      "label": "Burkina Faso",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BFA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BFA",
+      "label": "Central Bank of Burkina Faso",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BD",
+        "iso3": "BGD",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:BGD",
+      "label": "Bangladesh",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BGD",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BGD",
+      "label": "Central Bank of Bangladesh",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BG",
+        "iso3": "BGR",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:BGR",
+      "label": "Bulgaria",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BGR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BGR",
+      "label": "Central Bank of Bulgaria",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BH",
+        "iso3": "BHR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:BHR",
+      "label": "Bahrain",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BHR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BHR",
+      "label": "Central Bank of Bahrain",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BS",
+        "iso3": "BHS",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:BHS",
+      "label": "Bahamas",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BHS",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BHS",
+      "label": "Central Bank of Bahamas",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BA",
+        "iso3": "BIH",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:BIH",
+      "label": "Bosnia and Herzegovina",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BIH",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BIH",
+      "label": "Central Bank of Bosnia and Herzegovina",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BY",
+        "iso3": "BLR",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:BLR",
+      "label": "Belarus",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BLR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BLR",
+      "label": "Central Bank of Belarus",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BZ",
+        "iso3": "BLZ",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:BLZ",
+      "label": "Belize",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BLZ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BLZ",
+      "label": "Central Bank of Belize",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BO",
+        "iso3": "BOL",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:BOL",
+      "label": "Bolivia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BOL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BOL",
+      "label": "Central Bank of Bolivia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BR",
+        "iso3": "BRA",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:BRA",
+      "label": "Brazil",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BRA",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:BRA",
+      "label": "Banco Central do Brasil",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BB",
+        "iso3": "BRB",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:BRB",
+      "label": "Barbados",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BRB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BRB",
+      "label": "Central Bank of Barbados",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BN",
+        "iso3": "BRN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:BRN",
+      "label": "Brunei",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BRN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BRN",
+      "label": "Central Bank of Brunei",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BT",
+        "iso3": "BTN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:BTN",
+      "label": "Bhutan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BTN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BTN",
+      "label": "Central Bank of Bhutan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "BW",
+        "iso3": "BWA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:BWA",
+      "label": "Botswana",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "BWA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:BWA",
+      "label": "Central Bank of Botswana",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CF",
+        "iso3": "CAF",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:CAF",
+      "label": "Central African Republic",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CAF",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CAF",
+      "label": "Central Bank of Central African Republic",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CA",
+        "iso3": "CAN",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:CAN",
+      "label": "Canada",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CAN",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:CAN",
+      "label": "Bank of Canada",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CH",
+        "iso3": "CHE",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:CHE",
+      "label": "Switzerland",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CHE",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:CHE",
+      "label": "Swiss National Bank",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CL",
+        "iso3": "CHL",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:CHL",
+      "label": "Chile",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CHL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CHL",
+      "label": "Central Bank of Chile",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CN",
+        "iso3": "CHN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:CHN",
+      "label": "China",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CHN",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:CHN",
+      "label": "People's Bank of China",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CI",
+        "iso3": "CIV",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:CIV",
+      "label": "Ivory Coast",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CIV",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CIV",
+      "label": "Central Bank of Ivory Coast",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CM",
+        "iso3": "CMR",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:CMR",
+      "label": "Cameroon",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CMR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CMR",
+      "label": "Central Bank of Cameroon",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CD",
+        "iso3": "COD",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:COD",
+      "label": "DR Congo",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "COD",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:COD",
+      "label": "Central Bank of DR Congo",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CG",
+        "iso3": "COG",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:COG",
+      "label": "Congo",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "COG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:COG",
+      "label": "Central Bank of Congo",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CO",
+        "iso3": "COL",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:COL",
+      "label": "Colombia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "COL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:COL",
+      "label": "Central Bank of Colombia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KM",
+        "iso3": "COM",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:COM",
+      "label": "Comoros",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "COM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:COM",
+      "label": "Central Bank of Comoros",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CV",
+        "iso3": "CPV",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:CPV",
+      "label": "Cape Verde",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CPV",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CPV",
+      "label": "Central Bank of Cape Verde",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CR",
+        "iso3": "CRI",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:CRI",
+      "label": "Costa Rica",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CRI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CRI",
+      "label": "Central Bank of Costa Rica",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CU",
+        "iso3": "CUB",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:CUB",
+      "label": "Cuba",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CUB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CUB",
+      "label": "Central Bank of Cuba",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CY",
+        "iso3": "CYP",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:CYP",
+      "label": "Cyprus",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CYP",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CYP",
+      "label": "Central Bank of Cyprus",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "CZ",
+        "iso3": "CZE",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:CZE",
+      "label": "Czechia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "CZE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:CZE",
+      "label": "Central Bank of Czechia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "DE",
+        "iso3": "DEU",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:DEU",
+      "label": "Germany",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "DEU",
+        "policy_rate": 2.25
+      },
+      "data_quality": "curated",
+      "id": "central-bank:DEU",
+      "label": "Deutsche Bundesbank",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "DJ",
+        "iso3": "DJI",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:DJI",
+      "label": "Djibouti",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "DJI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:DJI",
+      "label": "Central Bank of Djibouti",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "DM",
+        "iso3": "DMA",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:DMA",
+      "label": "Dominica",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "DMA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:DMA",
+      "label": "Central Bank of Dominica",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "DK",
+        "iso3": "DNK",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:DNK",
+      "label": "Denmark",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "DNK",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:DNK",
+      "label": "Central Bank of Denmark",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "DO",
+        "iso3": "DOM",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:DOM",
+      "label": "Dominican Republic",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "DOM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:DOM",
+      "label": "Central Bank of Dominican Republic",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "DZ",
+        "iso3": "DZA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:DZA",
+      "label": "Algeria",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "DZA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:DZA",
+      "label": "Central Bank of Algeria",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "EC",
+        "iso3": "ECU",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:ECU",
+      "label": "Ecuador",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ECU",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ECU",
+      "label": "Central Bank of Ecuador",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "EG",
+        "iso3": "EGY",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:EGY",
+      "label": "Egypt",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "EGY",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:EGY",
+      "label": "Central Bank of Egypt",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ER",
+        "iso3": "ERI",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:ERI",
+      "label": "Eritrea",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ERI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ERI",
+      "label": "Central Bank of Eritrea",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ES",
+        "iso3": "ESP",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:ESP",
+      "label": "Spain",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ESP",
+        "policy_rate": 2.25
+      },
+      "data_quality": "curated",
+      "id": "central-bank:ESP",
+      "label": "Banco de Espa\u00f1a",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "EE",
+        "iso3": "EST",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:EST",
+      "label": "Estonia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "EST",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:EST",
+      "label": "Central Bank of Estonia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ET",
+        "iso3": "ETH",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:ETH",
+      "label": "Ethiopia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ETH",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ETH",
+      "label": "Central Bank of Ethiopia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "FI",
+        "iso3": "FIN",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:FIN",
+      "label": "Finland",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "FIN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:FIN",
+      "label": "Central Bank of Finland",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "FJ",
+        "iso3": "FJI",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:FJI",
+      "label": "Fiji",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "FJI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:FJI",
+      "label": "Central Bank of Fiji",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "FR",
+        "iso3": "FRA",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:FRA",
+      "label": "France",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "FRA",
+        "policy_rate": 2.25
+      },
+      "data_quality": "curated",
+      "id": "central-bank:FRA",
+      "label": "Banque de France",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "FM",
+        "iso3": "FSM",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:FSM",
+      "label": "Micronesia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "FSM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:FSM",
+      "label": "Central Bank of Micronesia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GA",
+        "iso3": "GAB",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:GAB",
+      "label": "Gabon",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GAB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GAB",
+      "label": "Central Bank of Gabon",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GB",
+        "iso3": "GBR",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:GBR",
+      "label": "United Kingdom",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GBR",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:GBR",
+      "label": "Bank of England",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GE",
+        "iso3": "GEO",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:GEO",
+      "label": "Georgia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GEO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GEO",
+      "label": "Central Bank of Georgia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GH",
+        "iso3": "GHA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:GHA",
+      "label": "Ghana",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GHA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GHA",
+      "label": "Central Bank of Ghana",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GN",
+        "iso3": "GIN",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:GIN",
+      "label": "Guinea",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GIN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GIN",
+      "label": "Central Bank of Guinea",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GM",
+        "iso3": "GMB",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:GMB",
+      "label": "Gambia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GMB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GMB",
+      "label": "Central Bank of Gambia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GW",
+        "iso3": "GNB",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:GNB",
+      "label": "Guinea-Bissau",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GNB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GNB",
+      "label": "Central Bank of Guinea-Bissau",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GQ",
+        "iso3": "GNQ",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:GNQ",
+      "label": "Equatorial Guinea",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GNQ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GNQ",
+      "label": "Central Bank of Equatorial Guinea",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GR",
+        "iso3": "GRC",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:GRC",
+      "label": "Greece",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GRC",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GRC",
+      "label": "Central Bank of Greece",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GD",
+        "iso3": "GRD",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:GRD",
+      "label": "Grenada",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GRD",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GRD",
+      "label": "Central Bank of Grenada",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GT",
+        "iso3": "GTM",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:GTM",
+      "label": "Guatemala",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GTM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GTM",
+      "label": "Central Bank of Guatemala",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "GY",
+        "iso3": "GUY",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:GUY",
+      "label": "Guyana",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "GUY",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:GUY",
+      "label": "Central Bank of Guyana",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "HN",
+        "iso3": "HND",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:HND",
+      "label": "Honduras",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "HND",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:HND",
+      "label": "Central Bank of Honduras",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "HR",
+        "iso3": "HRV",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:HRV",
+      "label": "Croatia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "HRV",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:HRV",
+      "label": "Central Bank of Croatia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "HT",
+        "iso3": "HTI",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:HTI",
+      "label": "Haiti",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "HTI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:HTI",
+      "label": "Central Bank of Haiti",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "HU",
+        "iso3": "HUN",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:HUN",
+      "label": "Hungary",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "HUN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:HUN",
+      "label": "Central Bank of Hungary",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ID",
+        "iso3": "IDN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:IDN",
+      "label": "Indonesia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "IDN",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:IDN",
+      "label": "Bank Indonesia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IN",
+        "iso3": "IND",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:IND",
+      "label": "India",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "IND",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:IND",
+      "label": "Reserve Bank of India",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IE",
+        "iso3": "IRL",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:IRL",
+      "label": "Ireland",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "IRL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:IRL",
+      "label": "Central Bank of Ireland",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IR",
+        "iso3": "IRN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:IRN",
+      "label": "Iran",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "IRN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:IRN",
+      "label": "Central Bank of Iran",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IQ",
+        "iso3": "IRQ",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:IRQ",
+      "label": "Iraq",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "IRQ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:IRQ",
+      "label": "Central Bank of Iraq",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IS",
+        "iso3": "ISL",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:ISL",
+      "label": "Iceland",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ISL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ISL",
+      "label": "Central Bank of Iceland",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IL",
+        "iso3": "ISR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:ISR",
+      "label": "Israel",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ISR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ISR",
+      "label": "Central Bank of Israel",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "IT",
+        "iso3": "ITA",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:ITA",
+      "label": "Italy",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ITA",
+        "policy_rate": 2.25
+      },
+      "data_quality": "curated",
+      "id": "central-bank:ITA",
+      "label": "Banca d'Italia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "JM",
+        "iso3": "JAM",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:JAM",
+      "label": "Jamaica",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "JAM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:JAM",
+      "label": "Central Bank of Jamaica",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "JO",
+        "iso3": "JOR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:JOR",
+      "label": "Jordan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "JOR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:JOR",
+      "label": "Central Bank of Jordan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "JP",
+        "iso3": "JPN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:JPN",
+      "label": "Japan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "JPN",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:JPN",
+      "label": "Bank of Japan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KZ",
+        "iso3": "KAZ",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:KAZ",
+      "label": "Kazakhstan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KAZ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KAZ",
+      "label": "Central Bank of Kazakhstan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KE",
+        "iso3": "KEN",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:KEN",
+      "label": "Kenya",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KEN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KEN",
+      "label": "Central Bank of Kenya",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KG",
+        "iso3": "KGZ",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:KGZ",
+      "label": "Kyrgyzstan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KGZ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KGZ",
+      "label": "Central Bank of Kyrgyzstan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KH",
+        "iso3": "KHM",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:KHM",
+      "label": "Cambodia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KHM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KHM",
+      "label": "Central Bank of Cambodia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KI",
+        "iso3": "KIR",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:KIR",
+      "label": "Kiribati",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KIR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KIR",
+      "label": "Central Bank of Kiribati",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KN",
+        "iso3": "KNA",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:KNA",
+      "label": "Saint Kitts and Nevis",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KNA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KNA",
+      "label": "Central Bank of Saint Kitts and Nevis",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KR",
+        "iso3": "KOR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:KOR",
+      "label": "South Korea",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KOR",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:KOR",
+      "label": "Bank of Korea",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KW",
+        "iso3": "KWT",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:KWT",
+      "label": "Kuwait",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "KWT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:KWT",
+      "label": "Central Bank of Kuwait",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LA",
+        "iso3": "LAO",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:LAO",
+      "label": "Laos",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LAO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LAO",
+      "label": "Central Bank of Laos",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LB",
+        "iso3": "LBN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:LBN",
+      "label": "Lebanon",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LBN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LBN",
+      "label": "Central Bank of Lebanon",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LR",
+        "iso3": "LBR",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:LBR",
+      "label": "Liberia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LBR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LBR",
+      "label": "Central Bank of Liberia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LY",
+        "iso3": "LBY",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:LBY",
+      "label": "Libya",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LBY",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LBY",
+      "label": "Central Bank of Libya",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LC",
+        "iso3": "LCA",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:LCA",
+      "label": "Saint Lucia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LCA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LCA",
+      "label": "Central Bank of Saint Lucia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LI",
+        "iso3": "LIE",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:LIE",
+      "label": "Liechtenstein",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LIE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LIE",
+      "label": "Central Bank of Liechtenstein",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LK",
+        "iso3": "LKA",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:LKA",
+      "label": "Sri Lanka",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LKA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LKA",
+      "label": "Central Bank of Sri Lanka",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LS",
+        "iso3": "LSO",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:LSO",
+      "label": "Lesotho",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LSO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LSO",
+      "label": "Central Bank of Lesotho",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LT",
+        "iso3": "LTU",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:LTU",
+      "label": "Lithuania",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LTU",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LTU",
+      "label": "Central Bank of Lithuania",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LU",
+        "iso3": "LUX",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:LUX",
+      "label": "Luxembourg",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LUX",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LUX",
+      "label": "Central Bank of Luxembourg",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "LV",
+        "iso3": "LVA",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:LVA",
+      "label": "Latvia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "LVA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:LVA",
+      "label": "Central Bank of Latvia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MA",
+        "iso3": "MAR",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MAR",
+      "label": "Morocco",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MAR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MAR",
+      "label": "Central Bank of Morocco",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MC",
+        "iso3": "MCO",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:MCO",
+      "label": "Monaco",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MCO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MCO",
+      "label": "Central Bank of Monaco",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MD",
+        "iso3": "MDA",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:MDA",
+      "label": "Moldova",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MDA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MDA",
+      "label": "Central Bank of Moldova",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MG",
+        "iso3": "MDG",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MDG",
+      "label": "Madagascar",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MDG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MDG",
+      "label": "Central Bank of Madagascar",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MV",
+        "iso3": "MDV",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:MDV",
+      "label": "Maldives",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MDV",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MDV",
+      "label": "Central Bank of Maldives",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MX",
+        "iso3": "MEX",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:MEX",
+      "label": "Mexico",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MEX",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:MEX",
+      "label": "Banco de M\u00e9xico",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MH",
+        "iso3": "MHL",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:MHL",
+      "label": "Marshall Islands",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MHL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MHL",
+      "label": "Central Bank of Marshall Islands",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MK",
+        "iso3": "MKD",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:MKD",
+      "label": "North Macedonia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MKD",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MKD",
+      "label": "Central Bank of North Macedonia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ML",
+        "iso3": "MLI",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MLI",
+      "label": "Mali",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MLI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MLI",
+      "label": "Central Bank of Mali",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MT",
+        "iso3": "MLT",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:MLT",
+      "label": "Malta",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MLT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MLT",
+      "label": "Central Bank of Malta",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MM",
+        "iso3": "MMR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:MMR",
+      "label": "Myanmar",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MMR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MMR",
+      "label": "Central Bank of Myanmar",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ME",
+        "iso3": "MNE",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:MNE",
+      "label": "Montenegro",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MNE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MNE",
+      "label": "Central Bank of Montenegro",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MN",
+        "iso3": "MNG",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:MNG",
+      "label": "Mongolia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MNG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MNG",
+      "label": "Central Bank of Mongolia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MZ",
+        "iso3": "MOZ",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MOZ",
+      "label": "Mozambique",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MOZ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MOZ",
+      "label": "Central Bank of Mozambique",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MR",
+        "iso3": "MRT",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MRT",
+      "label": "Mauritania",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MRT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MRT",
+      "label": "Central Bank of Mauritania",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MU",
+        "iso3": "MUS",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MUS",
+      "label": "Mauritius",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MUS",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MUS",
+      "label": "Central Bank of Mauritius",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MW",
+        "iso3": "MWI",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:MWI",
+      "label": "Malawi",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MWI",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MWI",
+      "label": "Central Bank of Malawi",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "MY",
+        "iso3": "MYS",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:MYS",
+      "label": "Malaysia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "MYS",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:MYS",
+      "label": "Central Bank of Malaysia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NA",
+        "iso3": "NAM",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:NAM",
+      "label": "Namibia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NAM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NAM",
+      "label": "Central Bank of Namibia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NE",
+        "iso3": "NER",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:NER",
+      "label": "Niger",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NER",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NER",
+      "label": "Central Bank of Niger",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NG",
+        "iso3": "NGA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:NGA",
+      "label": "Nigeria",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NGA",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:NGA",
+      "label": "Central Bank of Nigeria",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NI",
+        "iso3": "NIC",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:NIC",
+      "label": "Nicaragua",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NIC",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NIC",
+      "label": "Central Bank of Nicaragua",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NL",
+        "iso3": "NLD",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:NLD",
+      "label": "Netherlands",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NLD",
+        "policy_rate": 2.25
+      },
+      "data_quality": "curated",
+      "id": "central-bank:NLD",
+      "label": "De Nederlandsche Bank",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NO",
+        "iso3": "NOR",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:NOR",
+      "label": "Norway",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NOR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NOR",
+      "label": "Central Bank of Norway",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NP",
+        "iso3": "NPL",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:NPL",
+      "label": "Nepal",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NPL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NPL",
+      "label": "Central Bank of Nepal",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NR",
+        "iso3": "NRU",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:NRU",
+      "label": "Nauru",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NRU",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NRU",
+      "label": "Central Bank of Nauru",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "NZ",
+        "iso3": "NZL",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:NZL",
+      "label": "New Zealand",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "NZL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:NZL",
+      "label": "Central Bank of New Zealand",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "OM",
+        "iso3": "OMN",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:OMN",
+      "label": "Oman",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "OMN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:OMN",
+      "label": "Central Bank of Oman",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PK",
+        "iso3": "PAK",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:PAK",
+      "label": "Pakistan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PAK",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PAK",
+      "label": "Central Bank of Pakistan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PA",
+        "iso3": "PAN",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:PAN",
+      "label": "Panama",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PAN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PAN",
+      "label": "Central Bank of Panama",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PE",
+        "iso3": "PER",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:PER",
+      "label": "Peru",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PER",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PER",
+      "label": "Central Bank of Peru",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PH",
+        "iso3": "PHL",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:PHL",
+      "label": "Philippines",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PHL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PHL",
+      "label": "Central Bank of Philippines",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PW",
+        "iso3": "PLW",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:PLW",
+      "label": "Palau",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PLW",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PLW",
+      "label": "Central Bank of Palau",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PG",
+        "iso3": "PNG",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:PNG",
+      "label": "Papua New Guinea",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PNG",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PNG",
+      "label": "Central Bank of Papua New Guinea",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PL",
+        "iso3": "POL",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:POL",
+      "label": "Poland",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "POL",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:POL",
+      "label": "Central Bank of Poland",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "KP",
+        "iso3": "PRK",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:PRK",
+      "label": "North Korea",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PRK",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PRK",
+      "label": "Central Bank of North Korea",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PT",
+        "iso3": "PRT",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:PRT",
+      "label": "Portugal",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PRT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PRT",
+      "label": "Central Bank of Portugal",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PY",
+        "iso3": "PRY",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:PRY",
+      "label": "Paraguay",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PRY",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PRY",
+      "label": "Central Bank of Paraguay",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "PS",
+        "iso3": "PSE",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:PSE",
+      "label": "Palestine",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "PSE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:PSE",
+      "label": "Central Bank of Palestine",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "QA",
+        "iso3": "QAT",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:QAT",
+      "label": "Qatar",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "QAT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:QAT",
+      "label": "Central Bank of Qatar",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "RO",
+        "iso3": "ROU",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:ROU",
+      "label": "Romania",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ROU",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ROU",
+      "label": "Central Bank of Romania",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "RU",
+        "iso3": "RUS",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:RUS",
+      "label": "Russia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "RUS",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:RUS",
+      "label": "Central Bank of Russia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "RW",
+        "iso3": "RWA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:RWA",
+      "label": "Rwanda",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "RWA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:RWA",
+      "label": "Central Bank of Rwanda",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SA",
+        "iso3": "SAU",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:SAU",
+      "label": "Saudi Arabia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SAU",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:SAU",
+      "label": "Saudi Central Bank",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SD",
+        "iso3": "SDN",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SDN",
+      "label": "Sudan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SDN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SDN",
+      "label": "Central Bank of Sudan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SN",
+        "iso3": "SEN",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SEN",
+      "label": "Senegal",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SEN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SEN",
+      "label": "Central Bank of Senegal",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SG",
+        "iso3": "SGP",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:SGP",
+      "label": "Singapore",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SGP",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:SGP",
+      "label": "Monetary Authority of Singapore",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SB",
+        "iso3": "SLB",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:SLB",
+      "label": "Solomon Islands",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SLB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SLB",
+      "label": "Central Bank of Solomon Islands",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SL",
+        "iso3": "SLE",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SLE",
+      "label": "Sierra Leone",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SLE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SLE",
+      "label": "Central Bank of Sierra Leone",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SV",
+        "iso3": "SLV",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:SLV",
+      "label": "El Salvador",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SLV",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SLV",
+      "label": "Central Bank of El Salvador",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SM",
+        "iso3": "SMR",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:SMR",
+      "label": "San Marino",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SMR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SMR",
+      "label": "Central Bank of San Marino",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SO",
+        "iso3": "SOM",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SOM",
+      "label": "Somalia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SOM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SOM",
+      "label": "Central Bank of Somalia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "RS",
+        "iso3": "SRB",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:SRB",
+      "label": "Serbia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SRB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SRB",
+      "label": "Central Bank of Serbia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SS",
+        "iso3": "SSD",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SSD",
+      "label": "South Sudan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SSD",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SSD",
+      "label": "Central Bank of South Sudan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ST",
+        "iso3": "STP",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:STP",
+      "label": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "STP",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:STP",
+      "label": "Central Bank of S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SR",
+        "iso3": "SUR",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:SUR",
+      "label": "Suriname",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SUR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SUR",
+      "label": "Central Bank of Suriname",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SK",
+        "iso3": "SVK",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:SVK",
+      "label": "Slovakia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SVK",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SVK",
+      "label": "Central Bank of Slovakia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SI",
+        "iso3": "SVN",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:SVN",
+      "label": "Slovenia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SVN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SVN",
+      "label": "Central Bank of Slovenia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SE",
+        "iso3": "SWE",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:SWE",
+      "label": "Sweden",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SWE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SWE",
+      "label": "Central Bank of Sweden",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SZ",
+        "iso3": "SWZ",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SWZ",
+      "label": "Eswatini",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SWZ",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SWZ",
+      "label": "Central Bank of Eswatini",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SC",
+        "iso3": "SYC",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:SYC",
+      "label": "Seychelles",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SYC",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SYC",
+      "label": "Central Bank of Seychelles",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "SY",
+        "iso3": "SYR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:SYR",
+      "label": "Syria",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "SYR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:SYR",
+      "label": "Central Bank of Syria",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TD",
+        "iso3": "TCD",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:TCD",
+      "label": "Chad",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TCD",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TCD",
+      "label": "Central Bank of Chad",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TG",
+        "iso3": "TGO",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:TGO",
+      "label": "Togo",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TGO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TGO",
+      "label": "Central Bank of Togo",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TH",
+        "iso3": "THA",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:THA",
+      "label": "Thailand",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "THA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:THA",
+      "label": "Central Bank of Thailand",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TJ",
+        "iso3": "TJK",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:TJK",
+      "label": "Tajikistan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TJK",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TJK",
+      "label": "Central Bank of Tajikistan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TM",
+        "iso3": "TKM",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:TKM",
+      "label": "Turkmenistan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TKM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TKM",
+      "label": "Central Bank of Turkmenistan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TL",
+        "iso3": "TLS",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:TLS",
+      "label": "Timor-Leste",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TLS",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TLS",
+      "label": "Central Bank of Timor-Leste",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TO",
+        "iso3": "TON",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:TON",
+      "label": "Tonga",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TON",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TON",
+      "label": "Central Bank of Tonga",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TT",
+        "iso3": "TTO",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:TTO",
+      "label": "Trinidad and Tobago",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TTO",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TTO",
+      "label": "Central Bank of Trinidad and Tobago",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TN",
+        "iso3": "TUN",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:TUN",
+      "label": "Tunisia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TUN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TUN",
+      "label": "Central Bank of Tunisia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TR",
+        "iso3": "TUR",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:TUR",
+      "label": "T\u00fcrkiye",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TUR",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:TUR",
+      "label": "Central Bank of the Republic of T\u00fcrkiye",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TV",
+        "iso3": "TUV",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:TUV",
+      "label": "Tuvalu",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TUV",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TUV",
+      "label": "Central Bank of Tuvalu",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "TZ",
+        "iso3": "TZA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:TZA",
+      "label": "Tanzania",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "TZA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:TZA",
+      "label": "Central Bank of Tanzania",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "UG",
+        "iso3": "UGA",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:UGA",
+      "label": "Uganda",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "UGA",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:UGA",
+      "label": "Central Bank of Uganda",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "UA",
+        "iso3": "UKR",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:UKR",
+      "label": "Ukraine",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "UKR",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:UKR",
+      "label": "Central Bank of Ukraine",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "UY",
+        "iso3": "URY",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:URY",
+      "label": "Uruguay",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "URY",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:URY",
+      "label": "Central Bank of Uruguay",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "US",
+        "iso3": "USA",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:USA",
+      "label": "United States",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "USA",
+        "policy_rate": 3.63
+      },
+      "data_quality": "curated",
+      "id": "central-bank:USA",
+      "label": "Federal Reserve System",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "UZ",
+        "iso3": "UZB",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:UZB",
+      "label": "Uzbekistan",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "UZB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:UZB",
+      "label": "Central Bank of Uzbekistan",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "VA",
+        "iso3": "VAT",
+        "population": null,
+        "region": "Europe"
+      },
+      "data_quality": "source",
+      "id": "country:VAT",
+      "label": "Vatican City",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "VAT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:VAT",
+      "label": "Central Bank of Vatican City",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "VC",
+        "iso3": "VCT",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:VCT",
+      "label": "Saint Vincent and the Grenadines",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "VCT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:VCT",
+      "label": "Central Bank of Saint Vincent and the Grenadines",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "VE",
+        "iso3": "VEN",
+        "population": null,
+        "region": "Americas"
+      },
+      "data_quality": "source",
+      "id": "country:VEN",
+      "label": "Venezuela",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "VEN",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:VEN",
+      "label": "Central Bank of Venezuela",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "VN",
+        "iso3": "VNM",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:VNM",
+      "label": "Vietnam",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "VNM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:VNM",
+      "label": "Central Bank of Vietnam",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "VU",
+        "iso3": "VUT",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:VUT",
+      "label": "Vanuatu",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "VUT",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:VUT",
+      "label": "Central Bank of Vanuatu",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "WS",
+        "iso3": "WSM",
+        "population": null,
+        "region": "Oceania"
+      },
+      "data_quality": "source",
+      "id": "country:WSM",
+      "label": "Samoa",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "WSM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:WSM",
+      "label": "Central Bank of Samoa",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "YE",
+        "iso3": "YEM",
+        "population": null,
+        "region": "Asia"
+      },
+      "data_quality": "source",
+      "id": "country:YEM",
+      "label": "Yemen",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "YEM",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:YEM",
+      "label": "Central Bank of Yemen",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ZA",
+        "iso3": "ZAF",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:ZAF",
+      "label": "South Africa",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ZAF",
+        "policy_rate": null
+      },
+      "data_quality": "curated",
+      "id": "central-bank:ZAF",
+      "label": "South African Reserve Bank",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ZM",
+        "iso3": "ZMB",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:ZMB",
+      "label": "Zambia",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ZMB",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ZMB",
+      "label": "Central Bank of Zambia",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "iso2": "ZW",
+        "iso3": "ZWE",
+        "population": null,
+        "region": "Africa"
+      },
+      "data_quality": "source",
+      "id": "country:ZWE",
+      "label": "Zimbabwe",
+      "type": "country"
+    },
+    {
+      "attributes": {
+        "country": "ZWE",
+        "policy_rate": null
+      },
+      "data_quality": "auto-stub",
+      "id": "central-bank:ZWE",
+      "label": "Central Bank of Zimbabwe",
+      "type": "central-bank"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:AED",
+      "label": "AED",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:AFN",
+      "label": "AFN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:ALL",
+      "label": "ALL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:AMD",
+      "label": "AMD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:AOA",
+      "label": "AOA",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:ARS",
+      "label": "ARS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 4,
+        "usd_rate": 1.3899
+      },
+      "data_quality": "source",
+      "id": "currency:AUD",
+      "label": "AUD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:AZN",
+      "label": "AZN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BAM",
+      "label": "BAM",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BBD",
+      "label": "BBD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BDT",
+      "label": "BDT",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BHD",
+      "label": "BHD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BIF",
+      "label": "BIF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BND",
+      "label": "BND",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BOB",
+      "label": "BOB",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 5.1641
+      },
+      "data_quality": "source",
+      "id": "currency:BRL",
+      "label": "BRL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BSD",
+      "label": "BSD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BTN",
+      "label": "BTN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 2,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BWP",
+      "label": "BWP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BYN",
+      "label": "BYN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:BZD",
+      "label": "BZD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 1.3854
+      },
+      "data_quality": "source",
+      "id": "currency:CAD",
+      "label": "CAD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:CDF",
+      "label": "CDF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 2,
+        "usd_rate": 0.80426
+      },
+      "data_quality": "source",
+      "id": "currency:CHF",
+      "label": "CHF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:CLP",
+      "label": "CLP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 6.7209
+      },
+      "data_quality": "source",
+      "id": "currency:CNY",
+      "label": "CNY",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:COP",
+      "label": "COP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:CRC",
+      "label": "CRC",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:CUC",
+      "label": "CUC",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:CVE",
+      "label": "CVE",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 20.74
+      },
+      "data_quality": "source",
+      "id": "currency:CZK",
+      "label": "CZK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:DJF",
+      "label": "DJF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 6.42
+      },
+      "data_quality": "source",
+      "id": "currency:DKK",
+      "label": "DKK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:DOP",
+      "label": "DOP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:DZD",
+      "label": "DZD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 2,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:EGP",
+      "label": "EGP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:ERN",
+      "label": "ERN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:ETB",
+      "label": "ETB",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 26,
+        "usd_rate": 0.85889
+      },
+      "data_quality": "source",
+      "id": "currency:EUR",
+      "label": "EUR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:FJD",
+      "label": "FJD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 0.73624
+      },
+      "data_quality": "source",
+      "id": "currency:GBP",
+      "label": "GBP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:GEL",
+      "label": "GEL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:GHS",
+      "label": "GHS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:GMD",
+      "label": "GMD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:GNF",
+      "label": "GNF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:GTQ",
+      "label": "GTQ",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:GYD",
+      "label": "GYD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:HNL",
+      "label": "HNL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:HTG",
+      "label": "HTG",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 313.31
+      },
+      "data_quality": "source",
+      "id": "currency:HUF",
+      "label": "HUF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 17717
+      },
+      "data_quality": "source",
+      "id": "currency:IDR",
+      "label": "IDR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 2.9728
+      },
+      "data_quality": "source",
+      "id": "currency:ILS",
+      "label": "ILS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 95.39
+      },
+      "data_quality": "source",
+      "id": "currency:INR",
+      "label": "INR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:IQD",
+      "label": "IQD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:IRR",
+      "label": "IRR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 120.93
+      },
+      "data_quality": "source",
+      "id": "currency:ISK",
+      "label": "ISK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:JMD",
+      "label": "JMD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:JOD",
+      "label": "JOD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 159.68
+      },
+      "data_quality": "source",
+      "id": "currency:JPY",
+      "label": "JPY",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KES",
+      "label": "KES",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KGS",
+      "label": "KGS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KHR",
+      "label": "KHR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KMF",
+      "label": "KMF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KPW",
+      "label": "KPW",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 1374.55
+      },
+      "data_quality": "source",
+      "id": "currency:KRW",
+      "label": "KRW",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KWD",
+      "label": "KWD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:KZT",
+      "label": "KZT",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:LAK",
+      "label": "LAK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:LBP",
+      "label": "LBP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:LKR",
+      "label": "LKR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:LRD",
+      "label": "LRD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:LSL",
+      "label": "LSL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:LYD",
+      "label": "LYD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MAD",
+      "label": "MAD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MDL",
+      "label": "MDL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MGA",
+      "label": "MGA",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MKD",
+      "label": "MKD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MMK",
+      "label": "MMK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MNT",
+      "label": "MNT",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MRU",
+      "label": "MRU",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MUR",
+      "label": "MUR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MVR",
+      "label": "MVR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MWK",
+      "label": "MWK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 16.9481
+      },
+      "data_quality": "source",
+      "id": "currency:MXN",
+      "label": "MXN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 4.026
+      },
+      "data_quality": "source",
+      "id": "currency:MYR",
+      "label": "MYR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:MZN",
+      "label": "MZN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:NAD",
+      "label": "NAD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:NGN",
+      "label": "NGN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:NIO",
+      "label": "NIO",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 9.3271
+      },
+      "data_quality": "source",
+      "id": "currency:NOK",
+      "label": "NOK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:NPR",
+      "label": "NPR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 1.6821
+      },
+      "data_quality": "source",
+      "id": "currency:NZD",
+      "label": "NZD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:OMR",
+      "label": "OMR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:PAB",
+      "label": "PAB",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:PEN",
+      "label": "PEN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:PGK",
+      "label": "PGK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 62.254
+      },
+      "data_quality": "source",
+      "id": "currency:PHP",
+      "label": "PHP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:PKR",
+      "label": "PKR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 3.7246
+      },
+      "data_quality": "source",
+      "id": "currency:PLN",
+      "label": "PLN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:PYG",
+      "label": "PYG",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:QAR",
+      "label": "QAR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 4.5164
+      },
+      "data_quality": "source",
+      "id": "currency:RON",
+      "label": "RON",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:RSD",
+      "label": "RSD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:RUB",
+      "label": "RUB",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:RWF",
+      "label": "RWF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SAR",
+      "label": "SAR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SBD",
+      "label": "SBD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SCR",
+      "label": "SCR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SDG",
+      "label": "SDG",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 9.5237
+      },
+      "data_quality": "source",
+      "id": "currency:SEK",
+      "label": "SEK",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 1.2713
+      },
+      "data_quality": "source",
+      "id": "currency:SGD",
+      "label": "SGD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SLE",
+      "label": "SLE",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SOS",
+      "label": "SOS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SRD",
+      "label": "SRD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SSP",
+      "label": "SSP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:STN",
+      "label": "STN",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SYP",
+      "label": "SYP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:SZL",
+      "label": "SZL",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 32.955
+      },
+      "data_quality": "source",
+      "id": "currency:THB",
+      "label": "THB",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:TJS",
+      "label": "TJS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:TMT",
+      "label": "TMT",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:TND",
+      "label": "TND",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:TOP",
+      "label": "TOP",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 48.245
+      },
+      "data_quality": "source",
+      "id": "currency:TRY",
+      "label": "TRY",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:TTD",
+      "label": "TTD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:TZS",
+      "label": "TZS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:UAH",
+      "label": "UAH",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:UGX",
+      "label": "UGX",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 6,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:USD",
+      "label": "USD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:UYU",
+      "label": "UYU",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:UZS",
+      "label": "UZS",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:VES",
+      "label": "VES",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:VND",
+      "label": "VND",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:VUV",
+      "label": "VUV",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:WST",
+      "label": "WST",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 6,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:XAF",
+      "label": "XAF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 6,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:XCD",
+      "label": "XCD",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 8,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:XOF",
+      "label": "XOF",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:YER",
+      "label": "YER",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": 16.0018
+      },
+      "data_quality": "source",
+      "id": "currency:ZAR",
+      "label": "ZAR",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "country_count": 1,
+        "usd_rate": null
+      },
+      "data_quality": "source",
+      "id": "currency:ZMW",
+      "label": "ZMW",
+      "type": "currency"
+    },
+    {
+      "attributes": {
+        "code": "CHAPS",
+        "is_open": false,
+        "operating_window": "06:00\u201318:00 Europe/London",
+        "operator": "Bank of England",
+        "scope": "United Kingdom"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:CHAPS",
+      "label": "Clearing House Automated Payment System",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "CHIPS",
+        "is_open": true,
+        "operating_window": "00:00\u201317:00 America/New_York",
+        "operator": "The Clearing House",
+        "scope": "United States (large-value)"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:CHIPS",
+      "label": "Clearing House Interbank Payments System",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "CIPS",
+        "is_open": false,
+        "operating_window": "closed \u2014 weekend (Asia/Shanghai)",
+        "operator": "PBOC",
+        "scope": "China (RMB cross-border)"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:CIPS",
+      "label": "Cross-Border Interbank Payment System",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "FEDNOW",
+        "is_open": true,
+        "operating_window": "24/7",
+        "operator": "Federal Reserve Banks",
+        "scope": "United States"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:FEDNOW",
+      "label": "FedNow Service",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "FEDWIRE",
+        "is_open": true,
+        "operating_window": "21:00\u201319:00 America/New_York",
+        "operator": "Federal Reserve Banks",
+        "scope": "United States"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:FEDWIRE",
+      "label": "Fedwire Funds Service",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "PIX",
+        "is_open": true,
+        "operating_window": "24/7",
+        "operator": "Banco Central do Brasil",
+        "scope": "Brazil"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:PIX",
+      "label": "Pix",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "SEPA_INSTANT",
+        "is_open": true,
+        "operating_window": "24/7",
+        "operator": "EPC (European Payments Council)",
+        "scope": "EU/EEA"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:SEPA_INSTANT",
+      "label": "SEPA Instant Credit Transfer",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "SWIFT",
+        "is_open": true,
+        "operating_window": "24/7",
+        "operator": "SWIFT SC (Belgium, cooperative)",
+        "scope": "Global (200+ countries)"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:SWIFT",
+      "label": "Society for Worldwide Interbank Financial Telecommunication",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "TARGET2",
+        "is_open": true,
+        "operating_window": "unknown (bad timezone)",
+        "operator": "Eurosystem (ECB)",
+        "scope": "Eurozone"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:TARGET2",
+      "label": "Trans-European Automated Real-time Gross settlement Express Transfer",
+      "type": "payment-rail"
+    },
+    {
+      "attributes": {
+        "code": "UPI",
+        "is_open": true,
+        "operating_window": "24/7",
+        "operator": "NPCI (National Payments Corporation of India)",
+        "scope": "India"
+      },
+      "data_quality": "curated",
+      "id": "payment-rail:UPI",
+      "label": "Unified Payments Interface",
+      "type": "payment-rail"
+    }
+  ],
+  "schema_version": "1.0",
+  "sources": {
+    "fx_as_of": "2026-08-28",
+    "fx_fetched_at": "2026-08-28 20:19 UTC"
+  }
+}

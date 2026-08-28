@@ -1,0 +1,29 @@
+---
+type: "currency"
+currency_code: "KPW"
+currency_name: "North Korean won"
+currency_symbol: "\u20a9"
+country_count: 1
+tags:
+  - finance/currency
+last_updated: "2026-08-28 20:19 UTC"
+---
+# North Korean won (KPW) Currency Hub
+
+## FX Snapshot
+<!-- LIVE:FXRATE:START -->
+| Metric | Value |
+|---|---|
+| USD -> KPW | `N/A` |
+| Source | ECB reference rate (via frankfurter.app) |
+| As of | 2026-08-28 |
+<!-- LIVE:FXRATE:END -->
+
+## Countries Using KPW
+- [[PRK-country|North Korea]]
+
+## Graph Context
+- All currencies: see [[Currencies-MOC]]
+
+## 📝 Notes
+> Add your own notes below this line — the daemon never touches this section.

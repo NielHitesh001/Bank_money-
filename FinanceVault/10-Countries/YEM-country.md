@@ -1,0 +1,43 @@
+---
+type: "country"
+iso2: "YE"
+iso3: "YEM"
+region: "Asia"
+subregion: "Western Asia"
+currency: "YER"
+central_bank: "YEM-central-bank"
+population: "N/A"
+tags:
+  - finance/country
+  - region/asia
+last_updated: "2026-08-28 20:19 UTC"
+---
+# 🏦 Yemen — Financial Tear Sheet
+
+> [!info] Quick Facts
+> **Region:** Asia / Western Asia
+> **Capital:** Sana'a
+> **Currency:** YER
+> **Central Bank:** [[YEM-central-bank|Central Bank of Yemen (stub)]]
+
+## 💱 FX Snapshot
+<!-- LIVE:FXRATE:START -->
+| Metric | Value |
+|---|---|
+| USD → YER | `N/A` |
+| Source | ECB reference rate (via frankfurter.app) |
+| As of | 2026-08-28 |
+<!-- LIVE:FXRATE:END -->
+
+## 🏛️ Monetary Authority
+- [[YEM-central-bank|Central Bank of Yemen (stub)]]
+
+## 🔗 Connected Payment Rails
+- [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
+
+## 🗺️ Graph Context
+- Region MOC: [[Asia-MOC]]
+- All entities of this type: `dataview` query in [[Countries-MOC]]
+
+## 📝 Notes
+> Add your own notes below this line — the daemon never touches this section.

@@ -1,0 +1,35 @@
+{
+  "rates": {
+    "USA": {
+      "policy_rate": 3.63,
+      "policy_rate_source": "FRED DFF",
+      "policy_rate_as_of": "2026-08-26"
+    },
+    "DEU": {
+      "policy_rate": 2.25,
+      "policy_rate_source": "FRED ECBDFR",
+      "policy_rate_as_of": "2026-08-28"
+    },
+    "FRA": {
+      "policy_rate": 2.25,
+      "policy_rate_source": "FRED ECBDFR",
+      "policy_rate_as_of": "2026-08-28"
+    },
+    "ITA": {
+      "policy_rate": 2.25,
+      "policy_rate_source": "FRED ECBDFR",
+      "policy_rate_as_of": "2026-08-28"
+    },
+    "ESP": {
+      "policy_rate": 2.25,
+      "policy_rate_source": "FRED ECBDFR",
+      "policy_rate_as_of": "2026-08-28"
+    },
+    "NLD": {
+      "policy_rate": 2.25,
+      "policy_rate_source": "FRED ECBDFR",
+      "policy_rate_as_of": "2026-08-28"
+    }
+  },
+  "fetched_at": "2026-08-28 20:04 UTC"
+}

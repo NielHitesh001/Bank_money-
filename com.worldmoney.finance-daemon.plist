@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.worldmoney.finance-daemon</string>
+    <!--
+      Before loading this agent, replace every "/ABSOLUTE/PATH/TO/World_money"
+      placeholder below with the actual path this repo is checked out to on
+      your Mac (see README.md "Run continuously with launchd" for the full
+      setup, including creating the .venv referenced here).
+    -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/ABSOLUTE/PATH/TO/World_money/.venv/bin/python</string>
+        <string>/ABSOLUTE/PATH/TO/World_money/obsidian_finance_daemon.py</string>
+        <string>--vault-path</string>
+        <string>/ABSOLUTE/PATH/TO/World_money/Vault</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/ABSOLUTE/PATH/TO/World_money</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/ABSOLUTE/PATH/TO/World_money/Vault/_system/logs/launchd.stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/ABSOLUTE/PATH/TO/World_money/Vault/_system/logs/launchd.stderr.log</string>
+</dict>
+</plist>

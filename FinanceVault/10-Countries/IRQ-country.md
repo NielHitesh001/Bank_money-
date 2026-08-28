@@ -1,0 +1,43 @@
+---
+type: "country"
+iso2: "IQ"
+iso3: "IRQ"
+region: "Asia"
+subregion: "Western Asia"
+currency: "IQD"
+central_bank: "IRQ-central-bank"
+population: "N/A"
+tags:
+  - finance/country
+  - region/asia
+last_updated: "2026-08-28 20:19 UTC"
+---
+# 🏦 Iraq — Financial Tear Sheet
+
+> [!info] Quick Facts
+> **Region:** Asia / Western Asia
+> **Capital:** Baghdad
+> **Currency:** IQD
+> **Central Bank:** [[IRQ-central-bank|Central Bank of Iraq (stub)]]
+
+## 💱 FX Snapshot
+<!-- LIVE:FXRATE:START -->
+| Metric | Value |
+|---|---|
+| USD → IQD | `N/A` |
+| Source | ECB reference rate (via frankfurter.app) |
+| As of | 2026-08-28 |
+<!-- LIVE:FXRATE:END -->
+
+## 🏛️ Monetary Authority
+- [[IRQ-central-bank|Central Bank of Iraq (stub)]]
+
+## 🔗 Connected Payment Rails
+- [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
+
+## 🗺️ Graph Context
+- Region MOC: [[Asia-MOC]]
+- All entities of this type: `dataview` query in [[Countries-MOC]]
+
+## 📝 Notes
+> Add your own notes below this line — the daemon never touches this section.
