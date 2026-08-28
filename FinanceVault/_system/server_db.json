@@ -39,6 +39,56 @@
   ],
   "audit": [
     {
+      "sequence": 39,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-28T22:34:56.114Z"
+    },
+    {
+      "sequence": 38,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-28T22:34:55.381Z"
+    },
+    {
+      "sequence": 37,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-28T22:34:54.605Z"
+    },
+    {
+      "sequence": 36,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-28T22:34:54.131Z"
+    },
+    {
+      "sequence": 35,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-28T22:34:53.580Z"
+    },
+    {
+      "sequence": 34,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-28T22:34:52.597Z"
+    },
+    {
+      "sequence": 33,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-28T22:34:52.031Z"
+    },
+    {
+      "sequence": 32,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-28T22:34:51.424Z"
+    },
+    {
+      "sequence": 31,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-28T22:34:43.031Z"
+    },
+    {
+      "sequence": 30,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-28T22:34:41.105Z"
+    },
+    {
       "sequence": 29,
       "event": "role view switched to Analyst",
       "timestamp": "2026-08-28T22:16:40.135Z"

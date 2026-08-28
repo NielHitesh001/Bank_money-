@@ -6,7 +6,7 @@ currency_symbol: "\u20b5"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-28 22:19 UTC"
+last_updated: "2026-08-28 22:34 UTC"
 ---
 # Ghanaian cedi (GHS) Currency Hub
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { fetchMacroLiquidity, MACRO_SERIES_CONFIG } from "../src/services/macroLiquidityService";
+import CorporateTreasuryIntelligence from "./CorporateTreasuryIntelligence";
+import GlobalPieCharts from "./GlobalPieCharts";
 
 export default function MacroLiquidityPanel() {
   const [data, setData] = useState(null);
@@ -49,9 +51,9 @@ export default function MacroLiquidityPanel() {
   // Chart SVG coordinate generation
   const chartCoordinates = useMemo(() => {
     if (seriesData.length < 2) return { path: "", area: "", points: [] };
-    const width = 600;
-    const height = 180;
-    const padding = 20;
+    const width = 560;
+    const height = 170;
+    const padding = 18;
     const values = seriesData.map((d) => d.value);
     const min = Math.min(...values);
     const max = Math.max(...values);
@@ -72,11 +74,12 @@ export default function MacroLiquidityPanel() {
   const hoveredPoint = hoverIndex !== null && chartCoordinates.points[hoverIndex] ? chartCoordinates.points[hoverIndex] : null;
 
   return (
-    <section className="dashboard-panel macro-panel">
+    <section className="dashboard-panel macro-split-dashboard">
+      {/* Top Header */}
       <div className="panel-heading">
         <div className="macro-head-left">
-          <span className="eyebrow">MACRO LIQUIDITY & MONETARY BASE</span>
-          <h2>Global Liquidity Monitor</h2>
+          <span className="eyebrow">MACRO LIQUIDITY, CORPORATE CASH RESERVES & GLOBAL SHARE</span>
+          <h2>Global Liquidity & Corporate Treasury Monitor</h2>
         </div>
         <div className="macro-head-right">
           <span className={`data-badge ${data?.source === "live" ? "live" : "cached"}`}>
@@ -85,136 +88,153 @@ export default function MacroLiquidityPanel() {
         </div>
       </div>
 
-      <div className="macro-series-tabs">
-        {MACRO_SERIES_CONFIG.map((cfg) => (
-          <button
-            key={cfg.key}
-            onClick={() => setSelectedKey(cfg.key)}
-            className={`series-tab ${selectedKey === cfg.key ? "active" : ""}`}
-            title={cfg.description}
-          >
-            {cfg.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="macro-metrics-strip">
-        <div className="metric-box main">
-          <span className="label">{activeConfig.label}</span>
-          <div className="value-row">
-            <strong>{stats.current} <small>{activeConfig.unit}</small></strong>
-            <span className={`delta ${stats.change >= 0 ? "positive" : "negative"}`}>
-              {stats.change >= 0 ? "+" : ""}{stats.change} ({stats.pct}%)
-            </span>
+      {/* Main Split Screen Container */}
+      <div className="macro-split-grid">
+        {/* LEFT COLUMN: FRED Monetary Series & Sovereign GDP */}
+        <div className="macro-left-col">
+          {/* Series Tabs */}
+          <div className="macro-series-tabs">
+            {MACRO_SERIES_CONFIG.map((cfg) => (
+              <button
+                key={cfg.key}
+                onClick={() => setSelectedKey(cfg.key)}
+                className={`series-tab ${selectedKey === cfg.key ? "active" : ""}`}
+                title={cfg.description}
+              >
+                {cfg.label}
+              </button>
+            ))}
           </div>
-          <small className="muted">As of {stats.latestDate || "—"}</small>
-        </div>
 
-        <div className="metric-box">
-          <span className="label">24M Low</span>
-          <strong>{stats.min} {activeConfig.unit}</strong>
-        </div>
-
-        <div className="metric-box">
-          <span className="label">24M High</span>
-          <strong>{stats.max} {activeConfig.unit}</strong>
-        </div>
-
-        <div className="metric-box">
-          <span className="label">Description</span>
-          <p className="desc-text">{activeConfig.description}</p>
-        </div>
-      </div>
-
-      <div className="chart-container">
-        <svg
-          viewBox={`0 0 ${chartCoordinates.width || 600} ${chartCoordinates.height || 180}`}
-          preserveAspectRatio="none"
-          className="macro-svg-chart"
-          onMouseLeave={() => setHoverIndex(null)}
-        >
-          <defs>
-            <linearGradient id="macroAreaGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.32" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.0" />
-            </linearGradient>
-          </defs>
-
-          {/* Grid lines */}
-          <line x1="20" y1="30" x2="580" y2="30" stroke="#2a3f3a" strokeDasharray="3 3" strokeWidth="1" />
-          <line x1="20" y1="90" x2="580" y2="90" stroke="#2a3f3a" strokeDasharray="3 3" strokeWidth="1" />
-          <line x1="20" y1="150" x2="580" y2="150" stroke="#2a3f3a" strokeDasharray="3 3" strokeWidth="1" />
-
-          {chartCoordinates.area && <path d={chartCoordinates.area} fill="url(#macroAreaGrad)" />}
-          {chartCoordinates.path && <path d={chartCoordinates.path} fill="none" stroke="#38bdf8" strokeWidth="2.5" />}
-
-          {/* Points & Hover Target */}
-          {chartCoordinates.points.map((p, i) => (
-            <g key={i}>
-              <circle
-                cx={p.x}
-                cy={p.y}
-                r={hoverIndex === i ? 5 : 2.5}
-                fill={hoverIndex === i ? "#76e2b5" : "#38bdf8"}
-                stroke="#0f1917"
-                strokeWidth="1.5"
-              />
-              <rect
-                x={p.x - 12}
-                y={0}
-                width={24}
-                height={chartCoordinates.height}
-                fill="transparent"
-                onMouseEnter={() => setHoverIndex(i)}
-                style={{ cursor: "crosshair" }}
-              />
-            </g>
-          ))}
-
-          {hoveredPoint && (
-            <line
-              x1={hoveredPoint.x}
-              y1="10"
-              x2={hoveredPoint.x}
-              y2="170"
-              stroke="#76e2b5"
-              strokeDasharray="2 2"
-              strokeWidth="1"
-            />
-          )}
-        </svg>
-
-        {hoveredPoint && (
-          <div
-            className="chart-tooltip"
-            style={{
-              left: `${(hoveredPoint.x / (chartCoordinates.width || 600)) * 100}%`,
-              top: `${hoveredPoint.y - 30}px`,
-            }}
-          >
-            <b>{hoveredPoint.value} {activeConfig.unit}</b>
-            <time>{hoveredPoint.date}</time>
-          </div>
-        )}
-      </div>
-
-      <div className="gdp-distribution-section">
-        <div className="section-title">
-          <span>WORLD BANK · TOP SOVEREIGN GDP</span>
-          <small>Nominal GDP ($ Trillion USD) & Global Share</small>
-        </div>
-        <div className="gdp-bars">
-          {(data?.gdp || []).map((item) => (
-            <div key={item.country} className="gdp-bar-row">
-              <span className="country-code">{item.country}</span>
-              <span className="country-name">{item.name}</span>
-              <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${(item.gdp / 30) * 100}%` }} />
+          {/* Metric KPIs */}
+          <div className="macro-metrics-strip">
+            <div className="metric-box main">
+              <span className="label">{activeConfig.label}</span>
+              <div className="value-row">
+                <strong>{stats.current} <small>{activeConfig.unit}</small></strong>
+                <span className={`delta ${stats.change >= 0 ? "positive" : "negative"}`}>
+                  {stats.change >= 0 ? "+" : ""}{stats.change} ({stats.pct}%)
+                </span>
               </div>
-              <strong className="gdp-val">${item.gdp}T</strong>
-              <small className="gdp-share">{item.share}%</small>
+              <small className="muted">As of {stats.latestDate || "—"}</small>
             </div>
-          ))}
+
+            <div className="metric-box">
+              <span className="label">24M Low</span>
+              <strong>{stats.min} {activeConfig.unit}</strong>
+            </div>
+
+            <div className="metric-box">
+              <span className="label">24M High</span>
+              <strong>{stats.max} {activeConfig.unit}</strong>
+            </div>
+
+            <div className="metric-box">
+              <span className="label">Description</span>
+              <p className="desc-text">{activeConfig.description}</p>
+            </div>
+          </div>
+
+          {/* Line & Area Chart */}
+          <div className="chart-container">
+            <svg
+              viewBox={`0 0 ${chartCoordinates.width || 560} ${chartCoordinates.height || 170}`}
+              preserveAspectRatio="none"
+              className="macro-svg-chart"
+              onMouseLeave={() => setHoverIndex(null)}
+            >
+              <defs>
+                <linearGradient id="macroAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.30" />
+                  <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
+
+              <line x1="18" y1="25" x2="542" y2="25" stroke="#1d2e29" strokeDasharray="3 3" strokeWidth="1" />
+              <line x1="18" y1="85" x2="542" y2="85" stroke="#1d2e29" strokeDasharray="3 3" strokeWidth="1" />
+              <line x1="18" y1="145" x2="542" y2="145" stroke="#1d2e29" strokeDasharray="3 3" strokeWidth="1" />
+
+              {chartCoordinates.area && <path d={chartCoordinates.area} fill="url(#macroAreaGrad)" />}
+              {chartCoordinates.path && <path d={chartCoordinates.path} fill="none" stroke="#38bdf8" strokeWidth="2.5" />}
+
+              {chartCoordinates.points.map((p, i) => (
+                <g key={i}>
+                  <circle
+                    cx={p.x}
+                    cy={p.y}
+                    r={hoverIndex === i ? 5 : 2.5}
+                    fill={hoverIndex === i ? "#64dcb1" : "#38bdf8"}
+                    stroke="#0a0f0d"
+                    strokeWidth="1.5"
+                  />
+                  <rect
+                    x={p.x - 12}
+                    y={0}
+                    width={24}
+                    height={chartCoordinates.height}
+                    fill="transparent"
+                    onMouseEnter={() => setHoverIndex(i)}
+                    style={{ cursor: "crosshair" }}
+                  />
+                </g>
+              ))}
+
+              {hoveredPoint && (
+                <line
+                  x1={hoveredPoint.x}
+                  y1="10"
+                  x2={hoveredPoint.x}
+                  y2="160"
+                  stroke="#64dcb1"
+                  strokeDasharray="2 2"
+                  strokeWidth="1"
+                />
+              )}
+            </svg>
+
+            {hoveredPoint && (
+              <div
+                className="chart-tooltip"
+                style={{
+                  left: `${(hoveredPoint.x / (chartCoordinates.width || 560)) * 100}%`,
+                  top: `${hoveredPoint.y - 28}px`,
+                }}
+              >
+                <b>{hoveredPoint.value} {activeConfig.unit}</b>
+                <time>{hoveredPoint.date}</time>
+              </div>
+            )}
+          </div>
+
+          {/* Sovereign GDP Bars */}
+          <div className="gdp-distribution-section">
+            <div className="section-title">
+              <span>WORLD BANK · TOP SOVEREIGN GDP</span>
+              <small>Nominal GDP ($ Trillion USD) & Global Share</small>
+            </div>
+            <div className="gdp-bars">
+              {(data?.gdp || []).map((item) => (
+                <div key={item.country} className="gdp-bar-row">
+                  <span className="country-code">{item.country}</span>
+                  <span className="country-name">{item.name}</span>
+                  <div className="bar-track">
+                    <div className="bar-fill" style={{ width: `${(item.gdp / 30) * 100}%` }} />
+                  </div>
+                  <strong className="gdp-val">${item.gdp}T</strong>
+                  <small className="gdp-share">{item.share}%</small>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: Corporate Cash Reserves & Global Allocation Pie Charts */}
+        <div className="macro-right-col">
+          {/* Top Half: Corporate Treasury Intelligence (Search & Cash Reserves) */}
+          <CorporateTreasuryIntelligence />
+
+          {/* Bottom Half: Global Reserves & Payment Rails Pie Charts */}
+          <GlobalPieCharts />
         </div>
       </div>
     </section>
