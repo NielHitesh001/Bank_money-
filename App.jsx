@@ -1,4 +1,5 @@
 import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
+import BloombergBlotter from "./components/BloombergBlotter";
 import CentralBankPolicyHub from "./components/CentralBankPolicyHub";
 import EntityGraph from "./components/EntityGraph";
 import FxPolicyConverter from "./components/FxPolicyConverter";
@@ -47,6 +48,7 @@ function loadSavedViews() {
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("liquidity"); // "liquidity" | "investigate"
   const [liquiditySubView, setLiquiditySubView] = useState("macro"); // "macro" | "rails" | "centralbanks" | "converter" | "network"
+  const [investigationViewMode, setInvestigationViewMode] = useState("graph"); // "graph" | "blotter"
   const [serverOnline, setServerOnline] = useState(false);
 
   const [workspace, setWorkspace] = useState({ entities: initialEntities, transactions: initialTransactions });
@@ -624,75 +626,109 @@ export default function Dashboard() {
             <section className="graph-shell">
               <div className="graph-header">
                 <div>
-                  <span className="eyebrow">LIVE RELATIONSHIP GRAPH</span>
-                  <h1>Cross-border transaction network</h1>
+                  <span className="eyebrow">{investigationViewMode === "graph" ? "LIVE RELATIONSHIP GRAPH" : "BLOOMBERG DATA GRID"}</span>
+                  <h1>{investigationViewMode === "graph" ? "Cross-border transaction network" : "Interbank Transaction & Entity Blotter"}</h1>
                 </div>
+
+                <div className="view-mode-toggle-group">
+                  <button
+                    className={`view-mode-btn ${investigationViewMode === "graph" ? "active" : ""}`}
+                    onClick={() => setInvestigationViewMode("graph")}
+                  >
+                    ◉ Graph
+                  </button>
+                  <button
+                    className={`view-mode-btn ${investigationViewMode === "blotter" ? "active" : ""}`}
+                    onClick={() => setInvestigationViewMode("blotter")}
+                  >
+                    ▤ Bloomberg Full List
+                  </button>
+                </div>
+
                 <div className="graph-stat">
                   <span>EXPOSURE</span>
                   <strong>$258.7M</strong>
                   <small>LAST 24 HOURS</small>
                 </div>
               </div>
-              <div className="graph-wrap">
-                <NetworkCanvas
-                  entities={visibleEntities}
-                  transactions={visibleTransactions}
-                  selectedId={selected.value}
-                  trace={trace}
-                  onSelect={select}
-                  actionsRef={graphActions}
-                />
-                <div className="graph-tools">
-                  <button aria-label="Zoom in" onClick={() => graphActions.current?.zoomIn()}>
-                    ＋
-                  </button>
-                  <button aria-label="Zoom out" onClick={() => graphActions.current?.zoomOut()}>
-                    −
-                  </button>
-                  <button aria-label="Reset graph view" onClick={() => graphActions.current?.reset()}>
-                    ⊙
-                  </button>
-                </div>
-                <div className="trace-status">
-                  {traceMode ? (
-                    trace.edgeIds.length ? (
-                      <>
-                        <span>TRACE ROUTE</span>
-                        <strong>
-                          {trace.nodeIds.length} nodes · {trace.edgeIds.length} hops from {traceOrigin}
-                        </strong>
-                      </>
+
+              {investigationViewMode === "graph" ? (
+                <div className="graph-wrap">
+                  <NetworkCanvas
+                    entities={visibleEntities}
+                    transactions={visibleTransactions}
+                    selectedId={selected.value}
+                    trace={trace}
+                    onSelect={select}
+                    actionsRef={graphActions}
+                  />
+                  <div className="graph-tools">
+                    <button aria-label="Zoom in" onClick={() => graphActions.current?.zoomIn()}>
+                      ＋
+                    </button>
+                    <button aria-label="Zoom out" onClick={() => graphActions.current?.zoomOut()}>
+                      −
+                    </button>
+                    <button aria-label="Reset graph view" onClick={() => graphActions.current?.reset()}>
+                      ⊙
+                    </button>
+                  </div>
+                  <div className="trace-status">
+                    {traceMode ? (
+                      trace.edgeIds.length ? (
+                        <>
+                          <span>TRACE ROUTE</span>
+                          <strong>
+                            {trace.nodeIds.length} nodes · {trace.edgeIds.length} hops from {traceOrigin}
+                          </strong>
+                        </>
+                      ) : (
+                        <>
+                          <span>TRACE ROUTE</span>
+                          <strong>No directed path from {traceOrigin}</strong>
+                        </>
+                      )
                     ) : (
                       <>
                         <span>TRACE ROUTE</span>
-                        <strong>No directed path from {traceOrigin}</strong>
+                        <strong>Disabled</strong>
                       </>
-                    )
-                  ) : (
-                    <>
-                      <span>TRACE ROUTE</span>
-                      <strong>Disabled</strong>
-                    </>
-                  )}
-                </div>
-                {intakeMessage && (
-                  <div className="intake-status" role="status">
-                    {intakeMessage}
+                    )}
                   </div>
-                )}
-                <div className="legend">
-                  <span>
-                    <i className="low" />Standard
-                  </span>
-                  <span>
-                    <i className="mid" />Elevated
-                  </span>
-                  <span>
-                    <i className="high" />Critical
-                  </span>
-                  <em>Click a node or flow to inspect</em>
+                  {intakeMessage && (
+                    <div className="intake-status" role="status">
+                      {intakeMessage}
+                    </div>
+                  )}
+                  <div className="legend">
+                    <span>
+                      <i className="low" />Standard
+                    </span>
+                    <span>
+                      <i className="mid" />Elevated
+                    </span>
+                    <span>
+                      <i className="high" />Critical
+                    </span>
+                    <em>Click a node or flow to inspect</em>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <BloombergBlotter
+                  entities={visibleEntities}
+                  transactions={visibleTransactions}
+                  selectedId={selected.value}
+                  onSelect={select}
+                  onTraceOrigin={(originId) => {
+                    setTraceOrigin(originId);
+                    setTraceMode(true);
+                    recordAudit(`trace origin set to ${originId}`);
+                  }}
+                  onAddToCase={addToCase}
+                  activeCaseId={activeCaseId}
+                  role={role}
+                />
+              )}
             </section>
 
             <aside className="inspector">
