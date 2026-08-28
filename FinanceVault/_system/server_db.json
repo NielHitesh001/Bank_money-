@@ -5,13 +5,14 @@
       "title": "Baltic routing anomaly",
       "severity": "Critical",
       "status": "Open",
-      "transactions": 4,
-      "updated": "2 min ago",
+      "transactions": 5,
+      "updated": "just now",
       "itemIds": [
         "TX-2026-08492",
         "TX-2026-08493",
         "TX-2026-08494",
-        "TX-2026-08495"
+        "TX-2026-08495",
+        "JPM-US"
       ],
       "notes": []
     },
@@ -37,6 +38,141 @@
     }
   ],
   "audit": [
+    {
+      "sequence": 29,
+      "event": "role view switched to Analyst",
+      "timestamp": "2026-08-28T22:16:40.135Z"
+    },
+    {
+      "sequence": 28,
+      "event": "role view switched to Admin",
+      "timestamp": "2026-08-28T22:16:36.834Z"
+    },
+    {
+      "sequence": 27,
+      "event": "role view switched to Analyst",
+      "timestamp": "2026-08-28T22:16:34.652Z"
+    },
+    {
+      "sequence": 26,
+      "event": "CASE-1842 status changed to Open",
+      "timestamp": "2026-08-28T22:13:34.213Z"
+    },
+    {
+      "sequence": 25,
+      "event": "CASE-1842 status changed to Closed",
+      "timestamp": "2026-08-28T22:13:32.669Z"
+    },
+    {
+      "sequence": 24,
+      "event": "CASE-1842 status changed to In review",
+      "timestamp": "2026-08-28T22:13:31.136Z"
+    },
+    {
+      "sequence": 23,
+      "event": "JPM-US added to CASE-1842",
+      "timestamp": "2026-08-28T22:13:27.782Z"
+    },
+    {
+      "sequence": 22,
+      "event": "inspected entity JPM-US",
+      "timestamp": "2026-08-28T22:10:02.283Z"
+    },
+    {
+      "sequence": 21,
+      "event": "inspected entity US-FED",
+      "timestamp": "2026-08-28T22:10:01.083Z"
+    },
+    {
+      "sequence": 20,
+      "event": "inspected entity HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:43.535Z"
+    },
+    {
+      "sequence": 19,
+      "event": "inspected entity HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:42.120Z"
+    },
+    {
+      "sequence": 18,
+      "event": "inspected entity HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:41.537Z"
+    },
+    {
+      "sequence": 17,
+      "event": "trace origin set to HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:40.838Z"
+    },
+    {
+      "sequence": 16,
+      "event": "trace origin set to HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:40.010Z"
+    },
+    {
+      "sequence": 15,
+      "event": "inspected entity HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:39.221Z"
+    },
+    {
+      "sequence": 14,
+      "event": "inspected entity HARBOR-AE",
+      "timestamp": "2026-08-28T22:09:37.597Z"
+    },
+    {
+      "sequence": 13,
+      "event": "alert triaged: TX-2026-08494",
+      "timestamp": "2026-08-28T22:09:34.879Z"
+    },
+    {
+      "sequence": 12,
+      "event": "inspected transaction TX-2026-08494",
+      "timestamp": "2026-08-28T22:09:31.979Z"
+    },
+    {
+      "sequence": 11,
+      "event": "inspected entity JPM-US",
+      "timestamp": "2026-08-28T22:09:00.051Z"
+    },
+    {
+      "sequence": 10,
+      "event": "inspected entity JPM-US",
+      "timestamp": "2026-08-28T22:08:59.784Z"
+    },
+    {
+      "sequence": 9,
+      "event": "inspected entity JPM-US",
+      "timestamp": "2026-08-28T22:08:58.820Z"
+    },
+    {
+      "sequence": 8,
+      "event": "inspected transaction TX-2026-08494",
+      "timestamp": "2026-08-28T22:06:55.898Z"
+    },
+    {
+      "sequence": 7,
+      "event": "opened CASE-1842",
+      "timestamp": "2026-08-28T22:06:46.838Z"
+    },
+    {
+      "sequence": 6,
+      "event": "opened CASE-1829",
+      "timestamp": "2026-08-28T22:06:45.264Z"
+    },
+    {
+      "sequence": 5,
+      "event": "opened CASE-1837",
+      "timestamp": "2026-08-28T22:06:44.658Z"
+    },
+    {
+      "sequence": 4,
+      "event": "saved investigation view",
+      "timestamp": "2026-08-28T22:06:08.888Z"
+    },
+    {
+      "sequence": 3,
+      "event": "saved investigation view",
+      "timestamp": "2026-08-28T22:06:07.550Z"
+    },
     {
       "sequence": 1,
       "event": "09:42 — session authenticated",

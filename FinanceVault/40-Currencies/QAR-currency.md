@@ -6,7 +6,7 @@ currency_symbol: "\u0631.\u0642"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # Qatari riyal (QAR) Currency Hub
 

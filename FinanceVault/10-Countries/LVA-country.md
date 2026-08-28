@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Latvia — Financial Tear Sheet
 

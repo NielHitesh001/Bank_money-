@@ -1518,84 +1518,301 @@ fieldset legend { margin-bottom: 12px; }
   color: #799088;
 }
 
-.legend-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 4px;
-}
-
 .graph-hint {
   margin-left: auto;
   color: #4a5c56;
   font-size: 9px;
 }
 
-/* Canvas Hover Inspection Card */
-.canvas-hover-card {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(5, 5, 5, 0.94);
-  border: 1px solid #2a3a35;
-  border-radius: 3px;
-  padding: 10px 14px;
-  z-index: 15;
-  pointer-events: none;
-  font: 11px 'DM Mono', monospace;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
-  max-width: 320px;
+/* Connection Finder Bar */
+.connection-finder-bar {
+  background: #050907;
+  border-bottom: 1px solid #1a2a23;
+  padding: 10px 16px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 
-.hover-head {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: #f0fdf4;
-}
-
-.hover-flag {
-  font-size: 13px;
-}
-
-.hover-badge {
-  color: #38bdf8;
-  font-size: 10px;
-  margin-left: auto;
-}
-
-.hover-meta {
+.connection-finder-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
-  color: #799088;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.hover-risk {
+.finder-heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.finder-heading h3 {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #e0eae6;
+  letter-spacing: 0.02em;
+}
+
+.finder-mode-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mode-pill {
+  background: #0a110e;
+  border: 1px solid #1e332a;
+  color: #8da49c;
+  padding: 4px 10px;
+  font: 10px 'DM Mono';
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+}
+
+.mode-pill.active {
+  background: #11261e;
+  color: #64dcb1;
+  border-color: #2e5948;
+  font-weight: 600;
+}
+
+.collapse-btn {
+  background: transparent;
+  border: 1px solid #222;
+  color: #718780;
+  padding: 4px 8px;
+  font: 10px 'DM Mono';
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.finder-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.finder-inputs-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.entity-select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.entity-select-field label {
+  font: 9px 'DM Mono';
+  color: #6a827a;
+  letter-spacing: 0.06em;
+}
+
+.entity-select-field select {
+  background: #000;
+  border: 1px solid #283a32;
+  color: #f0fdf4;
+  padding: 6px 10px;
+  font: 11px 'DM Mono';
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.entity-select-field select:focus {
+  border-color: #64dcb1;
+}
+
+.finder-swap-btn {
+  background: #0c1411;
+  border: 1px solid #223b30;
+  color: #8da49c;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 14px;
+  margin-bottom: 1px;
+}
+
+.finder-swap-btn:hover {
+  background: #162920;
+  color: #64dcb1;
+}
+
+.finder-action-btn {
+  background: #12241e;
+  border: 1px solid #2e5948;
+  color: #64dcb1;
+  padding: 7px 14px;
+  font: 11px 'DM Mono';
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-bottom: 1px;
+  white-space: nowrap;
+}
+
+.finder-action-btn:hover {
+  background: #19382b;
+  border-color: #43826a;
+}
+
+/* Connection Chain Card */
+.connection-chain-card {
+  background: #020504;
+  border: 1px solid #1a2d24;
+  border-radius: 3px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chain-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-connected {
+  background: rgba(100, 220, 177, 0.15);
+  border: 1px solid #2e5948;
+  color: #64dcb1;
+  font: 10px 'DM Mono';
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.chain-summary {
+  color: #8da49c;
+  font: 10px 'DM Mono';
+}
+
+.chain-summary b {
+  color: #e0eae6;
+}
+
+.chain-steps-flow {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 6px 0;
+  gap: 6px;
+}
+
+.chain-node-box {
+  background: #0a110e;
+  border: 1px solid #20352b;
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  transition: all 0.15s ease;
+}
+
+.chain-node-box:hover {
+  background: #11201a;
+  border-color: #38bdf8;
+}
+
+.chain-node-box.selected {
+  background: #12261e;
+  border-color: #64dcb1;
+  box-shadow: 0 0 8px rgba(100, 220, 177, 0.25);
+}
+
+.hop-rank {
+  font: 9px 'DM Mono';
+  color: #64dcb1;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.chain-node-box strong {
+  font: 11px 'DM Mono';
+  color: #f0fdf4;
+  white-space: nowrap;
+}
+
+.chain-node-box small {
+  font: 9px 'DM Mono';
+  color: #799288;
+}
+
+.chain-edge-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #060b09;
+  border: 1px dashed #20332a;
+  padding: 6px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  min-width: 110px;
+  transition: all 0.15s ease;
+}
+
+.chain-edge-connector:hover {
+  background: #0f1c16;
+  border-color: #64dcb1;
+}
+
+.chain-edge-connector.selected {
+  border-color: #64dcb1;
+  border-style: solid;
+  background: #10241b;
+}
+
+.edge-arrow {
+  color: #64dcb1;
+  font-size: 11px;
+}
+
+.edge-amount {
+  font: 11px 'DM Mono';
+  color: #f0fdf4;
   font-weight: 700;
 }
 
-.hover-foot {
-  font-size: 10px;
-  color: #a4b8b2;
-  border-top: 1px solid #1a2422;
-  padding-top: 4px;
-  margin-top: 2px;
+.edge-rail {
+  font: 9px 'DM Mono';
+  color: #38bdf8;
 }
 
-.hover-flag-warning {
-  color: #ff5b6e;
+.edge-flag-pill {
   background: rgba(255, 91, 110, 0.15);
-  padding: 3px 6px;
+  border: 1px solid #6b1f28;
+  color: #ff5b6e;
+  font: 8px 'DM Mono';
+  padding: 1px 4px;
   border-radius: 2px;
-  font-size: 9px;
-  margin-top: 4px;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.connection-empty-state {
+  background: #0d0a0a;
+  border: 1px solid #3d1c1c;
+  color: #ee958e;
+  padding: 8px 12px;
+  border-radius: 2px;
+  font: 10px 'DM Mono';
 }
 
 /* Pitch-black surface overrides */

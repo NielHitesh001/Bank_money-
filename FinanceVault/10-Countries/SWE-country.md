@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Sweden — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:58 UTC"
 > **Region:** Europe / Northern Europe
 > **Capital:** Stockholm
 > **Currency:** SEK
-> **Central Bank:** [[SWE-central-bank|Central Bank of Sweden]]
+> **Central Bank:** [[SWE-central-bank|Central Bank of Sweden (stub)]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,7 +30,7 @@ last_updated: "2026-08-28 21:58 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[SWE-central-bank|Central Bank of Sweden]]
+- [[SWE-central-bank|Central Bank of Sweden (stub)]]
 
 ## 🔗 Connected Payment Rails
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]

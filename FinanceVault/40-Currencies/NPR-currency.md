@@ -6,7 +6,7 @@ currency_symbol: "\u20a8"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # Nepalese rupee (NPR) Currency Hub
 

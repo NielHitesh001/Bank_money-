@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Mexico — Financial Tear Sheet
 
@@ -33,7 +33,6 @@ last_updated: "2026-08-28 21:58 UTC"
 - [[MEX-central-bank|Central Bank of Mexico]]
 
 ## 🔗 Connected Payment Rails
-- [[SPEI-rail|Sistema de Pagos Electrónicos Interbancarios]]
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
 
 ## 🗺️ Graph Context

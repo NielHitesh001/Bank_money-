@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Equatorial Guinea — Financial Tear Sheet
 

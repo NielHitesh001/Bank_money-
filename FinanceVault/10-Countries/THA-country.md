@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Thailand — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:58 UTC"
 > **Region:** Asia / South-Eastern Asia
 > **Capital:** Bangkok
 > **Currency:** THB
-> **Central Bank:** [[THA-central-bank|Central Bank of Thailand]]
+> **Central Bank:** [[THA-central-bank|Central Bank of Thailand (stub)]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,10 +30,9 @@ last_updated: "2026-08-28 21:58 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[THA-central-bank|Central Bank of Thailand]]
+- [[THA-central-bank|Central Bank of Thailand (stub)]]
 
 ## 🔗 Connected Payment Rails
-- [[PROMPTPAY-rail|PromptPay Real-Time Payments]]
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
 
 ## 🗺️ Graph Context

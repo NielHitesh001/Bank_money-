@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Malaysia — Financial Tear Sheet
 
@@ -18,7 +18,7 @@ last_updated: "2026-08-28 21:58 UTC"
 > **Region:** Asia / South-Eastern Asia
 > **Capital:** Kuala Lumpur
 > **Currency:** MYR
-> **Central Bank:** [[MYS-central-bank|Central Bank of Malaysia]]
+> **Central Bank:** [[MYS-central-bank|Central Bank of Malaysia (stub)]]
 
 ## 💱 FX Snapshot
 <!-- LIVE:FXRATE:START -->
@@ -30,7 +30,7 @@ last_updated: "2026-08-28 21:58 UTC"
 <!-- LIVE:FXRATE:END -->
 
 ## 🏛️ Monetary Authority
-- [[MYS-central-bank|Central Bank of Malaysia]]
+- [[MYS-central-bank|Central Bank of Malaysia (stub)]]
 
 ## 🔗 Connected Payment Rails
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]

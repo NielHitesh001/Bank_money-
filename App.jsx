@@ -1,13 +1,14 @@
 import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import BloombergBlotter from "./components/BloombergBlotter";
 import CentralBankPolicyHub from "./components/CentralBankPolicyHub";
+import ConnectionFinder from "./components/ConnectionFinder";
 import EntityGraph from "./components/EntityGraph";
 import FxPolicyConverter from "./components/FxPolicyConverter";
 import MacroLiquidityPanel from "./components/MacroLiquidityPanel";
 import NetworkCanvas from "./components/NetworkCanvas";
 import PaymentRailsMatrix from "./components/PaymentRailsMatrix";
 import { cases as initialCases, entities as initialEntities, transactions as initialTransactions } from "./data/intelligenceMock";
-import { findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
+import { findBidirectionalPath, findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
 import { addCaseNoteApi, checkServerHealth, fetchCasesApi, logAuditEventApi, syncCaseApi } from "./src/services/apiClient.js";
 import "./styles.css";
 
@@ -652,6 +653,20 @@ export default function Dashboard() {
                 </div>
               </div>
 
+              <ConnectionFinder
+                entities={visibleEntities}
+                transactions={visibleTransactions}
+                selectedId={selected.value}
+                onSelectEntity={(id) => select({ type: "entity", value: id })}
+                onSelectTransaction={(id) => select({ type: "transaction", value: id })}
+                onSetTrace={(result) => {
+                  setTrace(result);
+                  setTraceMode(true);
+                  if (result.nodeIds[0]) setTraceOrigin(result.nodeIds[0]);
+                  recordAudit(`multi-entity trace path evaluated: ${result.nodeIds.join(" -> ")}`);
+                }}
+              />
+
               {investigationViewMode === "graph" ? (
                 <div className="graph-wrap">
                   <NetworkCanvas
@@ -749,165 +764,97 @@ export default function Dashboard() {
                     </strong>
                     <em>{riskLabel(selectedObject.risk)}</em>
                   </div>
-                    <section className="detail-block">
-                      <h3>{selected.type === "transaction" ? "Flow forensic detail" : "Institution 360° Profile"}</h3>
-                      {selected.type === "transaction" ? (
-                        <dl>
-                          <div>
-                            <dt>Amount</dt>
-                            <dd>
-                              <strong style={{ color: "#64dcb1" }}>{selectedObject.display} {selectedObject.currency}</strong>
-                            </dd>
-                          </div>
-                          <div>
-                            <dt>Source</dt>
-                            <dd>{entityById.get(selectedObject.source)?.name || selectedObject.source}</dd>
-                          </div>
-                          <div>
-                            <dt>Destination</dt>
-                            <dd>{entityById.get(selectedObject.target)?.name || selectedObject.target}</dd>
-                          </div>
-                          <div>
-                            <dt>Clearing Rail</dt>
-                            <dd><span className="rail-tag">{selectedObject.rail}</span></dd>
-                          </div>
-                          <div>
-                            <dt>Timestamp</dt>
-                            <dd>{selectedObject.date}</dd>
-                          </div>
-                          <div>
-                            <dt>UETR</dt>
-                            <dd className="mono-cell" style={{ fontSize: "9px", color: "#38bdf8" }}>
-                              {selectedObject.uetr || "7b4c9e81-2a14-4c8d-9011-f4a108420000"}
-                            </dd>
-                          </div>
-                          <div>
-                            <dt>Routing Chain</dt>
-                            <dd>{role === "Analyst" ? "Masked routing details" : selectedObject.routing?.correspondent || "Direct settlement"}</dd>
-                          </div>
-                          <div>
-                            <dt>Alert reason</dt>
-                            <dd className="danger">{selectedObject.flag || "Standard correspondent corridor"}</dd>
-                          </div>
-                        </dl>
-                      ) : (
-                        <dl>
-                          <div>
-                            <dt>Legal name</dt>
-                            <dd><strong>{selectedObject.flag ? `${selectedObject.flag} ` : ""}{selectedObject.name}</strong></dd>
-                          </div>
-                          <div>
-                            <dt>Jurisdiction</dt>
-                            <dd>{selectedObject.country}</dd>
-                          </div>
-                          <div>
-                            <dt>Category</dt>
-                            <dd>{selectedObject.kind}</dd>
-                          </div>
-                          <div>
-                            <dt>24H Exposure</dt>
-                            <dd><strong style={{ color: "#64dcb1" }}>{selectedObject.volume || "$0"}</strong></dd>
-                          </div>
-                          <div>
-                            <dt>BIC / SWIFT</dt>
-                            <dd className="mono-cell">{projectSensitive(selectedObject.bic)}</dd>
-                          </div>
-                          <div>
-                            <dt>LEI / Account</dt>
-                            <dd className="mono-cell">{projectSensitive(selectedObject.lei || selectedObject.account)}</dd>
-                          </div>
-                          <div>
-                            <dt>PEP screening</dt>
-                            <dd className={selectedObject.aml?.pep !== "Clear" ? "danger" : ""}>{selectedObject.aml?.pep || "Pending"}</dd>
-                          </div>
-                          <div>
-                            <dt>Sanctions lists</dt>
-                            <dd className={selectedObject.aml?.sanctions !== "No match" ? "danger" : ""}>
-                              {selectedObject.aml?.sanctions || "Pending"}
-                            </dd>
-                          </div>
-                        </dl>
+                  <section className="detail-block">
+                    <h3>{selected.type === "transaction" ? "Flow detail" : "Institution detail"}</h3>
+                    {selected.type === "transaction" ? (
+                      <dl>
+                        <div>
+                          <dt>Amount</dt>
+                          <dd>
+                            {selectedObject.display} {selectedObject.currency}
+                          </dd>
+                        </div>
+                        <div>
+                          <dt>Source</dt>
+                          <dd>{entityById.get(selectedObject.source)?.name || selectedObject.source}</dd>
+                        </div>
+                        <div>
+                          <dt>Destination</dt>
+                          <dd>{entityById.get(selectedObject.target)?.name || selectedObject.target}</dd>
+                        </div>
+                        <div>
+                          <dt>Rail</dt>
+                          <dd>{selectedObject.rail}</dd>
+                        </div>
+                        <div>
+                          <dt>Timestamp</dt>
+                          <dd>{selectedObject.date}</dd>
+                        </div>
+                        <div>
+                          <dt>Routing</dt>
+                          <dd>{role === "Analyst" ? "Masked routing details" : selectedObject.routing?.correspondent || "Direct settlement"}</dd>
+                        </div>
+                        <div>
+                          <dt>Alert reason</dt>
+                          <dd className="danger">{selectedObject.flag || "No active alert"}</dd>
+                        </div>
+                      </dl>
+                    ) : (
+                      <dl>
+                        <div>
+                          <dt>Legal name</dt>
+                          <dd>{selectedObject.name}</dd>
+                        </div>
+                        <div>
+                          <dt>Jurisdiction</dt>
+                          <dd>{selectedObject.country}</dd>
+                        </div>
+                        <div>
+                          <dt>BIC / SWIFT</dt>
+                          <dd>{projectSensitive(selectedObject.bic)}</dd>
+                        </div>
+                        <div>
+                          <dt>LEI / Account</dt>
+                          <dd>{projectSensitive(selectedObject.lei || selectedObject.account)}</dd>
+                        </div>
+                        <div>
+                          <dt>PEP screening</dt>
+                          <dd className={selectedObject.aml?.pep !== "Clear" ? "danger" : ""}>{selectedObject.aml?.pep || "Pending"}</dd>
+                        </div>
+                        <div>
+                          <dt>Sanctions lists</dt>
+                          <dd className={selectedObject.aml?.sanctions !== "No match" ? "danger" : ""}>
+                            {selectedObject.aml?.sanctions || "Pending"}
+                          </dd>
+                        </div>
+                      </dl>
+                    )}
+                  </section>
+                  {selected.type === "entity" && selectedObject.aml?.typologies?.length > 0 && (
+                    <section className="detail-block typologies">
+                      <h3>Typology signals</h3>
+                      <div>
+                        {selectedObject.aml.typologies.map((typology) => (
+                          <span key={typology}>{typology}</span>
+                        ))}
+                      </div>
+                    </section>
+                  )}
+                  {selected.type === "transaction" && (selectedObject.risk >= 80 || selectedObject.flag) && (
+                    <section className="detail-block triage-action">
+                      <h3>Alert triage</h3>
+                      <p>
+                        {triagedAlerts.has(selectedObject.id)
+                          ? "This alert has been triaged in the current session."
+                          : "Open alert — review routing context and disposition the signal."}
+                      </p>
+                      {role !== "Analyst" && (
+                        <button className="secondary" disabled={triagedAlerts.has(selectedObject.id)} onClick={resolveAlert}>
+                          {triagedAlerts.has(selectedObject.id) ? "Triaged" : "Mark triaged"}
+                        </button>
                       )}
                     </section>
-
-                    {selected.type === "transaction" && selectedObject.mt103 && (
-                      <section className="detail-block">
-                        <h3>ISO 20022 / MT103 Message Tags</h3>
-                        <dl style={{ fontSize: "10px" }}>
-                          <div>
-                            <dt>:50K: Ordering</dt>
-                            <dd>{selectedObject.mt103.tag50k}</dd>
-                          </div>
-                          <div>
-                            <dt>:59: Beneficiary</dt>
-                            <dd>{selectedObject.mt103.tag59}</dd>
-                          </div>
-                          <div>
-                            <dt>:70: Remittance</dt>
-                            <dd>{selectedObject.mt103.tag70}</dd>
-                          </div>
-                          <div>
-                            <dt>:71A: Details</dt>
-                            <dd>{selectedObject.mt103.tag71a}</dd>
-                          </div>
-                        </dl>
-                      </section>
-                    )}
-
-                    {selected.type === "entity" && selectedObject.aml?.typologies?.length > 0 && (
-                      <section className="detail-block typologies">
-                        <h3>Typology signals</h3>
-                        <div>
-                          {selectedObject.aml.typologies.map((typology) => (
-                            <span key={typology}>{typology}</span>
-                          ))}
-                        </div>
-                      </section>
-                    )}
-
-                    {selected.type === "transaction" && (selectedObject.risk >= 80 || selectedObject.flag) && (
-                      <section className="detail-block triage-action">
-                        <h3>Alert triage & SAR Filing</h3>
-                        <p>
-                          {triagedAlerts.has(selectedObject.id)
-                            ? "This alert has been triaged in the current session."
-                            : "High-risk flow flagged for FinCEN / FIU disposition review."}
-                        </p>
-                        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "6px" }}>
-                          {role !== "Analyst" && (
-                            <button className="secondary" disabled={triagedAlerts.has(selectedObject.id)} onClick={resolveAlert}>
-                              {triagedAlerts.has(selectedObject.id) ? "✓ Triaged" : "Mark triaged"}
-                            </button>
-                          )}
-                          <button
-                            className="secondary"
-                            style={{ borderColor: "#ff5b6e", color: "#ff5b6e" }}
-                            onClick={() => {
-                              const sarText = `FINCEN SAR FORM 111 (CONFIDENTIAL)\n` +
-                                `Transaction ID: ${selectedObject.id}\n` +
-                                `UETR: ${selectedObject.uetr || "N/A"}\n` +
-                                `Amount: ${selectedObject.display} ${selectedObject.currency}\n` +
-                                `Source: ${entityById.get(selectedObject.source)?.name || selectedObject.source}\n` +
-                                `Destination: ${entityById.get(selectedObject.target)?.name || selectedObject.target}\n` +
-                                `Rail: ${selectedObject.rail}\n` +
-                                `Typology: ${selectedObject.flag || "Unusual correspondent pass-through"}\n` +
-                                `Case: ${activeCase.id} (${activeCase.title})\n` +
-                                `Date: ${selectedObject.date}\n` +
-                                `Investigator: AN (${role})\n`;
-                              const blob = new Blob([sarText], { type: "text/plain" });
-                              const url = URL.createObjectURL(blob);
-                              const a = document.createElement("a");
-                              a.href = url;
-                              a.download = `SAR_${selectedObject.id}.txt`;
-                              a.click();
-                              recordAudit(`generated SAR draft for ${selectedObject.id}`);
-                            }}
-                          >
-                            📄 Export SAR Draft
-                          </button>
-                        </div>
-                      </section>
-                    )}
+                  )}
                   <section className="detail-block counterpart">
                     <h3>Selected endpoint</h3>
                     <strong>{inspectItem?.name}</strong>

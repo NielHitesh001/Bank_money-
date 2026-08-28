@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { findDirectedPath, parseCsv } from "../lib/investigationUtils.mjs";
+import { findBidirectionalPath, findDirectedPath, parseCsv } from "../lib/investigationUtils.mjs";
+import { entities, transactions } from "../data/intelligenceMock.js";
 
 test("parseCsv preserves quoted commas and escaped quotes", () => {
   const records = parseCsv('id,flag,amount\nTX-1,"Sanctions, proximity",12400000\nTX-2,"A ""quoted"" value",20');
@@ -27,4 +28,17 @@ test("findDirectedPath returns the shortest directed route", () => {
 
 test("findDirectedPath handles missing paths", () => {
   assert.deepEqual(findDirectedPath([{ id: "edge-1", source: "A", target: "B" }], "B", "A"), { nodeIds: [], edgeIds: [] });
+});
+
+test("findBidirectionalPath discovers relationship connection between BlackRock and Jio Financial Services", () => {
+  const path = findBidirectionalPath(transactions, "BLACKROCK-US", "JIO-IN");
+  assert.ok(path.nodeIds.length >= 2, "Path should contain at least 2 nodes");
+  assert.equal(path.nodeIds[0], "BLACKROCK-US");
+  assert.equal(path.nodeIds[path.nodeIds.length - 1], "JIO-IN");
+});
+
+test("findBidirectionalPath discovers multi-hop connection from BlackRock to Reliance Industries", () => {
+  const path = findBidirectionalPath(transactions, "BLACKROCK-US", "RELIANCE-IN");
+  assert.ok(path.nodeIds.includes("JIO-IN"), "Path from BlackRock to Reliance should route through Jio");
+  assert.equal(path.nodeIds[path.nodeIds.length - 1], "RELIANCE-IN");
 });

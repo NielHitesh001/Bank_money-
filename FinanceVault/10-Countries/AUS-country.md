@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/oceania
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-28 22:19 UTC"
 ---
 # 🏦 Australia — Financial Tear Sheet
 
@@ -33,7 +33,6 @@ last_updated: "2026-08-28 21:58 UTC"
 - [[AUS-central-bank|Central Bank of Australia]]
 
 ## 🔗 Connected Payment Rails
-- [[NPP-rail|New Payments Platform (NPP / PayID)]]
 - [[SWIFT-rail|Society for Worldwide Interbank Financial Telecommunication]]
 
 ## 🗺️ Graph Context
