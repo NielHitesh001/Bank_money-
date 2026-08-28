@@ -5,7 +5,7 @@ rail_type: "Instant payment (retail)"
 operator: "Banco Central do Brasil"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-28 21:33 UTC"
+last_updated: "2026-08-28 21:34 UTC"
 ---
 # 🔌 Pix (PIX)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-28 21:33 UTC"
 |---|---|
 | Status | 🟢 OPEN |
 | Operating window | 24/7 |
-| Checked at | 2026-08-28 21:33 UTC |
+| Checked at | 2026-08-28 21:34 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

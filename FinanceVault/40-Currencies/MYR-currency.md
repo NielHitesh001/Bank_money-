@@ -6,7 +6,7 @@ currency_symbol: "RM"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-28 21:19 UTC"
+last_updated: "2026-08-28 21:34 UTC"
 ---
 # Malaysian ringgit (MYR) Currency Hub
 

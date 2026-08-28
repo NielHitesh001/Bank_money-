@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/oceania
-last_updated: "2026-08-28 21:19 UTC"
+last_updated: "2026-08-28 21:34 UTC"
 ---
 # 🏦 New Zealand — Financial Tear Sheet
 

@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-28 21:19 UTC"
+last_updated: "2026-08-28 21:34 UTC"
 ---
 # 🏦 Libya — Financial Tear Sheet
 
