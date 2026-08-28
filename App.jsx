@@ -1,55 +1,243 @@
-import React, { useMemo, useState } from "react";
+import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import NetworkCanvas from "./components/NetworkCanvas";
-import { cases, entities, transactions } from "./data/intelligenceMock";
+import { cases as initialCases, entities as initialEntities, transactions as initialTransactions } from "./data/intelligenceMock";
+import { findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
 import "./styles.css";
 
 const formats = { entity: "Entity", transaction: "Transaction" };
 const riskLabel = (risk) => risk >= 80 ? "Critical" : risk >= 55 ? "Elevated" : "Standard";
+const roles = ["Analyst", "Investigator", "Admin"];
+const MAX_RENDERED_NODES = 2_000;
+const MAX_RENDERED_EDGES = 5_000;
+
+const formatDisplayAmount = (amount, currency) => `${currency === "USD" ? "$" : ""}${(Number(amount) / 1_000_000).toFixed(2)}M`;
+const validateEntity = (entity, index) => {
+  const missing = ["id", "name", "country"].filter((field) => !entity[field]);
+  if (missing.length) return `Entity ${index + 1}: missing ${missing.join(", ")}`;
+  if (!/^[A-Z]{2}$/.test(entity.country)) return `Entity ${index + 1}: country must be ISO 3166-1 alpha-2`;
+  if (entity.lei && !/^[A-Z0-9]{20}$/.test(entity.lei)) return `Entity ${index + 1}: LEI must be 20 uppercase alphanumeric characters`;
+  if (entity.bic && !/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$/.test(entity.bic)) return `Entity ${index + 1}: BIC must be 8 or 11 characters`;
+  return null;
+};
+const maskIdentifier = (value) => {
+  if (!value || value.length <= 6) return value || "—";
+  return `${value.slice(0, 4)}••••${value.slice(-2)}`;
+};
+const savedViewStorageKey = "moneytrace.saved-views.v1";
+
+function loadSavedViews() {
+  try {
+    const stored = window.localStorage.getItem(savedViewStorageKey);
+    const parsed = stored ? JSON.parse(stored) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
 
 export default function Dashboard() {
+  const [workspace, setWorkspace] = useState({ entities: initialEntities, transactions: initialTransactions });
   const [query, setQuery] = useState("");
   const [minimumRisk, setMinimumRisk] = useState(0);
   const [currency, setCurrency] = useState("All currencies");
+  const [dateWindow, setDateWindow] = useState("All dates");
+  const [minimumAmount, setMinimumAmount] = useState(0);
+  const [crossBorderOnly, setCrossBorderOnly] = useState(true);
+  const [flaggedOnly, setFlaggedOnly] = useState(false);
   const [selected, setSelected] = useState({ type: "transaction", value: "TX-2026-08494" });
   const [traceMode, setTraceMode] = useState(true);
+  const [traceOrigin, setTraceOrigin] = useState("JPM-US");
   const [audit, setAudit] = useState(["09:42 — session authenticated", "09:44 — trace started: Baltic routing anomaly"]);
+  const [activeCaseId, setActiveCaseId] = useState("CASE-1842");
+  const [caseItems, setCaseItems] = useState(() => initialCases.map((item) => ({ ...item, itemIds: item.id === "CASE-1842" ? ["TX-2026-08492", "TX-2026-08493", "TX-2026-08494", "TX-2026-08495"] : [] })));
+  const [caseNotes, setCaseNotes] = useState([]);
+  const [note, setNote] = useState("");
+  const [role, setRole] = useState("Investigator");
+  const [flaggedItems, setFlaggedItems] = useState(new Set());
+  const [triagedAlerts, setTriagedAlerts] = useState(new Set());
+  const [auditOpen, setAuditOpen] = useState(false);
+  const [savedViews, setSavedViews] = useState(loadSavedViews);
+  const graphActions = useRef(null);
+  const batchInputRef = useRef(null);
+  const [intakeMessage, setIntakeMessage] = useState("");
+  const entities = workspace.entities;
+  const transactions = workspace.transactions;
+  const deferredQuery = useDeferredValue(query);
 
-  const visibleTransactions = useMemo(() => transactions.filter((tx) =>
-    tx.risk >= minimumRisk && (currency === "All currencies" || tx.currency === currency) &&
-    (!query || [tx.id, tx.currency, tx.rail, tx.flag].filter(Boolean).join(" ").toLowerCase().includes(query.toLowerCase()) ||
-      entities.some((e) => (e.id === tx.source || e.id === tx.target) && e.name.toLowerCase().includes(query.toLowerCase())))
-  ), [query, minimumRisk, currency]);
-  const entityIds = new Set(visibleTransactions.flatMap((tx) => [tx.source, tx.target]));
-  const visibleEntities = entities.filter((entity) => entityIds.has(entity.id));
+  const recordAudit = (event) => setAudit((events) => [`09:49 — ${event}`, ...events]);
+
+  useEffect(() => {
+    window.localStorage.setItem(savedViewStorageKey, JSON.stringify(savedViews.slice(0, 5)));
+  }, [savedViews]);
+
+  const entityById = useMemo(() => new Map(entities.map((entity) => [entity.id, entity])), [entities]);
+  const datasetNow = useMemo(() => transactions.reduce((latest, item) => Math.max(latest, Date.parse(item.date || "") || 0), 0), [transactions]);
+  const matchingTransactions = useMemo(() => transactions.filter((tx) => {
+    const source = entityById.get(tx.source);
+    const target = entityById.get(tx.target);
+    const normalizedQuery = deferredQuery.toLowerCase();
+    const transactionDate = Date.parse(tx.date || "");
+    const windowCutoff = dateWindow === "Last 24 hours" ? datasetNow - 86_400_000 : dateWindow === "Last 7 days" ? datasetNow - 604_800_000 : 0;
+    return tx.risk >= minimumRisk && tx.amount >= minimumAmount && (currency === "All currencies" || tx.currency === currency) &&
+      (!windowCutoff || (Number.isFinite(transactionDate) && transactionDate >= windowCutoff)) &&
+      (!crossBorderOnly || source?.country !== target?.country) &&
+      (!flaggedOnly || Boolean(tx.flag)) &&
+      (!normalizedQuery || [tx.id, tx.currency, tx.rail, tx.flag, source?.name, target?.name].filter(Boolean).join(" ").toLowerCase().includes(normalizedQuery));
+  }), [transactions, entityById, datasetNow, deferredQuery, minimumRisk, minimumAmount, currency, dateWindow, crossBorderOnly, flaggedOnly]);
+  const candidateEntityIds = useMemo(() => new Set(matchingTransactions.flatMap((tx) => [tx.source, tx.target])), [matchingTransactions]);
+  const visibleEntities = useMemo(() => entities.filter((entity) => candidateEntityIds.has(entity.id)).sort((a, b) => b.risk - a.risk).slice(0, MAX_RENDERED_NODES), [entities, candidateEntityIds]);
+  const visibleEntityIds = useMemo(() => new Set(visibleEntities.map((entity) => entity.id)), [visibleEntities]);
+  const visibleTransactions = useMemo(() => matchingTransactions.filter((tx) => visibleEntityIds.has(tx.source) && visibleEntityIds.has(tx.target)).sort((a, b) => b.risk - a.risk || b.amount - a.amount).slice(0, MAX_RENDERED_EDGES), [matchingTransactions, visibleEntityIds]);
+  const alertQueue = useMemo(() => matchingTransactions.filter((tx) => tx.risk >= 80 || tx.flag).filter((tx) => !triagedAlerts.has(tx.id)).sort((a, b) => b.risk - a.risk || b.amount - a.amount), [matchingTransactions, triagedAlerts]);
   const selectedObject = selected.type === "entity" ? entities.find((entity) => entity.id === selected.value) : transactions.find((tx) => tx.id === selected.value);
-  const select = (next) => { setSelected(next); setAudit((events) => [`09:4${events.length + 5} — inspected ${formats[next.type].toLowerCase()} ${next.value}`, ...events].slice(0, 4)); };
+  const select = (next) => { setSelected(next); recordAudit(`inspected ${formats[next.type].toLowerCase()} ${next.value}`); };
   const inspectItem = selected.type === "entity" ? selectedObject : entities.find((entity) => entity.id === selectedObject?.target);
+  const projectSensitive = (value) => role === "Analyst" ? maskIdentifier(value) : value || "—";
+  const activeCase = caseItems.find((item) => item.id === activeCaseId) || caseItems[0];
+  const traceTarget = selected.type === "entity" ? selected.value : selectedObject?.target;
+  const trace = traceMode ? findDirectedPath(visibleTransactions, traceOrigin, traceTarget) : { nodeIds: [], edgeIds: [] };
+  const addToCase = () => {
+    if (activeCase.itemIds.includes(selected.value)) return;
+    setCaseItems((items) => items.map((item) => item.id === activeCaseId ? { ...item, itemIds: [...item.itemIds, selected.value], transactions: item.transactions + 1, updated: "just now" } : item));
+    recordAudit(`${selected.value} added to ${activeCaseId}`);
+  };
+  const flagForReview = () => {
+    setFlaggedItems((items) => new Set([...items, selected.value]));
+    recordAudit(`${selected.value} flagged for investigator review`);
+  };
+  const resolveAlert = () => {
+    if (selected.type !== "transaction") return;
+    setTriagedAlerts((items) => new Set([...items, selected.value]));
+    recordAudit(`alert triaged: ${selected.value}`);
+  };
+  const updateCaseStatus = (status) => {
+    if (status === activeCase.status) return;
+    setCaseItems((items) => items.map((item) => item.id === activeCaseId ? { ...item, status, updated: "just now" } : item));
+    recordAudit(`${activeCaseId} status changed to ${status}`);
+  };
+  const saveView = () => {
+    const snapshot = { id: `${Date.now()}`, createdAt: new Date().toISOString(), query, minimumRisk, minimumAmount, currency, dateWindow, crossBorderOnly, flaggedOnly, traceMode, traceOrigin, selected, activeCaseId };
+    setSavedViews((views) => [snapshot, ...views].slice(0, 5));
+    recordAudit("saved investigation view");
+  };
+  const restoreView = () => {
+    const snapshot = savedViews[0];
+    if (!snapshot) return;
+    setQuery(snapshot.query);
+    setMinimumRisk(snapshot.minimumRisk);
+    setMinimumAmount(snapshot.minimumAmount || 0);
+    setCurrency(snapshot.currency);
+    setDateWindow(snapshot.dateWindow || "All dates");
+    setCrossBorderOnly(snapshot.crossBorderOnly);
+    setFlaggedOnly(snapshot.flaggedOnly);
+    setTraceMode(snapshot.traceMode);
+    setTraceOrigin(snapshot.traceOrigin || "JPM-US");
+    setSelected(snapshot.selected);
+    setActiveCaseId(snapshot.activeCaseId);
+    recordAudit("restored saved investigation view");
+  };
+  const importBatch = async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const payload = file.name.toLowerCase().endsWith(".csv") ? { transactions: parseCsv(text) } : JSON.parse(text);
+      const incomingEntities = Array.isArray(payload) ? [] : payload.entities || [];
+      const incomingTransactions = (Array.isArray(payload) ? payload : payload.transactions || []).map((tx) => ({ ...tx, id: tx.id || tx.transaction_id, source: tx.source || tx.source_entity_id, target: tx.target || tx.target_entity_id, risk: tx.risk ?? tx.risk_score, date: tx.date || tx.timestamp }));
+      const availableEntityIds = new Set([...entities.map((item) => item.id), ...incomingEntities.map((item) => item.id)]);
+      const entityErrors = incomingEntities.map(validateEntity).filter(Boolean);
+      const transactionErrors = incomingTransactions.flatMap((tx, index) => {
+        const missing = ["id", "source", "target", "currency", "amount"].filter((field) => !tx[field]);
+        if (missing.length) return [`Row ${index + 1}: missing ${missing.join(", ")}`];
+        if (!availableEntityIds.has(tx.source) || !availableEntityIds.has(tx.target)) return [`Row ${index + 1}: source or target is not a known entity`];
+        if (!/^[A-Z]{3}$/.test(tx.currency)) return [`Row ${index + 1}: currency must be ISO 4217`];
+        if (!Number.isFinite(Number(tx.amount)) || Number(tx.amount) <= 0) return [`Row ${index + 1}: amount must be positive`];
+        return [];
+      });
+      const errors = [...entityErrors, ...transactionErrors];
+      if (errors.length) {
+        setIntakeMessage(`Batch rejected — ${errors[0]}`);
+        recordAudit("batch validation rejected");
+        return;
+      }
+      const normalizedEntities = incomingEntities.map((entity, index) => ({ ...entity, risk: Number(entity.risk ?? 50), x: Number.isFinite(Number(entity.x)) ? Number(entity.x) : Math.cos(index) * .8, y: Number.isFinite(Number(entity.y)) ? Number(entity.y) : Math.sin(index) * .8 }));
+      const normalizedTransactions = incomingTransactions.map((tx) => ({ ...tx, amount: Number(tx.amount), risk: Number(tx.risk ?? 50), date: tx.date || new Date().toISOString(), rail: tx.rail || "SWIFT", display: tx.display || formatDisplayAmount(tx.amount, tx.currency), flag: tx.flag || null }));
+      setWorkspace((current) => ({ entities: [...current.entities.filter((item) => !normalizedEntities.some((next) => next.id === item.id)), ...normalizedEntities], transactions: [...current.transactions.filter((item) => !normalizedTransactions.some((next) => next.id === item.id)), ...normalizedTransactions] }));
+      setIntakeMessage(`Batch accepted — ${normalizedEntities.length} entities, ${normalizedTransactions.length} transactions`);
+      recordAudit(`batch ingested: ${normalizedTransactions.length} transactions`);
+    } catch (error) {
+      setIntakeMessage(`Batch rejected — ${error instanceof SyntaxError ? "invalid JSON" : "unable to read file"}`);
+      recordAudit("batch intake failed");
+    }
+  };
+  const saveNote = (event) => {
+    event.preventDefault();
+    const trimmed = note.trim();
+    if (!trimmed) return;
+    setCaseNotes((notes) => [{ id: `${activeCaseId}-${notes.length}`, caseId: activeCaseId, text: trimmed }, ...notes]);
+    setNote("");
+    recordAudit(`investigator note saved to ${activeCaseId}`);
+  };
+  const exportReport = () => {
+    const report = { generatedAt: new Date().toISOString(), case: activeCase, filters: { minimumRisk, minimumAmount, currency, dateWindow, crossBorderOnly, flaggedOnly, query }, transactions: visibleTransactions, trace, notes: caseNotes.filter((item) => item.caseId === activeCaseId) };
+    const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const anchor = Object.assign(document.createElement("a"), { href: url, download: `moneytrace-${activeCaseId.toLowerCase()}.json` });
+    anchor.click();
+    URL.revokeObjectURL(url);
+    recordAudit("exported filtered JSON report");
+  };
+  const exportCsv = () => {
+    const headings = ["transaction_id", "source", "target", "amount", "currency", "rail", "timestamp", "risk_score", "alert_reason"];
+    const csvEscape = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
+    const rows = visibleTransactions.map((tx) => [tx.id, tx.source, tx.target, tx.amount, tx.currency, tx.rail, tx.date, tx.risk, tx.flag]);
+    const blob = new Blob([[headings, ...rows].map((row) => row.map(csvEscape).join(",")).join("\n")], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = Object.assign(document.createElement("a"), { href: url, download: `moneytrace-${activeCaseId.toLowerCase()}-transactions.csv` });
+    anchor.click();
+    URL.revokeObjectURL(url);
+    recordAudit("exported filtered CSV report");
+  };
+  const exportAudit = (format) => {
+    const events = audit.map((event, index) => ({ sequence: audit.length - index, event }));
+    const content = format === "json" ? JSON.stringify({ generatedAt: new Date().toISOString(), role, events }, null, 2) : [["sequence", "event"], ...events.map((item) => [item.sequence, item.event])].map((row) => row.map((value) => `"${String(value).replaceAll('"', '""')}"`).join(",")).join("\n");
+    const blob = new Blob([content], { type: format === "json" ? "application/json" : "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = Object.assign(document.createElement("a"), { href: url, download: `moneytrace-audit-ledger.${format}` });
+    anchor.click();
+    URL.revokeObjectURL(url);
+    recordAudit(`exported audit ledger as ${format.toUpperCase()}`);
+  };
 
   return <main className="intel-app">
     <header className="topbar">
       <div className="brand"><span className="brand-glyph">M</span><span>MoneyTrace</span><small>INTELLIGENCE</small></div>
-      <nav><button className="active">Investigate</button><button>Cases <b>03</b></button><button>Watchlists</button><button>Audit</button></nav>
-      <div className="operator"><span className="live-dot" /> Secure session <span className="avatar">AN</span></div>
+      <nav><button className="active">Investigate</button><button>Cases <b>03</b></button><button>Watchlists</button><button onClick={() => setAuditOpen(true)}>Audit</button></nav>
+      <div className="operator"><span className="live-dot" /> Secure session <label className="role-switch"><span>ROLE</span><select value={role} onChange={(event) => { setRole(event.target.value); recordAudit(`role view switched to ${event.target.value}`); }}>{roles.map((item) => <option key={item}>{item}</option>)}</select></label><span className="avatar">AN</span></div>
     </header>
 
     <section className="commandbar">
-      <div className="breadcrumb">INVESTIGATIONS <i>/</i> CASE-1842 <strong>Baltic routing anomaly</strong></div>
-      <div className="command-actions"><button onClick={() => setTraceMode(!traceMode)} className={traceMode ? "trace-on" : ""}>◉ {traceMode ? "Tracing active" : "Trace path"}</button><button onClick={() => setAudit((items) => ["09:49 — export requested: JSON report", ...items])}>Export</button><button className="primary">+ Add to case</button></div>
+      <div className="breadcrumb">INVESTIGATIONS <i>/</i> {activeCase.id} <strong>{activeCase.title}</strong>{role === "Analyst" ? <span className="case-status">{activeCase.status}</span> : <label className="case-status"><span>STATUS</span><select value={activeCase.status} onChange={(event) => updateCaseStatus(event.target.value)}><option>Open</option><option>In review</option><option>Closed</option></select></label>}</div>
+      <div className="command-actions"><button onClick={() => { setTraceMode(!traceMode); recordAudit(traceMode ? "trace cleared" : "path trace activated"); }} className={traceMode ? "trace-on" : ""}>◉ {traceMode ? "Tracing active" : "Trace path"}</button><button onClick={saveView}>Save view</button>{savedViews.length > 0 && <button onClick={restoreView}>Restore view</button>}<button onClick={exportReport}>Export JSON</button><button onClick={exportCsv}>Export CSV</button>{role === "Admin" && <><input ref={batchInputRef} className="file-input" type="file" accept=".json,.csv,application/json,text/csv" onChange={importBatch} /><button onClick={() => batchInputRef.current?.click()}>Import batch</button></>}{role === "Analyst" ? <button className="primary" disabled={flaggedItems.has(selected.value)} onClick={flagForReview}>{flaggedItems.has(selected.value) ? "Flag submitted" : "+ Flag for review"}</button> : <button className="primary" disabled={activeCase.itemIds.includes(selected.value)} onClick={addToCase}>{activeCase.itemIds.includes(selected.value) ? "In active case" : "+ Add to case"}</button>}</div>
     </section>
 
     <section className="workbench">
       <aside className="filter-rail">
-        <div className="rail-title"><span>ANALYSIS CONTROLS</span><button onClick={() => { setQuery(""); setMinimumRisk(0); setCurrency("All currencies"); }}>Reset</button></div>
+        <div className="rail-title"><span>ANALYSIS CONTROLS</span><button onClick={() => { setQuery(""); setMinimumRisk(0); setMinimumAmount(0); setCurrency("All currencies"); setDateWindow("All dates"); setCrossBorderOnly(true); setFlaggedOnly(false); }}>Reset</button></div>
         <label className="search"><span>⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search entity or transaction" /></label>
         <fieldset><legend>Transaction risk</legend><div className="risk-scale"><span>Any</span><output>{minimumRisk || "All"}</output></div><input aria-label="Minimum transaction risk" type="range" min="0" max="90" step="10" value={minimumRisk} onChange={(e) => setMinimumRisk(Number(e.target.value))} /><div className="range-ends"><span>0</span><span>90+</span></div></fieldset>
         <fieldset><legend>Currency</legend>{["All currencies", "USD", "EUR", "GBP", "AED"].map((item) => <label className="choice" key={item}><input type="radio" name="currency" checked={currency === item} onChange={() => setCurrency(item)} />{item}</label>)}</fieldset>
-        <fieldset><legend>Flow type</legend><label className="choice"><input type="checkbox" defaultChecked /> Cross-border only</label><label className="choice"><input type="checkbox" defaultChecked /> Flagged flows</label></fieldset>
-        <div className="scope"><span>VIEW SCOPE</span><strong>{visibleEntities.length} entities · {visibleTransactions.length} transfers</strong><small>Rendered view is isolated from raw source records.</small></div>
+        <fieldset><legend>Transaction volume</legend><label className="choice"><input type="radio" name="amount" checked={minimumAmount === 0} onChange={() => setMinimumAmount(0)} /> Any amount</label><label className="choice"><input type="radio" name="amount" checked={minimumAmount === 10_000_000} onChange={() => setMinimumAmount(10_000_000)} /> $10M+</label><label className="choice"><input type="radio" name="amount" checked={minimumAmount === 50_000_000} onChange={() => setMinimumAmount(50_000_000)} /> $50M+</label></fieldset>
+        <fieldset><legend>Date range</legend>{["All dates", "Last 24 hours", "Last 7 days"].map((item) => <label className="choice" key={item}><input type="radio" name="dateWindow" checked={dateWindow === item} onChange={() => setDateWindow(item)} />{item}</label>)}</fieldset>
+        <fieldset><legend>Flow type</legend><label className="choice"><input type="checkbox" checked={crossBorderOnly} onChange={(event) => setCrossBorderOnly(event.target.checked)} /> Cross-border only</label><label className="choice"><input type="checkbox" checked={flaggedOnly} onChange={(event) => setFlaggedOnly(event.target.checked)} /> Flagged flows</label></fieldset>
+        <div className="scope"><span>VIEW SCOPE</span><strong>{visibleEntities.length} / {candidateEntityIds.size} entities · {visibleTransactions.length} / {matchingTransactions.length} transfers</strong><small>Rendering is capped at 2,000 nodes and 5,000 flows, prioritized by risk and exposure.</small></div>
+        <section className="alert-queue"><div><span>ALERT TRIAGE</span><strong>{alertQueue.length} open</strong></div>{alertQueue.slice(0, 3).map((tx) => <button key={tx.id} onClick={() => select({ type: "transaction", value: tx.id })}><b>{tx.risk}</b><span>{tx.id}<small>{tx.flag || "High-risk flow"}</small></span></button>)}{alertQueue.length > 3 && <small>+ {alertQueue.length - 3} additional alerts</small>}</section>
       </aside>
 
       <section className="graph-shell">
         <div className="graph-header"><div><span className="eyebrow">LIVE RELATIONSHIP GRAPH</span><h1>Cross-border transaction network</h1></div><div className="graph-stat"><span>EXPOSURE</span><strong>$258.7M</strong><small>LAST 24 HOURS</small></div></div>
-        <div className="graph-wrap"><NetworkCanvas entities={visibleEntities} transactions={visibleTransactions} selectedId={selected.value} onSelect={select} /><div className="graph-tools"><button>＋</button><button>−</button><button>⊙</button></div><div className="legend"><span><i className="low" />Standard</span><span><i className="mid" />Elevated</span><span><i className="high" />Critical</span><em>Click a node or flow to inspect</em></div></div>
+        <div className="graph-wrap"><NetworkCanvas entities={visibleEntities} transactions={visibleTransactions} selectedId={selected.value} trace={trace} onSelect={select} actionsRef={graphActions} /><div className="graph-tools"><button aria-label="Zoom in" onClick={() => graphActions.current?.zoomIn()}>＋</button><button aria-label="Zoom out" onClick={() => graphActions.current?.zoomOut()}>−</button><button aria-label="Reset graph view" onClick={() => graphActions.current?.reset()}>⊙</button></div><div className="trace-status">{traceMode ? trace.edgeIds.length ? <><span>TRACE ROUTE</span><strong>{trace.nodeIds.length} nodes · {trace.edgeIds.length} hops from {traceOrigin}</strong></> : <><span>TRACE ROUTE</span><strong>No directed path from {traceOrigin}</strong></> : <><span>TRACE ROUTE</span><strong>Disabled</strong></>}</div>{intakeMessage && <div className="intake-status" role="status">{intakeMessage}</div>}<div className="legend"><span><i className="low" />Standard</span><span><i className="mid" />Elevated</span><span><i className="high" />Critical</span><em>Click a node or flow to inspect</em></div></div>
       </section>
 
       <aside className="inspector">
@@ -57,14 +245,18 @@ export default function Dashboard() {
         {selectedObject && <>
           <div className={`risk-banner risk-${riskLabel(selectedObject.risk).toLowerCase()}`}><span>RISK SCORE</span><strong>{selectedObject.risk}<small>/100</small></strong><em>{riskLabel(selectedObject.risk)}</em></div>
           <section className="detail-block"><h3>{selected.type === "transaction" ? "Flow detail" : "Institution detail"}</h3>
-            {selected.type === "transaction" ? <dl><div><dt>Amount</dt><dd>{selectedObject.display} {selectedObject.currency}</dd></div><div><dt>Rail</dt><dd>{selectedObject.rail}</dd></div><div><dt>Timestamp</dt><dd>{selectedObject.date}</dd></div><div><dt>Alert reason</dt><dd className="danger">{selectedObject.flag || "No active alert"}</dd></div></dl> : <dl><div><dt>Legal name</dt><dd>{selectedObject.name}</dd></div><div><dt>Jurisdiction</dt><dd>{selectedObject.country}</dd></div><div><dt>BIC / SWIFT</dt><dd>{selectedObject.bic || "—"}</dd></div><div><dt>LEI / Account</dt><dd>{selectedObject.lei || selectedObject.account}</dd></div></dl>}
+            {selected.type === "transaction" ? <dl><div><dt>Amount</dt><dd>{selectedObject.display} {selectedObject.currency}</dd></div><div><dt>Source</dt><dd>{entityById.get(selectedObject.source)?.name || selectedObject.source}</dd></div><div><dt>Destination</dt><dd>{entityById.get(selectedObject.target)?.name || selectedObject.target}</dd></div><div><dt>Rail</dt><dd>{selectedObject.rail}</dd></div><div><dt>Timestamp</dt><dd>{selectedObject.date}</dd></div><div><dt>Routing</dt><dd>{role === "Analyst" ? "Masked routing details" : selectedObject.routing?.correspondent || "Direct settlement"}</dd></div><div><dt>Alert reason</dt><dd className="danger">{selectedObject.flag || "No active alert"}</dd></div></dl> : <dl><div><dt>Legal name</dt><dd>{selectedObject.name}</dd></div><div><dt>Jurisdiction</dt><dd>{selectedObject.country}</dd></div><div><dt>BIC / SWIFT</dt><dd>{projectSensitive(selectedObject.bic)}</dd></div><div><dt>LEI / Account</dt><dd>{projectSensitive(selectedObject.lei || selectedObject.account)}</dd></div><div><dt>PEP screening</dt><dd className={selectedObject.aml?.pep !== "Clear" ? "danger" : ""}>{selectedObject.aml?.pep || "Pending"}</dd></div><div><dt>Sanctions lists</dt><dd className={selectedObject.aml?.sanctions !== "No match" ? "danger" : ""}>{selectedObject.aml?.sanctions || "Pending"}</dd></div></dl>}
           </section>
-          <section className="detail-block counterpart"><h3>Selected endpoint</h3><strong>{inspectItem?.name}</strong><span>{inspectItem?.kind} · {inspectItem?.country}</span><button className="secondary" onClick={() => select({ type: "entity", value: inspectItem?.id })}>Inspect entity →</button></section>
-          <section className="detail-block audit-mini"><h3>Case activity</h3>{audit.map((event) => <p key={event}>{event}</p>)}</section>
+          {selected.type === "entity" && selectedObject.aml?.typologies?.length > 0 && <section className="detail-block typologies"><h3>Typology signals</h3><div>{selectedObject.aml.typologies.map((typology) => <span key={typology}>{typology}</span>)}</div></section>}
+          {selected.type === "transaction" && (selectedObject.risk >= 80 || selectedObject.flag) && <section className="detail-block triage-action"><h3>Alert triage</h3><p>{triagedAlerts.has(selectedObject.id) ? "This alert has been triaged in the current session." : "Open alert — review routing context and disposition the signal."}</p>{role !== "Analyst" && <button className="secondary" disabled={triagedAlerts.has(selectedObject.id)} onClick={resolveAlert}>{triagedAlerts.has(selectedObject.id) ? "Triaged" : "Mark triaged"}</button>}</section>}
+          <section className="detail-block counterpart"><h3>Selected endpoint</h3><strong>{inspectItem?.name}</strong><span>{inspectItem?.kind} · {inspectItem?.country}</span><button className="secondary" onClick={() => select({ type: "entity", value: inspectItem?.id })}>Inspect entity →</button>{inspectItem?.id && <button className="secondary" onClick={() => { setTraceOrigin(inspectItem.id); setTraceMode(true); recordAudit(`trace origin set to ${inspectItem.id}`); }}>Trace from this entity →</button>}</section>
+          <section className="detail-block case-note"><h3>Investigator note</h3>{role === "Analyst" ? <p className="permission-note">Analyst access: view, trace, and flag. Case annotations require Investigator or Admin access.</p> : <><form onSubmit={saveNote}><textarea value={note} onChange={(event) => setNote(event.target.value)} placeholder={`Add an observation to ${activeCase.id}`} maxLength="500" /><button className="secondary" type="submit">Save note</button></form>{caseNotes.filter((item) => item.caseId === activeCaseId).slice(0, 2).map((item) => <p key={item.id}>{item.text}</p>)}</>}</section>
+          <section className="detail-block audit-mini"><h3>Case activity</h3>{audit.slice(0, 4).map((event, index) => <p key={`${event}-${index}`}>{event}</p>)}</section>
         </>}
       </aside>
     </section>
 
-    <section className="casebar"><div className="case-label"><span>OPEN CASES</span><strong>Priority queue</strong></div>{cases.map((item) => <button key={item.id} className="case-card"><span className={`severity ${item.severity.toLowerCase()}`} /> <b>{item.id}</b><strong>{item.title}</strong><small>{item.transactions} transactions · {item.updated}</small></button>)}<button className="case-more">View all cases →</button></section>
+    <section className="casebar"><div className="case-label"><span>OPEN CASES</span><strong>Priority queue</strong></div>{caseItems.map((item) => <button key={item.id} onClick={() => { setActiveCaseId(item.id); recordAudit(`opened ${item.id}`); }} className={`case-card ${activeCaseId === item.id ? "selected-case" : ""}`}><span className={`severity ${item.severity.toLowerCase()}`} /> <b>{item.id}</b><strong>{item.title}</strong><small>{item.status} · {item.transactions} transactions · {item.updated}</small></button>)}<button className="case-more">View all cases →</button></section>
+    {auditOpen && <div className="audit-overlay" role="dialog" aria-modal="true" aria-label="Audit event ledger"><section className="audit-panel"><header><div><span className="eyebrow">APPEND-ONLY SESSION LEDGER</span><h2>Audit review</h2></div><button onClick={() => setAuditOpen(false)} aria-label="Close audit review">×</button></header><p>Events are retained in-session in chronological order. A production API persists this stream to immutable storage.</p><div className="audit-exports"><button onClick={() => exportAudit("json")}>Export JSON</button><button onClick={() => exportAudit("csv")}>Export CSV</button></div><ol>{audit.map((event, index) => <li key={`${event}-${index}`}><b>{String(audit.length - index).padStart(3, "0")}</b>{event}</li>)}</ol></section></div>}
   </main>;
 }

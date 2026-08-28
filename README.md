@@ -65,6 +65,29 @@ compatible incremental-update WebSocket; otherwise the dashboard keeps the
 stream disabled. Without an export URL, the dashboard labels its sample graph
 as `DATA: DEMO`.
 
+## MoneyTrace analyst workspace
+
+The repository also includes a desktop-first React prototype for visual
+transaction tracing. It uses Sigma.js/Graphology for a WebGL graph, local mock
+data by default, and an API-ready data shape documented in
+[`docs/api-contract.md`](docs/api-contract.md).
+
+```bash
+npm install
+npm run dev
+```
+
+Open the Vite URL printed by the command. The prototype supports graph
+filtering, multi-hop path tracing, alert triage, case annotations, role-aware
+masking, saved views, CSV/JSON batch import, and CSV/JSON case and audit
+exports. Batch import is visible when the local role selector is set to
+**Admin**. The current role control is a frontend simulation only; production
+authorization must be enforced by the API.
+
+Use `npm run build` to create a production bundle. See
+[`docs/architecture.md`](docs/architecture.md) for the system design and data
+model.
+
 ## Requirements
 
 - Python 3.10+

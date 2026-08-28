@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-28 20:19 UTC"
+last_updated: "2026-08-28 21:19 UTC"
 ---
 # 🏦 Maldives — Financial Tear Sheet
 
