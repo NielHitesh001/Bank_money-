@@ -172,12 +172,21 @@ export default function NetworkCanvas({ entities, transactions, selectedId, trac
         linkDirectionalParticleSpeed={(link) => (trace.edgeIds.includes(link.id) ? 0.008 : 0.004)}
         linkDirectionalParticleWidth={(link) => (trace.edgeIds.includes(link.id) ? 3.5 : 2)}
         linkDirectionalParticleColor={(link) => (trace.edgeIds.includes(link.id) ? "#64dcb1" : "#ff5b6e")}
-        linkDirectionalArrowLength={5}
-        linkDirectionalArrowRelPos={0.9}
+        cooldownTicks={120}
+        d3AlphaDecay={0.06}
+        d3VelocityDecay={0.65}
+        onNodeDragEnd={(node) => {
+          node.fx = node.x;
+          node.fy = node.y;
+        }}
+        nodePointerAreaPaint={(node, color, ctx) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, 16, 0, 2 * Math.PI);
+          ctx.fill();
+        }}
         onNodeClick={(node) => onSelect({ type: "entity", value: node.id })}
         onLinkClick={(link) => onSelect({ type: "transaction", value: link.id })}
-        cooldownTicks={100}
-        d3VelocityDecay={0.4}
       />
     </div>
   );

@@ -45,10 +45,7 @@ function graphFromExport(payload) {
 export default function EntityGraph() {
   const [graphData, setGraphData] = useState(demoNetwork);
   const [dataStatus, setDataStatus] = useState("loading");
-  const [highlightedNodeId, setHighlightedNodeId] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [highlightNodeIds, setHighlightNodeIds] = useState(() => new Set());
-  const [highlightLinkIds, setHighlightLinkIds] = useState(() => new Set());
   const [hoveredNode, setHoveredNode] = useState(null);
   const [layoutMode, setLayoutMode] = useState("force");
   const [graphSettings, setGraphSettings] = useState(defaultGraphSettings);
@@ -56,6 +53,11 @@ export default function EntityGraph() {
 
   const stageRef = useRef(null);
   const graphRef = useRef(null);
+  const selectedNodeRef = useRef(null);
+  const hoveredNodeRef = useRef(null);
+
+  selectedNodeRef.current = selectedNode;
+  hoveredNodeRef.current = hoveredNode;
 
   // ResizeObserver for responsive canvas sizing
   useEffect(() => {
@@ -89,12 +91,12 @@ export default function EntityGraph() {
         const parsed = graphFromExport(payload);
         setGraphData(parsed);
         setDataStatus("live");
-        setTimeout(() => graphRef.current?.zoomToFit(600, 50), 200);
+        setTimeout(() => graphRef.current?.zoomToFit(600, 50), 250);
       })
       .catch(() => {
         if (!cancelled) {
           setDataStatus("demo");
-          setTimeout(() => graphRef.current?.zoomToFit(400, 50), 100);
+          setTimeout(() => graphRef.current?.zoomToFit(400, 50), 150);
         }
       });
 
@@ -102,6 +104,27 @@ export default function EntityGraph() {
       cancelled = true;
     };
   }, []);
+
+  const activeNodeId = selectedNode?.id || hoveredNode?.id || null;
+
+  // Neighbors map for instant O(1) highlight lookup
+  const neighborSets = useMemo(() => {
+    if (!activeNodeId) return { nodes: new Set(), links: new Set() };
+    const nodes = new Set([activeNodeId]);
+    const links = new Set();
+    graphData.links.forEach((link) => {
+      const s = link.source?.id || link.source;
+      const t = link.target?.id || link.target;
+      if (s === activeNodeId) {
+        nodes.add(t);
+        links.add(`${s}->${t}`);
+      } else if (t === activeNodeId) {
+        nodes.add(s);
+        links.add(`${s}->${t}`);
+      }
+    });
+    return { nodes, links };
+  }, [graphData.links, activeNodeId]);
 
   const filteredData = useMemo(() => {
     const query = graphSettings.searchQuery.trim().toLowerCase();
@@ -124,71 +147,39 @@ export default function EntityGraph() {
       return true;
     });
     const nodeIds = new Set(validNodes.map((node) => node.id));
-    return {
-      nodes: validNodes,
-      links: graphData.links.filter(
+    const validLinks = graphData.links
+      .filter(
         (link) =>
           nodeIds.has(link.source?.id || link.source) && nodeIds.has(link.target?.id || link.target)
-      ),
-    };
-  }, [graphData, graphSettings]);
-
-  const processedLinks = useMemo(
-    () =>
-      filteredData.links.map((link) => ({
+      )
+      .map((link) => ({
         ...link,
         source: link.source?.id || link.source,
         target: link.target?.id || link.target,
-      })),
-    [filteredData.links]
-  );
+      }));
 
-  const updateHighlights = useCallback(
-    (node) => {
-      if (!node) {
-        setHighlightNodeIds(new Set());
-        setHighlightLinkIds(new Set());
-        return;
-      }
-      const neighborNodes = new Set([node.id]);
-      const neighborLinks = new Set();
-      graphData.links.forEach((link) => {
-        const s = link.source?.id || link.source;
-        const t = link.target?.id || link.target;
-        if (s === node.id) {
-          neighborNodes.add(t);
-          neighborLinks.add(`${s}->${t}`);
-        } else if (t === node.id) {
-          neighborNodes.add(s);
-          neighborLinks.add(`${s}->${t}`);
-        }
-      });
-      setHighlightNodeIds(neighborNodes);
-      setHighlightLinkIds(neighborLinks);
-    },
-    [graphData.links]
-  );
+    return { nodes: validNodes, links: validLinks };
+  }, [graphData, graphSettings.searchQuery, graphSettings.showTags, graphSettings.showAttachments, graphSettings.existingOnly, graphSettings.showOrphans]);
 
-  const handleNodeClick = (node) => {
+  const handleNodeClick = useCallback((node) => {
+    if (!node) return;
     setSelectedNode(node);
-    setHighlightedNodeId(node.id);
-    updateHighlights(node);
-  };
-
-  const handleNodeHover = (node) => {
-    setHoveredNode(node);
-    if (!selectedNode) updateHighlights(node);
-  };
-
-  const handleSelectNode = (node) => {
-    setSelectedNode(node);
-    setHighlightedNodeId(node.id);
-    updateHighlights(node);
     if (graphRef.current && Number.isFinite(node.x) && Number.isFinite(node.y)) {
-      graphRef.current.centerAt(node.x, node.y, 600);
-      graphRef.current.zoom(2.5, 600);
+      graphRef.current.centerAt(node.x, node.y, 400);
     }
-  };
+  }, []);
+
+  const handleNodeHover = useCallback((node) => {
+    setHoveredNode(node || null);
+  }, []);
+
+  const handleSelectNode = useCallback((node) => {
+    setSelectedNode(node);
+    if (graphRef.current && Number.isFinite(node.x) && Number.isFinite(node.y)) {
+      graphRef.current.centerAt(node.x, node.y, 500);
+      graphRef.current.zoom(2.2, 500);
+    }
+  }, []);
 
   const handleLayoutChange = (mode) => {
     setLayoutMode(mode);
@@ -199,42 +190,34 @@ export default function EntityGraph() {
       graph.d3Force("charge").strength(-160);
       graph.d3Force("link").distance(70);
       graph.d3Force("radial", forceRadial((node) => (node.val || 6) * 12, 0, 0).strength(0.8));
+      graph.d3Force("x", null);
+      graph.d3Force("y", null);
     } else if (mode === "hierarchical") {
-      graph.d3Force("charge").strength(-220);
-      graph.d3Force("link").distance(100);
+      graph.d3Force("charge").strength(-200);
+      graph.d3Force("link").distance(90);
       graph.d3Force("radial", null);
       graph.d3Force("x", forceX((node) => {
         const cat = (node.category || node.type || "").toLowerCase();
-        if (cat.includes("country")) return -320;
+        if (cat.includes("country")) return -300;
         if (cat.includes("central")) return -100;
         if (cat.includes("currency")) return 120;
-        return 300;
-      }).strength(0.9));
+        return 280;
+      }).strength(0.8));
       graph.d3Force("y", forceY(0).strength(0.1));
     } else {
-      graph.d3Force("charge").strength(-140);
-      graph.d3Force("link").distance(80);
+      graph.d3Force("charge").strength(-120);
+      graph.d3Force("link").distance(75);
       graph.d3Force("radial", null);
       graph.d3Force("x", null);
       graph.d3Force("y", null);
     }
     graph.d3ReheatSimulation();
-    setTimeout(() => graph.zoomToFit(600, 45), 100);
+    setTimeout(() => graph.zoomToFit(500, 45), 150);
   };
-
-  useEffect(() => {
-    if (!graphRef.current) return;
-    const graph = graphRef.current;
-    graph.d3Force("collide", forceCollide(() => graphSettings.nodeSize + 6).strength(0.9).iterations(2));
-    graph.d3Force("charge").strength(-graphSettings.repelForce);
-    graph.d3Force("link").distance(graphSettings.linkDistance);
-    graph.d3Force("center").strength(graphSettings.centerForce);
-    graph.d3ReheatSimulation();
-  }, [graphSettings.repelForce, graphSettings.linkDistance, graphSettings.centerForce, graphSettings.nodeSize]);
 
   const handleAnimate = () => {
     graphRef.current?.d3ReheatSimulation();
-    graphRef.current?.zoomToFit(800, 40);
+    graphRef.current?.zoomToFit(700, 40);
   };
 
   return (
@@ -315,48 +298,69 @@ export default function EntityGraph() {
           ref={graphRef}
           width={dimensions.width}
           height={dimensions.height}
-          graphData={{ nodes: filteredData.nodes, links: processedLinks }}
+          graphData={filteredData}
           backgroundColor="#020202"
           nodeRelSize={graphSettings.nodeSize}
-          linkColor={(link) =>
-            highlightLinkIds.has(`${link.source?.id || link.source}->${link.target?.id || link.target}`)
-              ? "#64dcb1"
-              : "#1a2624"
-          }
-          linkWidth={(link) =>
-            highlightLinkIds.has(`${link.source?.id || link.source}->${link.target?.id || link.target}`)
-              ? graphSettings.linkThickness * 2.2
-              : graphSettings.linkThickness
-          }
-          linkDirectionalParticles={1}
-          linkDirectionalParticleSpeed={0.003}
-          linkDirectionalParticleWidth={2}
+          cooldownTicks={120}
+          d3AlphaDecay={0.06}
+          d3VelocityDecay={0.65}
+          onNodeDragEnd={(node) => {
+            node.fx = node.x;
+            node.fy = node.y;
+          }}
+          nodePointerAreaPaint={(node, color, ctx) => {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, 14, 0, 2 * Math.PI);
+            ctx.fill();
+          }}
+          linkColor={(link) => {
+            const key = `${link.source?.id || link.source}->${link.target?.id || link.target}`;
+            if (neighborSets.links.has(key)) return "#64dcb1";
+            return activeNodeId ? "rgba(26, 38, 36, 0.2)" : "rgba(35, 54, 50, 0.4)";
+          }}
+          linkWidth={(link) => {
+            const key = `${link.source?.id || link.source}->${link.target?.id || link.target}`;
+            return neighborSets.links.has(key) ? graphSettings.linkThickness * 2.2 : graphSettings.linkThickness;
+          }}
+          linkDirectionalParticles={activeNodeId ? 2 : 0}
+          linkDirectionalParticleSpeed={0.004}
+          linkDirectionalParticleWidth={2.5}
+          linkDirectionalParticleColor={() => "#64dcb1"}
           linkDirectionalArrowLength={graphSettings.arrows ? 5 : 0}
           linkDirectionalArrowRelPos={0.9}
           onNodeClick={handleNodeClick}
           onNodeHover={handleNodeHover}
           nodeCanvasObject={(node, context, globalScale) => {
             const radius = Math.max(4, (node.val || 6) / 2);
-            const isHighlighted = highlightNodeIds.size === 0 || highlightNodeIds.has(node.id);
-            context.globalAlpha = isHighlighted ? 1 : 0.2;
+            const isHighlighted = neighborSets.nodes.size === 0 || neighborSets.nodes.has(node.id);
+            const isSelected = selectedNode?.id === node.id;
+            const isHovered = hoveredNode?.id === node.id;
 
-            if (node.id === highlightedNodeId || node.id === selectedNode?.id) {
+            context.globalAlpha = isHighlighted ? 1 : 0.15;
+
+            // Halo on select or hover
+            if (isSelected || isHovered) {
               context.beginPath();
-              context.arc(node.x, node.y, radius + 5, 0, 2 * Math.PI);
-              context.strokeStyle = "#64dcb1";
-              context.lineWidth = 2.5 / globalScale;
+              context.arc(node.x, node.y, radius + 6, 0, 2 * Math.PI);
+              context.fillStyle = isSelected ? "rgba(100, 220, 177, 0.3)" : "rgba(56, 189, 248, 0.25)";
+              context.fill();
+              context.strokeStyle = isSelected ? "#64dcb1" : "#38bdf8";
+              context.lineWidth = 1.5 / globalScale;
               context.stroke();
             }
 
+            // Node body
             context.fillStyle = node.color || "#dce6e3";
             context.beginPath();
             context.arc(node.x, node.y, radius, 0, 2 * Math.PI);
             context.fill();
 
-            if (globalScale > 1.4 || node.id === selectedNode?.id || node.id === hoveredNode?.id) {
+            // Label
+            if (globalScale > 1.2 || isSelected || isHovered || (neighborSets.nodes.size > 0 && isHighlighted)) {
               const fontSize = Math.max(8, 11 / globalScale);
               context.font = `600 ${fontSize}px "DM Mono", monospace`;
-              context.fillStyle = isHighlighted ? "#f0fdf4" : "#647771";
+              context.fillStyle = isHighlighted ? "#f0fdf4" : "#4b5c56";
               context.fillText(node.name, node.x + radius + 4, node.y + 3);
             }
             context.globalAlpha = 1;
@@ -369,7 +373,7 @@ export default function EntityGraph() {
         <span><i className="legend-dot" style={{ background: "#76e2b5" }} /> Central Bank</span>
         <span><i className="legend-dot" style={{ background: "#eab308" }} /> Currency Hub</span>
         <span><i className="legend-dot" style={{ background: "#f97316" }} /> Payment Rail</span>
-        <span className="graph-hint">Drag nodes to explore · Scroll to zoom · Click to inspect relations</span>
+        <span className="graph-hint">Zero-jitter physics · Drag to reposition · Click to inspect relations</span>
       </div>
     </section>
   );
