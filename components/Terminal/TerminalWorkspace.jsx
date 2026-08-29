@@ -5,9 +5,10 @@ import PortfolioBlotter, { INITIAL_PORTFOLIO_POSITIONS } from "./PortfolioBlotte
 import FxCarryAnalytics from "./FxCarryAnalytics.jsx";
 import RiskVaRPanel from "./RiskVaRPanel.jsx";
 import LiveNewsFeed from "./LiveNewsFeed.jsx";
+import InstitutionalEntityBrowser from "./InstitutionalEntityBrowser.jsx";
 
 export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity }) {
-  const [deskLayout, setDeskLayout] = useState("trading"); // "trading" | "risk" | "news"
+  const [deskLayout, setDeskLayout] = useState("trading"); // "trading" | "risk" | "news" | "graph"
   const [selectedSymbol, setSelectedSymbol] = useState("EUR/USD");
   const [positions, setPositions] = useState(INITIAL_PORTFOLIO_POSITIONS);
   const [accountBalance, setAccountBalance] = useState(1000000);
@@ -57,6 +58,12 @@ export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity }) {
             onClick={() => setDeskLayout("news")}
           >
             📰 LIVE NEWS & EVENT STREAM
+          </button>
+          <button
+            className={`desk-tab-btn ${deskLayout === "graph" ? "active" : ""}`}
+            onClick={() => setDeskLayout("graph")}
+          >
+            🌐 INSTITUTIONAL GRAPH (274 NODES)
           </button>
         </div>
 
@@ -125,6 +132,17 @@ export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity }) {
           <div className="pane-news-full">
             <LiveNewsFeed onFilterEntity={onFilterEntity} />
           </div>
+        </div>
+      )}
+
+      {/* DESK 4: INSTITUTIONAL GRAPH & MASTER TABLE */}
+      {deskLayout === "graph" && (
+        <div style={{ padding: "0", height: "calc(100vh - 180px)", minHeight: "650px" }}>
+          <InstitutionalEntityBrowser
+            onSelectEntity={(entity) => {
+              if (onFilterEntity) onFilterEntity(entity.name);
+            }}
+          />
         </div>
       )}
     </section>

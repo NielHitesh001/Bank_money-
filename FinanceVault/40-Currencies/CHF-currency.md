@@ -6,7 +6,7 @@ currency_symbol: "Fr."
 country_count: 2
 tags:
   - finance/currency
-last_updated: "2026-08-29 06:32 UTC"
+last_updated: "2026-08-29 06:47 UTC"
 ---
 # Swiss franc (CHF) Currency Hub
 
