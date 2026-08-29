@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/oceania
-last_updated: "2026-08-29 04:47 UTC"
+last_updated: "2026-08-29 05:02 UTC"
 ---
 # 🏦 Tuvalu — Financial Tear Sheet
 

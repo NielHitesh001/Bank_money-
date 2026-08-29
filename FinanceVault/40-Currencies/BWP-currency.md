@@ -6,7 +6,7 @@ currency_symbol: "P"
 country_count: 2
 tags:
   - finance/currency
-last_updated: "2026-08-29 04:47 UTC"
+last_updated: "2026-08-29 05:02 UTC"
 ---
 # Botswana pula (BWP) Currency Hub
 

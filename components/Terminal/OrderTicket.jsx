@@ -1,14 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { wsMarketManager } from "../../src/services/wsManager.js";
+import { routeOrderSubmission } from "../../src/services/orderRouting.js";
+import { liveGuardrails } from "../../src/services/liveExecutionGuardrails.js";
 
 export default function OrderTicket({ onExecuteOrder, accountBalance = 1000000 }) {
   const [symbol, setSymbol] = useState("EUR/USD");
   const [side, setSide] = useState("BUY"); // "BUY" | "SELL"
   const [orderType, setOrderType] = useState("MARKET"); // "MARKET" | "LIMIT" | "STOP"
-  const [amountUsd, setAmountUsd] = useState(100000);
+  const [brokerVenue, setBrokerVenue] = useState("alpaca_paper"); // "alpaca_paper" | "internal_sim"
+  const [amountUsd, setAmountUsd] = useState(50000);
   const [leverage, setLeverage] = useState(5);
   const [limitPrice, setLimitPrice] = useState(1.0873);
   const [executionMessage, setExecutionMessage] = useState(null);
+  const [guardrailStatus, setGuardrailStatus] = useState(() => liveGuardrails.getStatus());
 
   const [currentTick, setCurrentTick] = useState(() => wsMarketManager.getTicker(symbol) || { last: 1.0873, bid: 1.0872, ask: 1.0874, decimals: 4 });
 
@@ -38,18 +42,19 @@ export default function OrderTicket({ onExecuteOrder, accountBalance = 1000000 }
     return Math.round(amountUsd / leverage);
   }, [amountUsd, leverage]);
 
-  const slippageEstimate = useMemo(() => {
-    return (currentTick.pipSize || 0.0001) * (amountUsd > 500000 ? 2 : 1);
-  }, [currentTick, amountUsd]);
-
-  const handlePlaceOrder = (e) => {
-    e.preventDefault();
-    if (requiredMargin > accountBalance) {
-      setExecutionMessage({ status: "REJECTED", text: "Order rejected: Margin required exceeds available cash." });
-      return;
+  const handleToggleKillSwitch = () => {
+    if (guardrailStatus.paused) {
+      liveGuardrails.resumeOrders();
+    } else {
+      liveGuardrails.pauseNewOrders("Manual operator kill switch engaged");
     }
+    setGuardrailStatus(liveGuardrails.getStatus());
+  };
 
-    const order = {
+  const handlePlaceOrder = async (e) => {
+    e.preventDefault();
+
+    const orderPayload = {
       id: `ORD-${Date.now().toString().slice(-6)}`,
       symbol,
       side,
@@ -60,19 +65,33 @@ export default function OrderTicket({ onExecuteOrder, accountBalance = 1000000 }
       margin: requiredMargin,
       leverage,
       timestamp: new Date().toISOString(),
-      status: "FILLED",
       assetClass: currentTick.assetClass || "FX",
       entryPrice: executionPrice,
     };
 
-    if (onExecuteOrder) onExecuteOrder(order);
+    const receipt = await routeOrderSubmission(orderPayload, {
+      destination: brokerVenue,
+      currentEquity: accountBalance,
+      dailyPnL: 0,
+      positionVol: 0.02,
+    });
+
+    if (receipt.status === "REJECTED") {
+      setExecutionMessage({
+        status: "REJECTED",
+        text: receipt.rejectionReason || "Order rejected by pre-trade risk guardrails.",
+      });
+      return;
+    }
+
+    if (onExecuteOrder) onExecuteOrder(receipt);
 
     setExecutionMessage({
       status: "FILLED",
-      text: `✔ FILLED: ${side} ${units.toLocaleString()} ${symbol} @ ${executionPrice.toFixed(currentTick.decimals || 4)} (Notional: $${(amountUsd / 1000).toFixed(0)}k)`,
+      text: `✔ ${receipt.venue || "BROKER"} FILLED: ${side} ${units.toLocaleString()} ${symbol} @ ${receipt.executionPrice.toFixed(currentTick.decimals || 4)} (Notional: $${(amountUsd / 1000).toFixed(0)}k @ ${leverage}x)`,
     });
 
-    setTimeout(() => setExecutionMessage(null), 4000);
+    setTimeout(() => setExecutionMessage(null), 5000);
   };
 
   const allTickers = useMemo(() => wsMarketManager.getAllTickers(), []);
@@ -84,22 +103,42 @@ export default function OrderTicket({ onExecuteOrder, accountBalance = 1000000 }
           <span className="eyebrow">OMS ORDER EXECUTION DESK</span>
           <h3>Institutional Order Ticket</h3>
         </div>
-        <div className="ticket-badge">
-          <span>● PAPER SIMULATOR</span>
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+          <button
+            type="button"
+            className={`kill-switch-btn ${guardrailStatus.paused ? "engaged" : ""}`}
+            onClick={handleToggleKillSwitch}
+            title="Emergency trading kill switch"
+          >
+            {guardrailStatus.paused ? "🛑 HALTED" : "⚡ LIVE GUARDRAILS"}
+          </button>
+          <div className="ticket-badge">
+            <span>● {brokerVenue === "alpaca_paper" ? "ALPACA PAPER" : "INTERNAL SIM"}</span>
+          </div>
         </div>
       </div>
 
       <form onSubmit={handlePlaceOrder} className="ticket-form">
-        {/* Symbol Select & Quick Prices */}
-        <div className="form-row">
-          <label>INSTRUMENT</label>
-          <select value={symbol} onChange={(e) => setSymbol(e.target.value)}>
-            {allTickers.map((t) => (
-              <option key={t.symbol} value={t.symbol}>
-                [{t.assetClass}] {t.symbol} — {t.name}
-              </option>
-            ))}
-          </select>
+        {/* Destination Venue & Instrument Row */}
+        <div className="form-grid-2">
+          <div className="form-row">
+            <label>EXECUTION VENUE</label>
+            <select value={brokerVenue} onChange={(e) => setBrokerVenue(e.target.value)}>
+              <option value="alpaca_paper">Alpaca Paper REST API</option>
+              <option value="internal_sim">Internal Simulator</option>
+            </select>
+          </div>
+
+          <div className="form-row">
+            <label>INSTRUMENT</label>
+            <select value={symbol} onChange={(e) => setSymbol(e.target.value)}>
+              {allTickers.map((t) => (
+                <option key={t.symbol} value={t.symbol}>
+                  [{t.assetClass}] {t.symbol} — {t.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Live Bid / Ask Spread Display */}

@@ -2659,6 +2659,29 @@ fieldset legend { margin-bottom: 12px; }
   border-radius: 2px;
 }
 
+.kill-switch-btn {
+  font: 8px 'DM Mono';
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid #194354;
+  padding: 2px 6px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.kill-switch-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.kill-switch-btn.engaged {
+  background: rgba(255, 91, 110, 0.25);
+  border-color: #ff5b6e;
+  color: #ff5b6e;
+  animation: pulse-glow 1s infinite;
+}
+
 .ticket-form {
   display: flex;
   flex-direction: column;

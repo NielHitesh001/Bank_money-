@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-29 04:47 UTC"
+last_updated: "2026-08-29 05:02 UTC"
 ---
 # 🏦 Guinea-Bissau — Financial Tear Sheet
 
