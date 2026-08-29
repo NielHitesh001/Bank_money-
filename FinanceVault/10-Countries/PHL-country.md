@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-29 03:17 UTC"
+last_updated: "2026-08-29 03:32 UTC"
 ---
 # 🏦 Philippines — Financial Tear Sheet
 

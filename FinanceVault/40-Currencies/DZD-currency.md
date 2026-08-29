@@ -6,7 +6,7 @@ currency_symbol: "\u062f.\u062c"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 03:17 UTC"
+last_updated: "2026-08-29 03:32 UTC"
 ---
 # Algerian dinar (DZD) Currency Hub
 

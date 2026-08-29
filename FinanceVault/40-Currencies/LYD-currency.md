@@ -6,7 +6,7 @@ currency_symbol: "\u0644.\u062f"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 03:17 UTC"
+last_updated: "2026-08-29 03:32 UTC"
 ---
 # Libyan dinar (LYD) Currency Hub
 

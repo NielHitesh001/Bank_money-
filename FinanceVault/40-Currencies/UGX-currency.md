@@ -6,7 +6,7 @@ currency_symbol: "Sh"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 03:17 UTC"
+last_updated: "2026-08-29 03:32 UTC"
 ---
 # Ugandan shilling (UGX) Currency Hub
 
