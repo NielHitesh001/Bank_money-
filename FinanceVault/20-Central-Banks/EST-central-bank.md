@@ -8,7 +8,7 @@ policy_rate_as_of: "N/A"
 tags:
   - finance/central-bank
 data_quality: "auto-stub"
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-29 02:11 UTC"
 ---
 # 🏛️ Central Bank of Estonia
 

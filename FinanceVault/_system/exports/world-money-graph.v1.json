@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28 22:42 UTC",
+  "generated_at": "2026-08-29 03:30 UTC",
   "links": [
     {
       "source": "country:AFG",
@@ -7737,7 +7737,7 @@
       "attributes": {
         "code": "CHAPS",
         "is_open": false,
-        "operating_window": "06:00\u201318:00 Europe/London",
+        "operating_window": "closed \u2014 weekend (Europe/London)",
         "operator": "Bank of England",
         "scope": "United Kingdom"
       },
@@ -7867,6 +7867,6 @@
   "schema_version": "1.0",
   "sources": {
     "fx_as_of": "2026-08-28",
-    "fx_fetched_at": "2026-08-28 22:34 UTC"
+    "fx_fetched_at": "2026-08-29 03:17 UTC"
   }
 }

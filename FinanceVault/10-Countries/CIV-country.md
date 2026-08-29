@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-28 22:34 UTC"
+last_updated: "2026-08-29 03:17 UTC"
 ---
 # 🏦 Ivory Coast — Financial Tear Sheet
 

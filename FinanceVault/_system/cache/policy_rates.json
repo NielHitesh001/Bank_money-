@@ -3,7 +3,7 @@
     "USA": {
       "policy_rate": 3.63,
       "policy_rate_source": "FRED DFF",
-      "policy_rate_as_of": "2026-08-26"
+      "policy_rate_as_of": "2026-08-27"
     },
     "DEU": {
       "policy_rate": 2.25,
@@ -31,5 +31,5 @@
       "policy_rate_as_of": "2026-08-28"
     }
   },
-  "fetched_at": "2026-08-28 20:04 UTC"
+  "fetched_at": "2026-08-29 02:11 UTC"
 }

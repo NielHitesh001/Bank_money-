@@ -1,27 +1,30 @@
 ---
 type: "central-bank"
 country: "VNM"
-code: "SBV"
-established: 1951
+code: "N/A"
+established: "unknown"
 policy_rate_source: "curated/manual"
 policy_rate_as_of: "N/A"
 tags:
   - finance/central-bank
-data_quality: "curated"
-last_updated: "2026-08-28 21:58 UTC"
+data_quality: "auto-stub"
+last_updated: "2026-08-29 02:11 UTC"
 ---
-# 🏛️ State Bank of Vietnam
+# 🏛️ Central Bank of Vietnam
+
+> [!warning] Auto-generated stub
+> This entity has not been manually curated yet. Policy rate and mandate are placeholders — extend `CURATED_CENTRAL_BANKS` in the daemon to enrich it.
 
 ## 📊 Policy Snapshot
 <!-- LIVE:POLICY-RATE:START -->
 | Metric | Value |
 |---|---|
-| Policy Rate | `4.5%` |
+| Policy Rate | `N/A%` |
 | Rate Source | curated/manual |
 | Rate As Of | N/A |
-| Mandate | Currency value stability & economic development |
-| CBDC Status | Research & legal framework study |
-| Data quality | 🟢 curated |
+| Mandate | Not yet catalogued |
+| CBDC Status | Not yet catalogued |
+| Data quality | 🟡 auto-stub — needs enrichment |
 <!-- LIVE:POLICY-RATE:END -->
 
 ## 🔗 Graph Context

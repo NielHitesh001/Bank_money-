@@ -3,12 +3,12 @@ type: "central-bank"
 country: "USA"
 code: "FED"
 established: 1913
-policy_rate_source: "curated/manual"
-policy_rate_as_of: "N/A"
+policy_rate_source: "FRED DFF"
+policy_rate_as_of: "2026-08-27"
 tags:
   - finance/central-bank
 data_quality: "curated"
-last_updated: "2026-08-28 21:58 UTC"
+last_updated: "2026-08-29 02:11 UTC"
 ---
 # 🏛️ Federal Reserve System
 
@@ -16,9 +16,9 @@ last_updated: "2026-08-28 21:58 UTC"
 <!-- LIVE:POLICY-RATE:START -->
 | Metric | Value |
 |---|---|
-| Policy Rate | `5.33%` |
-| Rate Source | curated/manual |
-| Rate As Of | N/A |
+| Policy Rate | `3.63%` |
+| Rate Source | FRED DFF |
+| Rate As Of | 2026-08-27 |
 | Mandate | Dual mandate: price stability & max employment |
 | CBDC Status | Exploring (no launch) |
 | Data quality | 🟢 curated |

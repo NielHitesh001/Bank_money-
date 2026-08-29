@@ -39,6 +39,21 @@
   ],
   "audit": [
     {
+      "sequence": 42,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-29T02:37:42.272Z"
+    },
+    {
+      "sequence": 41,
+      "event": "opened CASE-1829",
+      "timestamp": "2026-08-28T22:44:27.234Z"
+    },
+    {
+      "sequence": 40,
+      "event": "opened CASE-1837",
+      "timestamp": "2026-08-28T22:44:26.428Z"
+    },
+    {
       "sequence": 39,
       "event": "inspected entity JIO-IN",
       "timestamp": "2026-08-28T22:34:56.114Z"
