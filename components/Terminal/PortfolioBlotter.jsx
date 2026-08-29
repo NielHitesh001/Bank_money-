@@ -102,6 +102,40 @@ export default function PortfolioBlotter({
     };
   }, [analyzedPositions, accountBalance]);
 
+  const exportTrades = (format) => {
+    if (format === "json") {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(analyzedPositions, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `trading-journal-${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    } else {
+      const headers = ["Position ID", "Symbol", "Side", "Units", "Entry Price", "Mark Price", "Spot PnL", "Carry PnL", "Net PnL", "Return on Margin %"];
+      const rows = analyzedPositions.map((p) => [
+        p.id,
+        p.symbol,
+        p.side,
+        p.units,
+        p.entryPrice,
+        p.currentPrice,
+        p.spotPnL,
+        p.carryPnL,
+        p.netPnL,
+        p.returnOnMarginPct,
+      ]);
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `trading-journal-${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+  };
+
   return (
     <div className="terminal-blotter-panel">
       {/* Portfolio Account Bar */}
@@ -129,7 +163,13 @@ export default function PortfolioBlotter({
         </div>
 
         <div className="account-metric-box">
-          <span>FREE MARGIN</span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span>FREE MARGIN</span>
+            <div className="journal-export-btns" style={{ display: "flex", gap: "3px" }}>
+              <button onClick={() => exportTrades("json")} className="blotter-export-btn" title="Export Journal as JSON">JSON</button>
+              <button onClick={() => exportTrades("csv")} className="blotter-export-btn" title="Export Journal as CSV">CSV</button>
+            </div>
+          </div>
           <strong>${summary.freeMargin.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</strong>
         </div>
       </div>

@@ -5,7 +5,7 @@ rail_type: "Instant payment (retail)"
 operator: "EPC (European Payments Council)"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-29 04:55 UTC"
+last_updated: "2026-08-29 04:58 UTC"
 ---
 # 🔌 SEPA Instant Credit Transfer (SEPA_INSTANT)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-29 04:55 UTC"
 |---|---|
 | Status | 🟢 OPEN |
 | Operating window | 24/7 |
-| Checked at | 2026-08-29 04:55 UTC |
+| Checked at | 2026-08-29 04:58 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

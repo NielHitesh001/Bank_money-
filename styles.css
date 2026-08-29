@@ -2897,6 +2897,21 @@ fieldset legend { margin-bottom: 12px; }
   color: #f0fdf4;
 }
 
+.blotter-export-btn {
+  background: #000;
+  border: 1px solid #20352b;
+  color: #64dcb1;
+  font: 8px 'DM Mono';
+  padding: 1px 4px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.blotter-export-btn:hover {
+  background: #142a20;
+  border-color: #38bdf8;
+}
+
 .pnl-pos { color: #64dcb1 !important; }
 .pnl-neg { color: #ff5b6e !important; }
 
