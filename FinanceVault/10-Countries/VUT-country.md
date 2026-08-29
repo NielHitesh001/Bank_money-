@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/oceania
-last_updated: "2026-08-29 05:32 UTC"
+last_updated: "2026-08-29 05:47 UTC"
 ---
 # 🏦 Vanuatu — Financial Tear Sheet
 

@@ -6,7 +6,7 @@ currency_symbol: "\u00a3"
 country_count: 2
 tags:
   - finance/currency
-last_updated: "2026-08-29 05:32 UTC"
+last_updated: "2026-08-29 05:47 UTC"
 ---
 # Egyptian pound (EGP) Currency Hub
 
