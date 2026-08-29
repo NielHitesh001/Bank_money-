@@ -1216,6 +1216,426 @@
       "hash": "15c0e530368198b153066571108f024987ab19f22e66493974556960d9417359",
       "sequence": 45,
       "serverTimestamp": "2026-08-29T06:22:16.464Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670185-idp4s",
+      "timestamp": "2026-08-29T06:24:30.185Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "SPY",
+      "side": "BUY",
+      "notional": 4992.3,
+      "limitPrice": 580.5,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "15c0e530368198b153066571108f024987ab19f22e66493974556960d9417359",
+      "hash": "e3b99f21df304ce01ea9d525e52f71b03d0a096dbdd2913e6f8e32b87c99893a",
+      "sequence": 46,
+      "serverTimestamp": "2026-08-29T06:24:30.210Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670214-udj66",
+      "timestamp": "2026-08-29T06:24:30.214Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "QQQ",
+      "side": "BUY",
+      "notional": 4984.2,
+      "limitPrice": 426,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "e3b99f21df304ce01ea9d525e52f71b03d0a096dbdd2913e6f8e32b87c99893a",
+      "hash": "5cc9d55779875333861c37404cf76a3d2a29d2c403d32e60ec056d41a8b6dd89",
+      "sequence": 47,
+      "serverTimestamp": "2026-08-29T06:24:30.217Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670218-d7q7l",
+      "timestamp": "2026-08-29T06:24:30.218Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "IVV",
+      "side": "BUY",
+      "notional": 5003.95,
+      "limitPrice": 420.5,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "5cc9d55779875333861c37404cf76a3d2a29d2c403d32e60ec056d41a8b6dd89",
+      "hash": "f33534a8e9ced05a9bc546f8b3f1b6f9420f18eefed89a52c687342425cca532",
+      "sequence": 48,
+      "serverTimestamp": "2026-08-29T06:24:30.219Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670220-jhdn1",
+      "timestamp": "2026-08-29T06:24:30.220Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "EEM",
+      "side": "BUY",
+      "notional": 5005,
+      "limitPrice": 38.5,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "f33534a8e9ced05a9bc546f8b3f1b6f9420f18eefed89a52c687342425cca532",
+      "hash": "8b18a1ed7b35aa41312de0d8ae366a6510052bae64299deca177420707c04f6f",
+      "sequence": 49,
+      "serverTimestamp": "2026-08-29T06:24:30.222Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670223-ce2ly",
+      "timestamp": "2026-08-29T06:24:30.223Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "VGK",
+      "side": "BUY",
+      "notional": 5007.45,
+      "limitPrice": 75.3,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "8b18a1ed7b35aa41312de0d8ae366a6510052bae64299deca177420707c04f6f",
+      "hash": "bc733a0cb371b7ae5f2073228a423cf108ff38fedf95b4ec6ee828678c72ac09",
+      "sequence": 50,
+      "serverTimestamp": "2026-08-29T06:24:30.225Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670226-xjdv4",
+      "timestamp": "2026-08-29T06:24:30.226Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "GLD",
+      "side": "BUY",
+      "notional": 5005,
+      "limitPrice": 200.2,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "bc733a0cb371b7ae5f2073228a423cf108ff38fedf95b4ec6ee828678c72ac09",
+      "hash": "2e8b9baba763ded49fdaa3781eac8a7ca69b84334a34bdc78588bb6527de8ca7",
+      "sequence": 51,
+      "serverTimestamp": "2026-08-29T06:24:30.229Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670230-jdimm",
+      "timestamp": "2026-08-29T06:24:30.230Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "TLT",
+      "side": "BUY",
+      "notional": 4999.88,
+      "limitPrice": 95.6,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "2e8b9baba763ded49fdaa3781eac8a7ca69b84334a34bdc78588bb6527de8ca7",
+      "hash": "5eb58a8849ae662484961900b8141d209386bd605c0a094cadcd9f46234313b8",
+      "sequence": 52,
+      "serverTimestamp": "2026-08-29T06:24:30.232Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670233-enf85",
+      "timestamp": "2026-08-29T06:24:30.233Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "USO",
+      "side": "BUY",
+      "notional": 5000.88,
+      "limitPrice": 80.4,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "5eb58a8849ae662484961900b8141d209386bd605c0a094cadcd9f46234313b8",
+      "hash": "2b1d4a0898ef5e23ad0bbb903864ef90e77f3cec8bb2a0bcdba4dd54df3ab826",
+      "sequence": 53,
+      "serverTimestamp": "2026-08-29T06:24:30.235Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670236-9c2jk",
+      "timestamp": "2026-08-29T06:24:30.236Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "GLDX",
+      "side": "BUY",
+      "notional": 5006.1,
+      "limitPrice": 45.1,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "2b1d4a0898ef5e23ad0bbb903864ef90e77f3cec8bb2a0bcdba4dd54df3ab826",
+      "hash": "37552e391721499a2a5e0dcaefc272340e7792de21c2ae7ff01fb64610b11d34",
+      "sequence": 54,
+      "serverTimestamp": "2026-08-29T06:24:30.239Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670241-wk0uc",
+      "timestamp": "2026-08-29T06:24:30.241Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "XLE",
+      "side": "BUY",
+      "notional": 5001.24,
+      "limitPrice": 85.2,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "37552e391721499a2a5e0dcaefc272340e7792de21c2ae7ff01fb64610b11d34",
+      "hash": "5d4f9b8a85b4e8003abfc47ebee42952eb5ac305641a10517f9d46dc9947fc94",
+      "sequence": 55,
+      "serverTimestamp": "2026-08-29T06:24:30.244Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670246-61bws",
+      "timestamp": "2026-08-29T06:24:30.246Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "AAPL",
+      "side": "BUY",
+      "notional": 4999.77,
+      "limitPrice": 228.3,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "5d4f9b8a85b4e8003abfc47ebee42952eb5ac305641a10517f9d46dc9947fc94",
+      "hash": "c69248218a271fa8b1b7e27a098173c91b79b626c04ad1dc4298f340aa1b1908",
+      "sequence": 56,
+      "serverTimestamp": "2026-08-29T06:24:30.248Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670249-svs2v",
+      "timestamp": "2026-08-29T06:24:30.249Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "MSFT",
+      "side": "BUY",
+      "notional": 4980.15,
+      "limitPrice": 418.5,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "c69248218a271fa8b1b7e27a098173c91b79b626c04ad1dc4298f340aa1b1908",
+      "hash": "bb4071075a885bb90aa8b97d9f4d5aca0072220198e7ba901097c36c498b3fa1",
+      "sequence": 57,
+      "serverTimestamp": "2026-08-29T06:24:30.251Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670251-op4dw",
+      "timestamp": "2026-08-29T06:24:30.251Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "NVDA",
+      "side": "BUY",
+      "notional": 4990.92,
+      "limitPrice": 125.4,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "bb4071075a885bb90aa8b97d9f4d5aca0072220198e7ba901097c36c498b3fa1",
+      "hash": "7ef4d2ce66215b19cc7a1e72ec04f9d1f9a74ece69ae92c6d712416ad6b61cc3",
+      "sequence": 58,
+      "serverTimestamp": "2026-08-29T06:24:30.253Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670254-l6etm",
+      "timestamp": "2026-08-29T06:24:30.254Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "AMZN",
+      "side": "BUY",
+      "notional": 5001.75,
+      "limitPrice": 175.5,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "7ef4d2ce66215b19cc7a1e72ec04f9d1f9a74ece69ae92c6d712416ad6b61cc3",
+      "hash": "23e01eb61d0b5c14d1c5e673f93930ba4305f3e0d6c44cbee8c6c03c534500ae",
+      "sequence": 59,
+      "serverTimestamp": "2026-08-29T06:24:30.256Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670257-4zz9a",
+      "timestamp": "2026-08-29T06:24:30.257Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "GOOGL",
+      "side": "BUY",
+      "notional": 4999.5,
+      "limitPrice": 165,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "23e01eb61d0b5c14d1c5e673f93930ba4305f3e0d6c44cbee8c6c03c534500ae",
+      "hash": "b356084e0b6553287edf00bd65a6933cba4cd47924ecfc5ed301eee77b5d7ad0",
+      "sequence": 60,
+      "serverTimestamp": "2026-08-29T06:24:30.258Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670259-y3u6f",
+      "timestamp": "2026-08-29T06:24:30.259Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "META",
+      "side": "BUY",
+      "notional": 4995.5,
+      "limitPrice": 515,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "b356084e0b6553287edf00bd65a6933cba4cd47924ecfc5ed301eee77b5d7ad0",
+      "hash": "71b1ee950e2f11f2d85e8e4dbcfcff7614594f0d7dc179d8c80d29c1088018da",
+      "sequence": 61,
+      "serverTimestamp": "2026-08-29T06:24:30.260Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670261-2dpcm",
+      "timestamp": "2026-08-29T06:24:30.261Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "TSLA",
+      "side": "BUY",
+      "notional": 4998,
+      "limitPrice": 210,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "71b1ee950e2f11f2d85e8e4dbcfcff7614594f0d7dc179d8c80d29c1088018da",
+      "hash": "bdae498c38c8d9a2678ddbca6d55f3d1863a272bf7d92e71f67fb46d443a6b3a",
+      "sequence": 62,
+      "serverTimestamp": "2026-08-29T06:24:30.263Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670263-m0n5b",
+      "timestamp": "2026-08-29T06:24:30.263Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "BTC/USD",
+      "side": "BUY",
+      "notional": 5000,
+      "limitPrice": 62500,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "bdae498c38c8d9a2678ddbca6d55f3d1863a272bf7d92e71f67fb46d443a6b3a",
+      "hash": "2c4d8f62319d0320e208c7c72b2c7de1f1f86c522e061161e323719daec416c1",
+      "sequence": 63,
+      "serverTimestamp": "2026-08-29T06:24:30.265Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670266-xe5fo",
+      "timestamp": "2026-08-29T06:24:30.266Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "ETH/USD",
+      "side": "BUY",
+      "notional": 4995,
+      "limitPrice": 2700,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "2c4d8f62319d0320e208c7c72b2c7de1f1f86c522e061161e323719daec416c1",
+      "hash": "051f3bec785b1b24bdbb19103c22cc5612f79eaa62eb915f29181724608fd1da",
+      "sequence": 64,
+      "serverTimestamp": "2026-08-29T06:24:30.267Z"
+    },
+    {
+      "id": "LOG-ORD-1787984670268-dik4f",
+      "timestamp": "2026-08-29T06:24:30.268Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "EUR/USD",
+      "side": "BUY",
+      "notional": 5002.04,
+      "limitPrice": 1.0874,
+      "user": "TRADER-1",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "051f3bec785b1b24bdbb19103c22cc5612f79eaa62eb915f29181724608fd1da",
+      "hash": "aed65a270916bae263ff9a22a30f037fbc2882ae16e3cabd8834e46f1ba2fb13",
+      "sequence": 65,
+      "serverTimestamp": "2026-08-29T06:24:30.270Z"
     }
   ]
 }
