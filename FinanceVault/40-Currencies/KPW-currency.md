@@ -6,7 +6,7 @@ currency_symbol: "\u20a9"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 04:32 UTC"
+last_updated: "2026-08-29 04:47 UTC"
 ---
 # North Korean won (KPW) Currency Hub
 

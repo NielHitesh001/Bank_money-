@@ -39,6 +39,26 @@
   ],
   "audit": [
     {
+      "sequence": 46,
+      "event": "executed Bloomberg function: FXFA",
+      "timestamp": "2026-08-29T04:48:21.168Z"
+    },
+    {
+      "sequence": 45,
+      "event": "executed Bloomberg function: WIRP",
+      "timestamp": "2026-08-29T04:48:18.617Z"
+    },
+    {
+      "sequence": 44,
+      "event": "executed Bloomberg function: DES",
+      "timestamp": "2026-08-29T04:48:17.126Z"
+    },
+    {
+      "sequence": 43,
+      "event": "executed Bloomberg function: ALLQ",
+      "timestamp": "2026-08-29T04:48:15.243Z"
+    },
+    {
       "sequence": 42,
       "event": "inspected entity BLACKROCK-US",
       "timestamp": "2026-08-29T02:37:42.272Z"

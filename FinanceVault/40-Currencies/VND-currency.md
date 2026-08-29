@@ -6,7 +6,7 @@ currency_symbol: "\u20ab"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 04:32 UTC"
+last_updated: "2026-08-29 04:47 UTC"
 ---
 # Vietnamese đồng (VND) Currency Hub
 

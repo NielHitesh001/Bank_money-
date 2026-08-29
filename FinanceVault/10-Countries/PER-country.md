@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-29 04:32 UTC"
+last_updated: "2026-08-29 04:47 UTC"
 ---
 # 🏦 Peru — Financial Tear Sheet
 

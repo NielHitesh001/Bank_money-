@@ -452,7 +452,13 @@ export default function Dashboard() {
       {activeTab === "terminal" && (
         <TerminalWorkspace
           onSelectSymbol={() => {}}
-          onFilterEntity={() => setActiveTab("investigate")}
+          onFilterEntity={(entityId) => {
+            setActiveTab("investigate");
+            setQuery(entityId);
+            setSelected({ type: "entity", value: entityId });
+            setTraceOrigin(entityId);
+            recordAudit(`inspected entity ${entityId} from live news feed wire`);
+          }}
         />
       )}
 
