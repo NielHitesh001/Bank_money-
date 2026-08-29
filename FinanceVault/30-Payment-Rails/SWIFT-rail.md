@@ -5,7 +5,7 @@ rail_type: "Messaging network (not settlement)"
 operator: "SWIFT SC (Belgium, cooperative)"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-29 05:24 UTC"
+last_updated: "2026-08-29 05:26 UTC"
 ---
 # 🔌 Society for Worldwide Interbank Financial Telecommunication (SWIFT)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-29 05:24 UTC"
 |---|---|
 | Status | 🟢 OPEN |
 | Operating window | 24/7 |
-| Checked at | 2026-08-29 05:24 UTC |
+| Checked at | 2026-08-29 05:26 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

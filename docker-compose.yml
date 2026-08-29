@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  world-money-terminal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: world_money_terminal_os
+    restart: always
+    ports:
+      - "8766:8766"
+    environment:
+      - PORT=8766
+      - NODE_ENV=production
+      - VAULT_KEY=world_money_production_vault_key_2026_super_secure
+    volumes:
+      - ./FinanceVault:/app/FinanceVault
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8766/api/health').then(r => process.exit(r.ok ? 0 : 1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
