@@ -1,44 +1,83 @@
-# MoneyTrace frontend contract and proposed production architecture
+# System Architecture: World Money Terminal OS
 
-The prototype uses React + TypeScript-ready Vite, CSS tokens, and Sigma.js/Graphology (WebGL). It deliberately keeps the UI data adapter independent from the current mock data.
+## 1. System Overview
 
-## Recommended production stack
+World Money combines institutional market data ingestion, quantitative analytics, and AML graph intelligence into a high-performance terminal workspace.
 
-- Frontend: React, TypeScript, Vite, TanStack Query, Zustand, Tailwind + design tokens, Sigma.js/Graphology.
-- API: NestJS or Fastify service behind an API gateway; REST for transactional intake/query and WebSocket/SSE for graph updates.
-- Stores: PostgreSQL for users, cases, audit records, and operational metadata; Neo4j for bounded multi-hop traversal; Kafka + object storage for durable raw ingestion; OpenSearch for indexed filters.
-- Security: OIDC/SAML identity provider, role and attribute policy enforcement server-side, field-level redaction, encryption in transit/at rest, append-only audit event sink.
+```mermaid
+flowchart TB
+    subgraph Data_Layer [Data Ingestion & Event Stream]
+        direction TB
+        WS[wsManager.js: High-Frequency WebSocket Engine]
+        MDA[marketDataAggregator.js: Multi-Asset Router]
+        FRED[macroLiquidityService.js: FRED & World Bank API]
+        NEWS[newsService.js: Real-Time Event Aggregator]
+    end
 
-## Normalized core schema
+    subgraph Analytics_Layer [Quantitative & Risk Engines]
+        direction TB
+        Carry[fxCarryModel.js: Sovereign Spread Ranker]
+        VaR[varRiskEngine.js: 95%/99% VaR & Stress Shocks]
+        PnL[pnlAttribution.js: Spot + Carry + Fee Decomposition]
+    end
 
-`legal_entities(id UUID, lei CHAR(20) UNIQUE, legal_name, entity_type, bic VARCHAR(11), jurisdiction_iso CHAR(2), status, created_at)`
+    subgraph UI_Layer [Bloomberg Terminal Components]
+        direction TB
+        Ticker[LiveTickerRibbon: Marquee Ticker]
+        Chart[RealTimeCandleChart: Canvas OHLCV + SMA20 + RSI14]
+        OMS[OrderTicket: Paper Execution Desk]
+        Blotter[PortfolioBlotter: Real-time Mark-to-Market]
+        CmdK[CommandPalette: Cmd+K Function Router]
+        Desk[TerminalWorkspace: Multi-Desk Presets]
+    end
 
-`accounts(id UUID, entity_id FK, account_identifier_ciphertext, identifier_type ENUM(IBAN, ACCOUNT_ID), country_iso CHAR(2), masked_display, created_at)`
+    subgraph Core_Vault [Obsidian FinanceVault & AML]
+        direction TB
+        Graph[EntityGraph: 570+ Sovereign Nodes & Rails]
+        Finder[ConnectionFinder: Shortest Path Routing]
+        Dossier[CorporateTreasuryIntelligence: Cash Piles]
+    end
 
-`transactions(id UUID, external_reference UNIQUE, source_account_id FK, destination_account_id FK, currency CHAR(3), amount DECIMAL(22,4), rail ENUM(SWIFT, ACH, FEDWIRE, CHAPS, RTGS, TRADE_FINANCE, VC), initiated_at, settled_at, status, routing JSONB)`
-
-`risk_assessments(id UUID, subject_type, subject_id, score SMALLINT CHECK(score BETWEEN 0 AND 100), pep_status, sanctions_status, typologies JSONB, provider, assessed_at)`
-
-`screening_matches(id UUID, subject_type, subject_id, list_name, match_score, disposition, reviewed_by, reviewed_at)`
-
-`cases(id UUID, case_number UNIQUE, title, status, severity, owner_id, created_at)` with `case_subjects(case_id FK, subject_type, subject_id)` and `annotations(id UUID, case_id FK, author_id, body, created_at)`.
-
-`audit_events(id UUID, occurred_at, actor_id, role, action, resource_type, resource_id, request_id, ip_hash, before_hash, after_hash)` is written append-only to a separate immutable retention store. Exports are represented by `export_jobs` and audited before file delivery.
-
-All personal identifiers remain encrypted or tokenized at rest; UI responses receive a role-aware masked projection. Ingestion accepts REST event envelopes and CSV/JSON batches, validates identifiers and ISO codes, then writes raw payloads and normalized records independently.
-
-## Frontend integration contract
-
-The analyst workspace consumes a normalized graph snapshot with three top-level collections:
-
-```js
-{
-  entities: [{ id, name, kind, country, lei?, bic?, account?, risk, volume, x, y }],
-  transactions: [{ id, source, target, amount, display, currency, rail, date, risk, flag? }],
-  cases: [{ id, title, severity, transactions, updated }]
-}
+    WS -->|Pub/Sub 280ms Ticks| Ticker
+    WS -->|Live Bar Push| Chart
+    WS -->|Mark Price Feed| Blotter
+    MDA -->|Normalized Contract| WS
+    Carry -->|Yield Curves| Desk
+    VaR -->|Risk Profile| Desk
+    PnL -->|Attribution Matrix| Blotter
+    OMS -->|Executed Orders| Blotter
+    CmdK -.->|Function Navigation| Desk
+    CmdK -.->|Route to AML| Finder
+    NEWS -->|Entity Tags| Graph
 ```
 
-The production adapter should expose `getGraphSnapshot(filters)`, `ingestBatch(payload)`, `saveCaseMutation(mutation)`, and `appendAuditEvent(event)`. The current prototype keeps those operations local, but all filtering, path tracing, exports, case mutations, and audit events operate on these same shapes.
+---
 
-For dense snapshots, the UI defers free-text search, indexes entity lookups by ID, and caps the active render at 2,000 nodes and 5,000 edges. The adapter can return larger datasets; the view layer prioritizes higher-risk and higher-exposure records for the active canvas while preserving matched-record counts.
+## 2. Core Subsystems
+
+### 2.1 Real-Time Market Data Engine (`src/services/`)
+- **`marketDataAggregator.js`**: Standardizes tickers across FX, Commodities, Indices, and Crypto into a unified contract schema.
+- **`wsManager.js`**: Provides a high-frequency WebSocket pub/sub bus. Generates realistic stochastic micro-drift (Brownian motion) at sub-second frequency (<300ms) with unreffed timers for test cleanliness.
+- **`newsService.js`**: Streams multi-source financial news with entity tagging and sentiment classification.
+
+### 2.2 Quantitative & Risk Modeling (`src/analytics/`)
+- **`fxCarryModel.js`**: Evaluates policy rate spreads $\Delta r = r_{\text{target}} - r_{\text{base}}$, implied volatility ratios, and projected 1-year leveraged yield.
+- **`pnlAttribution.js`**: Decomposes mark-to-market trade returns into Spot Delta, Carry/Accrued Interest, and Transaction Costs.
+- **`varRiskEngine.js`**: Computes 1-day and 10-day Value-at-Risk under 95% and 99% confidence horizons using parametric volatility weighting, alongside 4 stress scenario shock models.
+
+### 2.3 Terminal UI & Trading Floor UX (`components/Terminal/`)
+- **`TerminalWorkspace.jsx`**: Master grid manager offering 3 workspace layouts:
+  1. *FX & Macro Trading Desk* (Candlestick Chart + Order Ticket + Blotter)
+  2. *Risk & VaR Analytics* (VaR Engine + FX Carry Matrix + Mark-to-Market Blotter)
+  3. *Live News & Event Stream* (Entity-tagged real-time market wires)
+- **`LiveTickerRibbon.jsx`**: Top marquee bar with sub-second visual flash animations on tick updates.
+- **`RealTimeCandleChart.jsx`**: High-density SVG candle rendering with SMA 20 overlay and RSI 14 sub-panel.
+- **`OrderTicket.jsx`**: Full paper trading OMS execution ticket with pre-trade margin and leverage validation.
+- **`PortfolioBlotter.jsx`**: Live position ledger mark-to-market valuations and real-time margin tracking.
+- **`CommandPalette.jsx`**: Bloomberg function keyboard overlay (`Cmd + K`).
+
+---
+
+## 3. Integration with World Money Core
+- **Cross-View Routing**: `CommandPalette.jsx` routes seamlessly between the Trading Terminal, Macro Liquidity Monitor, and MoneyTrace AML.
+- **Entity Linking**: Entity pills in the News Feed (`#BLACKROCK-US`, `#JIO-IN`, `#FED`) link directly into the **Obsidian Knowledge Graph** and **Multi-Hop Connection Finder**.
