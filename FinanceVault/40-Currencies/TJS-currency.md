@@ -6,7 +6,7 @@ currency_symbol: "\u0405\u041c"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 05:02 UTC"
+last_updated: "2026-08-29 05:17 UTC"
 ---
 # Tajikistani somoni (TJS) Currency Hub
 

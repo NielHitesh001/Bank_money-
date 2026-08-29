@@ -4,6 +4,8 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fetchMacroLiquidity, generateDeterministicFallback } from "../services/macroLiquidityService.js";
 import { cases as initialCases } from "../../data/intelligenceMock.js";
+import { orderRateLimiter, vaultRateLimiter, auditRateLimiter } from "./middleware/rateLimiter.js";
+import { metricsRegistry } from "./middleware/metricsCollector.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -306,6 +308,13 @@ const server = http.createServer(async (req, res) => {
     // PHASE 3: CREDENTIAL VAULT ENDPOINTS (AES-256-GCM)
     // ==========================================
     if (pathname === "/api/v1/vault/alpaca-tokens" && req.method === "POST") {
+      const rate = vaultRateLimiter.check(req.socket?.remoteAddress || "client");
+      if (!rate.allowed) {
+        metricsRegistry.incRateLimit();
+        sendJson(res, 429, { error: rate.message, retryAfterSeconds: rate.resetSeconds });
+        return;
+      }
+
       const payload = await parseJsonBody(req);
       db.vault = db.vault || {};
       const encrypted = encrypt(JSON.stringify(payload));
@@ -320,6 +329,13 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname === "/api/v1/vault/alpaca-tokens/access" && req.method === "GET") {
+      const rate = vaultRateLimiter.check(req.socket?.remoteAddress || "client");
+      if (!rate.allowed) {
+        metricsRegistry.incRateLimit();
+        sendJson(res, 429, { error: rate.message, retryAfterSeconds: rate.resetSeconds });
+        return;
+      }
+
       if (db.vault?.alpaca?.ciphertext) {
         try {
           const decrypted = JSON.parse(decrypt(db.vault.alpaca.ciphertext));
@@ -355,6 +371,13 @@ const server = http.createServer(async (req, res) => {
     // PHASE 3: IMMUTABLE AUDIT LOG (RULE 17a-5)
     // ==========================================
     if (pathname === "/api/v1/audit-log/append" && req.method === "POST") {
+      const rate = auditRateLimiter.check(req.socket?.remoteAddress || "client");
+      if (!rate.allowed) {
+        metricsRegistry.incRateLimit();
+        sendJson(res, 429, { error: rate.message, retryAfterSeconds: rate.resetSeconds });
+        return;
+      }
+
       const entry = await parseJsonBody(req);
       db.immutableAuditLogs = db.immutableAuditLogs || [];
       const lastHash = db.immutableAuditLogs.length > 0
@@ -369,6 +392,7 @@ const server = http.createServer(async (req, res) => {
       };
       db.immutableAuditLogs.push(record);
       saveDb(db);
+      metricsRegistry.incAudit();
       sendJson(res, 200, { status: "appended", sequence: record.sequence, hash: record.hash });
       return;
     }
@@ -395,6 +419,60 @@ const server = http.createServer(async (req, res) => {
         "Access-Control-Allow-Origin": "*",
       });
       res.end(headers + rows);
+      return;
+    }
+
+    // ==========================================
+    // PHASE 3: PROMETHEUS METRICS & OBSERVABILITY
+    // ==========================================
+    if (pathname === "/metrics" && req.method === "GET") {
+      const promText = metricsRegistry.formatPrometheus();
+      res.writeHead(200, {
+        "Content-Type": "text/plain; version=0.0.4; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+      });
+      res.end(promText);
+      return;
+    }
+
+    if (pathname === "/api/monitoring/snapshot" && req.method === "GET") {
+      sendJson(res, 200, metricsRegistry.getSnapshot());
+      return;
+    }
+
+    if (pathname === "/monitoring" && req.method === "GET") {
+      const snap = metricsRegistry.getSnapshot();
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Access-Control-Allow-Origin": "*" });
+      res.end(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World Money Terminal — Operator Observability</title>
+  <style>
+    body { background: #050807; color: #d0ded8; font-family: 'DM Mono', monospace; padding: 24px; }
+    h1 { color: #64dcb1; font-size: 18px; margin-bottom: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .card { background: #0c1511; border: 1px solid #1a2c24; padding: 14px; border-radius: 4px; }
+    .card h4 { margin: 0 0 6px; font-size: 10px; color: #799088; text-transform: uppercase; }
+    .card strong { font-size: 22px; color: #f0fdf4; }
+    .status-badge { color: #64dcb1; background: rgba(100, 220, 177, 0.1); padding: 2px 6px; border-radius: 2px; }
+    pre { background: #090e0c; border: 1px solid #1a2c24; padding: 12px; border-radius: 4px; color: #8da49c; font-size: 11px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔍 World Money Operator Observability Dashboard</h1>
+  <div class="grid">
+    <div class="card"><h4>Broker Connectivity</h4><strong class="status-badge">${snap.brokerStatus}</strong></div>
+    <div class="card"><h4>Audit Records</h4><strong>${snap.auditLogsTotal}</strong></div>
+    <div class="card"><h4>Order Latency P50</h4><strong>${snap.latencyP50Ms} ms</strong></div>
+    <div class="card"><h4>Order Latency P99</h4><strong>${snap.latencyP99Ms} ms</strong></div>
+    <div class="card"><h4>Rate Limit Throttles</h4><strong>${snap.rateLimitsHit}</strong></div>
+    <div class="card"><h4>V8 Heap Usage</h4><strong>${snap.heapMemoryMb} MB</strong></div>
+  </div>
+  <h3>Raw Prometheus Stream (<a href="/metrics" style="color:#64dcb1;">/metrics</a>)</h3>
+  <pre id="rawProm">${metricsRegistry.formatPrometheus()}</pre>
+</body>
+</html>`);
       return;
     }
 
