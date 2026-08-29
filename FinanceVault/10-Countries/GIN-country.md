@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-29 06:17 UTC"
+last_updated: "2026-08-29 06:32 UTC"
 ---
 # 🏦 Guinea — Financial Tear Sheet
 
