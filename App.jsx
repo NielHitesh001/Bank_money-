@@ -7,6 +7,9 @@ import FxPolicyConverter from "./components/FxPolicyConverter";
 import MacroLiquidityPanel from "./components/MacroLiquidityPanel";
 import NetworkCanvas from "./components/NetworkCanvas";
 import PaymentRailsMatrix from "./components/PaymentRailsMatrix";
+import CommandPalette from "./components/Terminal/CommandPalette.jsx";
+import LiveTickerRibbon from "./components/Terminal/LiveTickerRibbon.jsx";
+import TerminalWorkspace from "./components/Terminal/TerminalWorkspace.jsx";
 import { cases as initialCases, entities as initialEntities, transactions as initialTransactions } from "./data/intelligenceMock";
 import { findBidirectionalPath, findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
 import { addCaseNoteApi, checkServerHealth, fetchCasesApi, logAuditEventApi, syncCaseApi } from "./src/services/apiClient.js";
@@ -47,9 +50,10 @@ function loadSavedViews() {
 }
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState("liquidity"); // "liquidity" | "investigate"
+  const [activeTab, setActiveTab] = useState("terminal"); // "terminal" | "liquidity" | "investigate"
   const [liquiditySubView, setLiquiditySubView] = useState("macro"); // "macro" | "rails" | "centralbanks" | "converter" | "network"
   const [investigationViewMode, setInvestigationViewMode] = useState("graph"); // "graph" | "blotter"
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [serverOnline, setServerOnline] = useState(false);
 
   const [workspace, setWorkspace] = useState({ entities: initialEntities, transactions: initialTransactions });
@@ -354,15 +358,44 @@ export default function Dashboard() {
     recordAudit(`exported audit ledger as ${format.toUpperCase()}`);
   };
 
+  const handleBloombergCommand = (code) => {
+    recordAudit(`executed Bloomberg function: ${code}`);
+    if (code === "ALLQ" || code === "BLOT" || code === "OMST" || code === "VAR" || code === "NEWS") {
+      setActiveTab("terminal");
+    } else if (code === "WIRP" || code === "CORP") {
+      setActiveTab("liquidity");
+      setLiquiditySubView("macro");
+    } else if (code === "CBRT") {
+      setActiveTab("liquidity");
+      setLiquiditySubView("centralbanks");
+    } else if (code === "RAIL") {
+      setActiveTab("liquidity");
+      setLiquiditySubView("rails");
+    } else if (code === "FXFA") {
+      setActiveTab("liquidity");
+      setLiquiditySubView("converter");
+    } else if (code === "AML") {
+      setActiveTab("investigate");
+    } else if (code === "OPEN_PALETTE") {
+      setCommandPaletteOpen(true);
+    }
+  };
+
   return (
     <main className="intel-app">
       <header className="topbar">
         <div className="brand">
           <span className="brand-glyph">W</span>
           <span>WorldMoney</span>
-          <small>GLOBAL LIQUIDITY MAP</small>
+          <small>INSTITUTIONAL TERMINAL</small>
         </div>
         <nav>
+          <button
+            className={activeTab === "terminal" ? "active" : ""}
+            onClick={() => setActiveTab("terminal")}
+          >
+            ⚡ Bloomberg Terminal
+          </button>
           <button
             className={activeTab === "liquidity" ? "active" : ""}
             onClick={() => setActiveTab("liquidity")}
@@ -384,6 +417,13 @@ export default function Dashboard() {
             Cases <b>03</b>
           </button>
           <button onClick={() => setAuditOpen(true)}>Audit Ledger</button>
+          <button
+            className="cmd-k-trigger"
+            onClick={() => setCommandPaletteOpen(true)}
+            title="Press Cmd+K for Bloomberg commands"
+          >
+            <kbd>CMD</kbd> (Cmd+K)
+          </button>
         </nav>
         <div className="operator">
           <span className={`live-dot ${serverOnline ? "server-live" : ""}`} /> {serverOnline ? "API Connected" : "Local Session"}
@@ -404,6 +444,17 @@ export default function Dashboard() {
           <span className="avatar">AN</span>
         </div>
       </header>
+
+      {/* GLOBAL TICKER MARQUEE */}
+      <LiveTickerRibbon onSelectSymbol={() => setActiveTab("terminal")} />
+
+      {/* VIEW 0: BLOOMBERG TERMINAL WORKSPACE */}
+      {activeTab === "terminal" && (
+        <TerminalWorkspace
+          onSelectSymbol={() => {}}
+          onFilterEntity={() => setActiveTab("investigate")}
+        />
+      )}
 
       {/* VIEW 1: GLOBAL LIQUIDITY MAP */}
       {activeTab === "liquidity" && (
@@ -969,6 +1020,13 @@ export default function Dashboard() {
           </section>
         </div>
       )}
+
+      {/* BLOOMBERG COMMAND PALETTE MODAL */}
+      <CommandPalette
+        isOpen={commandPaletteOpen}
+        onClose={() => setCommandPaletteOpen(false)}
+        onExecuteCommand={handleBloombergCommand}
+      />
     </main>
   );
 }

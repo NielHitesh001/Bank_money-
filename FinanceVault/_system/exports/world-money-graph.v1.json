@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29 03:45 UTC",
+  "generated_at": "2026-08-29 04:46 UTC",
   "links": [
     {
       "source": "country:AFG",
@@ -7750,7 +7750,7 @@
       "attributes": {
         "code": "CHIPS",
         "is_open": false,
-        "operating_window": "00:00\u201317:00 America/New_York",
+        "operating_window": "closed \u2014 weekend (America/New_York)",
         "operator": "The Clearing House",
         "scope": "United States (large-value)"
       },
@@ -7788,8 +7788,8 @@
     {
       "attributes": {
         "code": "FEDWIRE",
-        "is_open": true,
-        "operating_window": "21:00\u201319:00 America/New_York",
+        "is_open": false,
+        "operating_window": "closed \u2014 weekend (America/New_York)",
         "operator": "Federal Reserve Banks",
         "scope": "United States"
       },
@@ -7867,6 +7867,6 @@
   "schema_version": "1.0",
   "sources": {
     "fx_as_of": "2026-08-28",
-    "fx_fetched_at": "2026-08-29 03:32 UTC"
+    "fx_fetched_at": "2026-08-29 04:32 UTC"
   }
 }
