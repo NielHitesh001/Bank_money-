@@ -14,6 +14,8 @@ Welcome to the **World Money Bloomberg-Scale Terminal OS** documentation. This s
 | [**PERFORMANCE.md**](./PERFORMANCE.md) | Latency budgets (<300ms ticks), rendering benchmarks, memory profiles, and optimization strategies | 6 mins |
 | [**LIVE_DATA_INTEGRATION.md**](./LIVE_DATA_INTEGRATION.md) | Transitioning from local simulation to live Polygon.io / Twelve Data feeds & circuit breakers | 6 mins |
 | [**RESILIENCE.md**](./RESILIENCE.md) | Failover hierarchy, offline Brownian engine, and circuit breaker telemetry | 5 mins |
+| [**EMERGENCY_RUNBOOK.md**](./EMERGENCY_RUNBOOK.md) | 3am incident response, kill switch activation, and recovery procedures | 5 mins |
+| [**COMPLIANCE_RUNBOOK.md**](./COMPLIANCE_RUNBOOK.md) | SEC Rule 17a-5, FINRA audit logging, and cryptographic verification | 5 mins |
 | [**ARCHITECTURAL_DECISIONS.md**](./ARCHITECTURAL_DECISIONS.md) | Formal ADR records (AD-001 through AD-004) detailing key architectural trade-offs | 5 mins |
 
 ---
