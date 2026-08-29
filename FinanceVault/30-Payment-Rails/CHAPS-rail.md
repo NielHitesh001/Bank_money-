@@ -5,7 +5,7 @@ rail_type: "RTGS"
 operator: "Bank of England"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-29 05:06 UTC"
+last_updated: "2026-08-29 05:10 UTC"
 ---
 # 🔌 Clearing House Automated Payment System (CHAPS)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-29 05:06 UTC"
 |---|---|
 | Status | 🔴 CLOSED |
 | Operating window | closed — weekend (Europe/London) |
-| Checked at | 2026-08-29 05:06 UTC |
+| Checked at | 2026-08-29 05:10 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

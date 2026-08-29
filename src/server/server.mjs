@@ -1,6 +1,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fetchMacroLiquidity, generateDeterministicFallback } from "../services/macroLiquidityService.js";
 import { cases as initialCases } from "../../data/intelligenceMock.js";
 
@@ -22,6 +23,26 @@ function loadEnv() {
   }
 }
 loadEnv();
+
+const VAULT_MASTER_KEY = crypto.createHash("sha256").update(process.env.VAULT_KEY || "world_money_default_master_encryption_key_2026").digest();
+
+function encrypt(text) {
+  const iv = crypto.randomBytes(12);
+  const cipher = crypto.createCipheriv("aes-256-gcm", VAULT_MASTER_KEY, iv);
+  let enc = cipher.update(text, "utf8", "hex");
+  enc += cipher.final("hex");
+  const tag = cipher.getAuthTag().toString("hex");
+  return `${iv.toString("hex")}:${enc}:${tag}`;
+}
+
+function decrypt(encryptedText) {
+  const [ivHex, encHex, tagHex] = encryptedText.split(":");
+  const decipher = crypto.createDecipheriv("aes-256-gcm", VAULT_MASTER_KEY, Buffer.from(ivHex, "hex"));
+  decipher.setAuthTag(Buffer.from(tagHex, "hex"));
+  let dec = decipher.update(encHex, "hex", "utf8");
+  dec += decipher.final("utf8");
+  return dec;
+}
 
 const PORT = Number(process.env.PORT || 8766);
 const DB_PATH = path.resolve("./FinanceVault/_system/server_db.json");
@@ -278,6 +299,102 @@ const server = http.createServer(async (req, res) => {
       } else {
         sendJson(res, 400, { error: "Event message required" });
       }
+      return;
+    }
+
+    // ==========================================
+    // PHASE 3: CREDENTIAL VAULT ENDPOINTS (AES-256-GCM)
+    // ==========================================
+    if (pathname === "/api/v1/vault/alpaca-tokens" && req.method === "POST") {
+      const payload = await parseJsonBody(req);
+      db.vault = db.vault || {};
+      const encrypted = encrypt(JSON.stringify(payload));
+      db.vault.alpaca = {
+        ciphertext: encrypted,
+        expiresAt: Date.now() + (payload.expiresIn || 900) * 1000,
+        updatedAt: new Date().toISOString(),
+      };
+      saveDb(db);
+      sendJson(res, 200, { status: "vaulted", vaultedAt: new Date().toISOString() });
+      return;
+    }
+
+    if (pathname === "/api/v1/vault/alpaca-tokens/access" && req.method === "GET") {
+      if (db.vault?.alpaca?.ciphertext) {
+        try {
+          const decrypted = JSON.parse(decrypt(db.vault.alpaca.ciphertext));
+          const remainingSec = Math.max(0, Math.round((db.vault.alpaca.expiresAt - Date.now()) / 1000));
+          sendJson(res, 200, {
+            accessToken: decrypted.accessToken || "mock-access-token",
+            expiresIn: remainingSec,
+            status: "active",
+          });
+        } catch (err) {
+          sendJson(res, 500, { error: `Decryption failed: ${err.message}` });
+        }
+      } else {
+        sendJson(res, 200, {
+          accessToken: "alpaca-sandbox-token",
+          expiresIn: 900,
+          status: "sandbox_default",
+        });
+      }
+      return;
+    }
+
+    if (pathname === "/api/v1/vault/alpaca-tokens" && req.method === "DELETE") {
+      if (db.vault) {
+        delete db.vault.alpaca;
+        saveDb(db);
+      }
+      sendJson(res, 200, { status: "revoked" });
+      return;
+    }
+
+    // ==========================================
+    // PHASE 3: IMMUTABLE AUDIT LOG (RULE 17a-5)
+    // ==========================================
+    if (pathname === "/api/v1/audit-log/append" && req.method === "POST") {
+      const entry = await parseJsonBody(req);
+      db.immutableAuditLogs = db.immutableAuditLogs || [];
+      const lastHash = db.immutableAuditLogs.length > 0
+        ? db.immutableAuditLogs[db.immutableAuditLogs.length - 1].hash
+        : "0000000000000000000000000000000000000000000000000000000000000000";
+
+      const record = {
+        ...entry,
+        sequence: db.immutableAuditLogs.length + 1,
+        previousHash: lastHash,
+        serverTimestamp: new Date().toISOString(),
+      };
+      db.immutableAuditLogs.push(record);
+      saveDb(db);
+      sendJson(res, 200, { status: "appended", sequence: record.sequence, hash: record.hash });
+      return;
+    }
+
+    if (pathname === "/api/v1/audit-log/last-hash" && req.method === "GET") {
+      db.immutableAuditLogs = db.immutableAuditLogs || [];
+      const lastHash = db.immutableAuditLogs.length > 0
+        ? db.immutableAuditLogs[db.immutableAuditLogs.length - 1].hash
+        : "0000000000000000000000000000000000000000000000000000000000000000";
+      sendJson(res, 200, { lastHash, count: db.immutableAuditLogs.length });
+      return;
+    }
+
+    if (pathname === "/api/v1/audit-log/export" && req.method === "GET") {
+      const logs = db.immutableAuditLogs || [];
+      const headers = "Sequence,Timestamp,Event,OrderID,Symbol,Side,Qty,Notional,User,ExecutionMode,Hash,PreviousHash\n";
+      const rows = logs.map((l) =>
+        `${l.sequence},${l.timestamp},${l.event},${l.orderId || ""},${l.symbol || ""},${l.side || ""},${l.qty || ""},${l.notional || ""},${l.user || ""},${l.compliance?.executionMode || ""},${l.hash || ""},${l.previousHash || ""}`
+      ).join("\n");
+
+      res.writeHead(200, {
+        "Content-Type": "text/csv",
+        "Content-Disposition": `attachment; filename="sec-rule17a5-audit-${Date.now()}.csv"`,
+        "Access-Control-Allow-Origin": "*",
+      });
+      res.end(headers + rows);
       return;
     }
 
