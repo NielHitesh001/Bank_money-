@@ -6,7 +6,7 @@ currency_symbol: "\u20b9"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 06:02 UTC"
+last_updated: "2026-08-29 06:17 UTC"
 ---
 # Indian rupee (INR) Currency Hub
 

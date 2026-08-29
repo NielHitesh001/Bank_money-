@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-29 06:02 UTC"
+last_updated: "2026-08-29 06:17 UTC"
 ---
 # 🏦 Gabon — Financial Tear Sheet
 
