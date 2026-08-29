@@ -6,7 +6,7 @@ currency_symbol: "\u00a5"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 05:47 UTC"
+last_updated: "2026-08-29 06:02 UTC"
 ---
 # Japanese yen (JPY) Currency Hub
 

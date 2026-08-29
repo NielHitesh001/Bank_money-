@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-29 05:47 UTC"
+last_updated: "2026-08-29 06:02 UTC"
 ---
 # 🏦 Belgium — Financial Tear Sheet
 
