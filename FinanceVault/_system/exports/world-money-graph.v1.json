@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29 05:26 UTC",
+  "generated_at": "2026-08-29 05:32 UTC",
   "links": [
     {
       "source": "country:AFG",
@@ -7867,6 +7867,6 @@
   "schema_version": "1.0",
   "sources": {
     "fx_as_of": "2026-08-28",
-    "fx_fetched_at": "2026-08-29 05:17 UTC"
+    "fx_fetched_at": "2026-08-29 05:32 UTC"
   }
 }

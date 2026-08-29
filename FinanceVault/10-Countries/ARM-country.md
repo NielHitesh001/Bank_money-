@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-29 05:17 UTC"
+last_updated: "2026-08-29 05:32 UTC"
 ---
 # 🏦 Armenia — Financial Tear Sheet
 

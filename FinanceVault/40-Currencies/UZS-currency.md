@@ -6,7 +6,7 @@ currency_symbol: "so'm"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 05:17 UTC"
+last_updated: "2026-08-29 05:32 UTC"
 ---
 # Uzbekistani soʻm (UZS) Currency Hub
 

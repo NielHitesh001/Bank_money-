@@ -6,7 +6,7 @@ currency_symbol: "$"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 05:17 UTC"
+last_updated: "2026-08-29 05:32 UTC"
 ---
 # Argentine peso (ARS) Currency Hub
 
