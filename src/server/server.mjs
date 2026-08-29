@@ -6,6 +6,7 @@ import { fetchMacroLiquidity, generateDeterministicFallback } from "../services/
 import { cases as initialCases } from "../../data/intelligenceMock.js";
 import { orderRateLimiter, vaultRateLimiter, auditRateLimiter } from "./middleware/rateLimiter.js";
 import { metricsRegistry } from "./middleware/metricsCollector.js";
+import { getEntities, getTransactions } from "../services/intelligenceService.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -233,6 +234,29 @@ const server = http.createServer(async (req, res) => {
       } else {
         sendJson(res, 404, { error: "Graph export not found" });
       }
+      return;
+    }
+
+    // 3b. Large Entity & Transaction Graph API
+    if (pathname === "/api/v1/entities" && req.method === "GET") {
+      const filters = {
+        type: parsedUrl.searchParams.get("type"),
+        country: parsedUrl.searchParams.get("country"),
+        minRisk: parsedUrl.searchParams.get("minRisk"),
+        search: parsedUrl.searchParams.get("search"),
+      };
+      sendJson(res, 200, getEntities(filters));
+      return;
+    }
+
+    if (pathname === "/api/v1/transactions" && req.method === "GET") {
+      const filters = {
+        rail: parsedUrl.searchParams.get("rail"),
+        currency: parsedUrl.searchParams.get("currency"),
+        anomalousOnly: parsedUrl.searchParams.get("anomalousOnly"),
+        entityId: parsedUrl.searchParams.get("entityId"),
+      };
+      sendJson(res, 200, getTransactions(filters));
       return;
     }
 
