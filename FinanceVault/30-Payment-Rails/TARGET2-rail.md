@@ -5,7 +5,7 @@ rail_type: "RTGS"
 operator: "Eurosystem (ECB)"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-29 06:20 UTC"
+last_updated: "2026-08-29 06:21 UTC"
 ---
 # 🔌 Trans-European Automated Real-time Gross settlement Express Transfer (TARGET2)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-29 06:20 UTC"
 |---|---|
 | Status | 🟢 OPEN |
 | Operating window | unknown (bad timezone) |
-| Checked at | 2026-08-29 06:20 UTC |
+| Checked at | 2026-08-29 06:21 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview
