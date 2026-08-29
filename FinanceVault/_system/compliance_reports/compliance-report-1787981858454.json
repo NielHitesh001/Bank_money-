@@ -1,0 +1,16 @@
+{
+  "reportId": "COMP-1787981858453",
+  "generatedAt": "2026-08-29T05:37:38.453Z",
+  "regulatoryStandard": "SEC Rule 17a-5 / FINRA Rule 4511",
+  "totalEntriesRecorded": 0,
+  "eventSummary": {
+    "ORDER_SUBMITTED": 0,
+    "ORDER_FILLED": 0,
+    "GUARDRAIL_TRIGGERED": 0
+  },
+  "chainIntegrityStatus": "VALID_UNBROKEN",
+  "signoff": {
+    "status": "APPROVED_FOR_INSTITUTIONAL_RECORDKEEPING",
+    "timestamp": "2026-08-29T05:37:38.454Z"
+  }
+}

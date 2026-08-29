@@ -5,7 +5,7 @@ rail_type: "RTGS"
 operator: "Federal Reserve Banks"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-29 05:32 UTC"
+last_updated: "2026-08-29 05:37 UTC"
 ---
 # 🔌 Fedwire Funds Service (FEDWIRE)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-29 05:32 UTC"
 |---|---|
 | Status | 🔴 CLOSED |
 | Operating window | closed — weekend (America/New_York) |
-| Checked at | 2026-08-29 05:32 UTC |
+| Checked at | 2026-08-29 05:37 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview
