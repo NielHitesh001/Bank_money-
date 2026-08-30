@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
 :root { font-family: Manrope, Arial, sans-serif; color: #e6eeeb; background: #070a0b; font-synthesis: none; }
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 1160px; background: #070a0b; }
+html, body { margin: 0; padding: 0; width: 100vw; height: 100vh; max-height: 100vh; overflow: hidden; background: #070a0b; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
-.intel-app { min-height: 100vh; display: flex; flex-direction: column; background: #070a0b; }
+.intel-app { width: 100vw; height: 100vh; max-height: 100vh; display: flex; flex-direction: column; overflow: hidden; background: #070a0b; }
 .topbar { height: 60px; display: flex; align-items: center; padding: 0 22px; border-bottom: 1px solid #202a29; background: #0a0e0f; flex-shrink: 0; }
 .brand { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; letter-spacing: -.03em; }
 .brand-glyph { display: grid; place-items: center; width: 25px; height: 25px; color: #07100f; background: #64dcb1; font: 700 15px Georgia; }
@@ -2530,21 +2530,33 @@ fieldset legend { margin-bottom: 12px; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 12px 16px;
-  gap: 12px;
+  padding: 8px 12px;
+  gap: 8px;
   min-height: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .trading-top-row, .risk-top-row {
   display: grid;
   grid-template-columns: 58% 42%;
-  gap: 12px;
+  gap: 8px;
+  height: 290px;
+  max-height: 290px;
+  flex-shrink: 0;
+}
+
+.trading-bottom-row, .risk-bottom-row {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .news-desk-grid {
   flex: 1;
-  padding: 12px 16px;
+  padding: 8px 12px;
   min-height: 0;
   overflow-y: auto;
 }
@@ -2635,10 +2647,14 @@ fieldset legend { margin-bottom: 12px; }
   background: #050807;
   border: 1px solid #182821;
   border-radius: 3px;
-  padding: 12px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  height: 290px;
+  max-height: 290px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .ticket-header {
@@ -3296,4 +3312,55 @@ fieldset legend { margin-bottom: 12px; }
 .risk-banner, .case-card { background: #080808; }
 .case-card.selected-case { background: #0d1713; }
 .detail-block, fieldset { border-color: #202020; }
+
+/* =============================================================================
+   Bloomberg-Style Responsive Viewport & Device Breakpoints
+   ============================================================================= */
+
+/* Laptop & Medium Screens (<= 1200px) */
+@media (max-width: 1200px) {
+  .trading-top-row, .risk-top-row {
+    grid-template-columns: 55% 45%;
+    height: 280px;
+    max-height: 280px;
+  }
+}
+
+/* Tablet Screens (<= 992px) */
+@media (max-width: 992px) {
+  html, body, .intel-app {
+    overflow-y: auto !important;
+  }
+  .trading-top-row, .risk-top-row {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+  }
+  .trading-desk-grid, .risk-desk-grid {
+    overflow-y: visible;
+  }
+  .topbar nav {
+    gap: 8px;
+    margin-left: 12px;
+  }
+  .terminal-candle-panel, .terminal-order-ticket {
+    height: 280px;
+    max-height: 280px;
+  }
+}
+
+/* Mobile Screens (<= 640px) */
+@media (max-width: 640px) {
+  .topbar {
+    padding: 0 10px;
+  }
+  .topbar nav button {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+  .workspace-desks-nav {
+    flex-wrap: wrap;
+  }
+}
+
 

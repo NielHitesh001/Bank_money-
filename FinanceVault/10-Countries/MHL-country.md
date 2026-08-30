@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/oceania
-last_updated: "2026-08-30 07:23 UTC"
+last_updated: "2026-08-30 09:08 UTC"
 ---
 # 🏦 Marshall Islands — Financial Tear Sheet
 
