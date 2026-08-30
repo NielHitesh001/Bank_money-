@@ -20,8 +20,17 @@ export const INITIAL_MARKET_TICKERS = [
   { symbol: "XAG/USD", name: "Silver Spot", assetClass: "Commodities", bid: 29.85, ask: 29.89, last: 29.87, open: 29.40, high: 30.15, low: 29.32, change: +0.47, pctChange: +1.60, volume: 6200000, pipSize: 0.01, decimals: 2 },
 
   // Global Indices & Equities
+  { symbol: "SPY", name: "SPDR S&P 500 ETF Trust", assetClass: "Equities", bid: 580.20, ask: 580.30, last: 580.25, open: 578.50, high: 581.80, low: 577.90, change: +1.75, pctChange: +0.30, volume: 64200000, pipSize: 0.01, decimals: 2 },
+  { symbol: "QQQ", name: "Invesco QQQ Nasdaq 100", assetClass: "Equities", bid: 478.40, ask: 478.50, last: 478.45, open: 473.10, high: 479.80, low: 472.50, change: +5.35, pctChange: +1.13, volume: 54100000, pipSize: 0.01, decimals: 2 },
+  { symbol: "AAPL", name: "Apple Inc.", assetClass: "Equities", bid: 228.20, ask: 228.40, last: 228.30, open: 226.50, high: 229.40, low: 225.80, change: +1.80, pctChange: +0.79, volume: 48900000, pipSize: 0.01, decimals: 2 },
+  { symbol: "MSFT", name: "Microsoft Corporation", assetClass: "Equities", bid: 418.30, ask: 418.60, last: 418.45, open: 415.20, high: 420.10, low: 414.80, change: +3.25, pctChange: +0.78, volume: 24100000, pipSize: 0.01, decimals: 2 },
+  { symbol: "NVDA", name: "NVIDIA Corporation", assetClass: "Equities", bid: 125.30, ask: 125.50, last: 125.40, open: 121.80, high: 126.80, low: 121.50, change: +3.60, pctChange: +2.96, volume: 98400000, pipSize: 0.01, decimals: 2 },
+  { symbol: "AMZN", name: "Amazon.com Inc.", assetClass: "Equities", bid: 175.40, ask: 175.60, last: 175.50, open: 173.20, high: 176.80, low: 172.90, change: +2.30, pctChange: +1.33, volume: 38200000, pipSize: 0.01, decimals: 2 },
+  { symbol: "GOOGL", name: "Alphabet Inc. (Class A)", assetClass: "Equities", bid: 164.90, ask: 165.10, last: 165.00, open: 163.50, high: 166.20, low: 163.10, change: +1.50, pctChange: +0.92, volume: 29500000, pipSize: 0.01, decimals: 2 },
+  { symbol: "META", name: "Meta Platforms Inc.", assetClass: "Equities", bid: 514.80, ask: 515.20, last: 515.00, open: 508.50, high: 518.20, low: 507.00, change: +6.50, pctChange: +1.28, volume: 18400000, pipSize: 0.01, decimals: 2 },
+  { symbol: "TSLA", name: "Tesla Inc.", assetClass: "Equities", bid: 209.80, ask: 210.20, last: 210.00, open: 204.50, high: 212.40, low: 203.80, change: +5.50, pctChange: +2.69, volume: 64200000, pipSize: 0.01, decimals: 2 },
+  { symbol: "JPM", name: "JPMorgan Chase & Co.", assetClass: "Equities", bid: 218.80, ask: 219.10, last: 218.95, open: 217.40, high: 219.80, low: 216.90, change: +1.55, pctChange: +0.71, volume: 14200000, pipSize: 0.01, decimals: 2 },
   { symbol: "SPX", name: "S&P 500 Index", assetClass: "Indices", bid: 5634.20, ask: 5635.10, last: 5634.65, open: 5590.00, high: 5642.80, low: 5585.20, change: +44.65, pctChange: +0.80, volume: 92400000, pipSize: 0.1, decimals: 2 },
-  { symbol: "QQQ", name: "Nasdaq 100 ETF", assetClass: "Indices", bid: 478.40, ask: 478.50, last: 478.45, open: 473.10, high: 479.80, low: 472.50, change: +5.35, pctChange: +1.13, volume: 54100000, pipSize: 0.01, decimals: 2 },
   { symbol: "US10Y", name: "US 10-Year Treasury Yield", assetClass: "Bonds", bid: 3.862, ask: 3.865, last: 3.864, open: 3.910, high: 3.918, low: 3.855, change: -0.046, pctChange: -1.18, volume: 15400000, pipSize: 0.001, decimals: 3 },
   { symbol: "NIFTY50", name: "NSE Nifty 50", assetClass: "Indices", bid: 25235.00, ask: 25238.00, last: 25236.50, open: 25150.00, high: 25260.00, low: 25120.00, change: +86.50, pctChange: +0.34, volume: 38200000, pipSize: 0.5, decimals: 2 },
 
@@ -40,24 +49,36 @@ export function normalizeMarketTick(rawTick, provider = "aggregated") {
   const last = Number(rawTick.last || (bid + ask) / 2);
   const open = Number(rawTick.open || last);
   const change = Number((last - open).toFixed(4));
-  const pctChange = open > 0 ? Number(((change / open) * 100).toFixed(2)) : 0;
 
   return {
     symbol: rawTick.symbol,
     name: rawTick.name || rawTick.symbol,
     assetClass: rawTick.assetClass || "FX",
-    timestamp,
     bid,
     ask,
     last,
-    open,
-    high: Math.max(rawTick.high || last, last),
-    low: Math.min(rawTick.low || last, last),
-    change,
-    pctChange,
-    volume: Number(rawTick.volume || 1000000),
+    price: last,
+    spread: Number((ask - bid).toFixed(rawTick.decimals || 4)),
+    change: Number((last - open).toFixed(rawTick.decimals || 4)),
+    pctChange: open > 0 ? Number((((last - open) / open) * 100).toFixed(2)) : 0,
+    changePct: open > 0 ? Number((((last - open) / open) * 100).toFixed(2)) : 0,
+    volume: Number(rawTick.volume || 0),
+    high: Number(rawTick.high || last),
+    low: Number(rawTick.low || last),
+    timestamp,
+    provider,
     source: provider,
-    freshness: "12ms",
-    confidence: 0.99,
   };
+}
+
+export function getMarketTickers() {
+  const map = {};
+  INITIAL_MARKET_TICKERS.forEach((item) => {
+    map[item.symbol] = {
+      ...item,
+      price: item.last,
+      changePct: item.pctChange,
+    };
+  });
+  return map;
 }

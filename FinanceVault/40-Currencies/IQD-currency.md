@@ -6,7 +6,7 @@ currency_symbol: "\u0639.\u062f"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 06:23 UTC"
+last_updated: "2026-08-30 06:53 UTC"
 ---
 # Iraqi dinar (IQD) Currency Hub
 

@@ -9,6 +9,7 @@ import { metricsRegistry } from "./middleware/metricsCollector.js";
 import { getEntities, getTransactions } from "../services/intelligenceService.js";
 import { dbClient } from "../db/dbClient.js";
 import { getUpcomingMacroEvents } from "../services/macroCalendar.js";
+import { getSearchSuggestions, resolveEntityDossier } from "../services/superSearchService.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -302,6 +303,19 @@ const server = http.createServer(async (req, res) => {
 
     if (pathname === "/api/v1/orders/pending" && req.method === "GET") {
       sendJson(res, 200, []);
+      return;
+    }
+
+    // 3g. Super Search Context-Shift API
+    if (pathname === "/api/v1/search/suggest" && req.method === "GET") {
+      const q = parsedUrl.searchParams.get("q") || "";
+      sendJson(res, 200, getSearchSuggestions(q));
+      return;
+    }
+
+    if (pathname === "/api/v1/search/entity" && req.method === "GET") {
+      const q = parsedUrl.searchParams.get("q") || "SPY";
+      sendJson(res, 200, resolveEntityDossier(q));
       return;
     }
 

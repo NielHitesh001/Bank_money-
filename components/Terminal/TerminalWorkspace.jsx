@@ -7,11 +7,18 @@ import RiskVaRPanel from "./RiskVaRPanel.jsx";
 import LiveNewsFeed from "./LiveNewsFeed.jsx";
 import InstitutionalEntityBrowser from "./InstitutionalEntityBrowser.jsx";
 
-export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity }) {
+export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, externalSymbol, focusedDossier }) {
   const [deskLayout, setDeskLayout] = useState("trading"); // "trading" | "risk" | "news" | "graph"
-  const [selectedSymbol, setSelectedSymbol] = useState("EUR/USD");
+  const [selectedSymbol, setSelectedSymbol] = useState(externalSymbol || "EUR/USD");
   const [positions, setPositions] = useState(INITIAL_PORTFOLIO_POSITIONS);
   const [accountBalance, setAccountBalance] = useState(1000000);
+
+  // Sync external symbol if changed via Super Search
+  React.useEffect(() => {
+    if (externalSymbol && externalSymbol !== selectedSymbol) {
+      setSelectedSymbol(externalSymbol);
+    }
+  }, [externalSymbol]);
 
   const handleExecuteOrder = (order) => {
     const newPosition = {

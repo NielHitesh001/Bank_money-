@@ -83,3 +83,7 @@ export const INITIAL_NEWS_ITEMS = [
     breaking: true,
   },
 ];
+
+export function fetchMacroNews() {
+  return INITIAL_NEWS_ITEMS;
+}

@@ -6,7 +6,7 @@ currency_symbol: "Rs \u0dbb\u0dd4"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 06:23 UTC"
+last_updated: "2026-08-30 06:53 UTC"
 ---
 # Sri Lankan rupee (LKR) Currency Hub
 

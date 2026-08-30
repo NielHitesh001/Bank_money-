@@ -10,6 +10,7 @@ import PaymentRailsMatrix from "./components/PaymentRailsMatrix";
 import CommandPalette from "./components/Terminal/CommandPalette.jsx";
 import LiveTickerRibbon from "./components/Terminal/LiveTickerRibbon.jsx";
 import TerminalWorkspace from "./components/Terminal/TerminalWorkspace.jsx";
+import SuperSearchBar from "./components/Terminal/SuperSearchBar.jsx";
 import { cases as initialCases, entities as initialEntities, transactions as initialTransactions } from "./data/intelligenceMock";
 import { findBidirectionalPath, findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
 import { addCaseNoteApi, checkServerHealth, fetchCasesApi, logAuditEventApi, syncCaseApi } from "./src/services/apiClient.js";
@@ -55,6 +56,8 @@ export default function Dashboard() {
   const [investigationViewMode, setInvestigationViewMode] = useState("graph"); // "graph" | "blotter"
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [serverOnline, setServerOnline] = useState(false);
+  const [focusedSymbol, setFocusedSymbol] = useState("EUR/USD");
+  const [focusedEntityDossier, setFocusedEntityDossier] = useState(null);
 
   const [workspace, setWorkspace] = useState({ entities: initialEntities, transactions: initialTransactions });
   const [query, setQuery] = useState("");
@@ -425,6 +428,23 @@ export default function Dashboard() {
             <kbd>CMD</kbd> (Cmd+K)
           </button>
         </nav>
+
+        {/* SUPER SEARCH CONTEXT-SHIFT BAR */}
+        <div style={{ marginLeft: "auto", marginRight: "12px" }}>
+          <SuperSearchBar
+            onSelectSymbol={(sym) => {
+              setFocusedSymbol(sym);
+              setActiveTab("terminal");
+            }}
+            onSelectEntity={(dossier) => {
+              setFocusedEntityDossier(dossier);
+              if (dossier.symbol) setFocusedSymbol(dossier.symbol);
+              setActiveTab("terminal");
+              recordAudit(`SuperSearch context-shift pivoted to ${dossier.query || dossier.symbol}`);
+            }}
+          />
+        </div>
+
         <div className="operator">
           <span className={`live-dot ${serverOnline ? "server-live" : ""}`} /> {serverOnline ? "API Connected" : "Local Session"}
           <label className="role-switch">
@@ -446,12 +466,17 @@ export default function Dashboard() {
       </header>
 
       {/* GLOBAL TICKER MARQUEE */}
-      <LiveTickerRibbon onSelectSymbol={() => setActiveTab("terminal")} />
+      <LiveTickerRibbon onSelectSymbol={(sym) => {
+        setFocusedSymbol(sym);
+        setActiveTab("terminal");
+      }} />
 
       {/* VIEW 0: BLOOMBERG TERMINAL WORKSPACE */}
       {activeTab === "terminal" && (
         <TerminalWorkspace
-          onSelectSymbol={() => {}}
+          externalSymbol={focusedSymbol}
+          focusedDossier={focusedEntityDossier}
+          onSelectSymbol={(sym) => setFocusedSymbol(sym)}
           onFilterEntity={(entityId) => {
             setActiveTab("investigate");
             setQuery(entityId);

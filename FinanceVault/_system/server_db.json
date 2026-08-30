@@ -2385,6 +2385,135 @@
       "hash": "ab37f62ab45d4d072758f76e0c3ddbf29be2f18d4d4e9efed0d1adc9d3eb396c",
       "sequence": 96,
       "serverTimestamp": "2026-08-30T06:28:04.403Z"
+    },
+    {
+      "id": "LOG-ORD-1788073696401-1n6hx",
+      "timestamp": "2026-08-30T07:08:16.401Z",
+      "event": "ORDER_SUBMITTED",
+      "orderId": "ORD-001",
+      "symbol": "EUR/USD",
+      "side": "BUY",
+      "qty": 10000,
+      "notional": 10874,
+      "limitPrice": null,
+      "user": "TRADER-ALICE",
+      "guardrailsApproved": true,
+      "reason": "Long carry entry",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA_PAPER"
+      },
+      "previousHash": "ab37f62ab45d4d072758f76e0c3ddbf29be2f18d4d4e9efed0d1adc9d3eb396c",
+      "hash": "61e19f4234578330c09b1b670d51431c86ebb8d0f4772008721416b40e495278",
+      "sequence": 97,
+      "serverTimestamp": "2026-08-30T07:08:16.427Z"
+    },
+    {
+      "id": "LOG-ORD-1788073696430-63vup",
+      "timestamp": "2026-08-30T07:08:16.430Z",
+      "event": "ORDER_SUBMITTED",
+      "orderId": "ORD-002",
+      "symbol": "USD/JPY",
+      "side": "SELL",
+      "qty": 5000,
+      "notional": 72715,
+      "limitPrice": null,
+      "user": "TRADER-BOB",
+      "guardrailsApproved": true,
+      "reason": "Carry short entry",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA_PAPER"
+      },
+      "previousHash": "61e19f4234578330c09b1b670d51431c86ebb8d0f4772008721416b40e495278",
+      "hash": "879c90623270e05fc53ff67b38de95c09772910b4a6a975315ede9e9ececcab6",
+      "sequence": 98,
+      "serverTimestamp": "2026-08-30T07:08:16.432Z"
+    },
+    {
+      "id": "LOG-GRD-1788073696433-ijp4i",
+      "timestamp": "2026-08-30T07:08:16.433Z",
+      "event": "GUARDRAIL_TRIGGERED",
+      "guardrailType": "MAX_NOTIONAL",
+      "rejectedOrder": {
+        "symbol": "SPX",
+        "qty": 100,
+        "notional": 563400
+      },
+      "reason": "Exceeded order cap",
+      "compliance": {
+        "rule17a5": true,
+        "action": "BLOCKED"
+      },
+      "previousHash": "879c90623270e05fc53ff67b38de95c09772910b4a6a975315ede9e9ececcab6",
+      "hash": "6939161ff20ce77f27f46556cd291416d9a7c9a374f1cb6167fa672140b1f9ef",
+      "sequence": 99,
+      "serverTimestamp": "2026-08-30T07:08:16.435Z"
+    },
+    {
+      "id": "LOG-ORD-1788073696436-2y0yx",
+      "timestamp": "2026-08-30T07:08:16.436Z",
+      "event": "ORDER_SUBMITTED",
+      "orderId": "ORD-1",
+      "symbol": "EUR/USD",
+      "qty": 1000,
+      "limitPrice": null,
+      "user": "ALICE",
+      "guardrailsApproved": true,
+      "reason": "Institutional Execution",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA_PAPER"
+      },
+      "previousHash": "6939161ff20ce77f27f46556cd291416d9a7c9a374f1cb6167fa672140b1f9ef",
+      "hash": "95635819fb421a91d8603ceb810524ca2640d8ac462c0c2930b519bb3cd2d934",
+      "sequence": 100,
+      "serverTimestamp": "2026-08-30T07:08:16.439Z"
+    },
+    {
+      "id": "LOG-ORD-1788073696440-6xqid",
+      "timestamp": "2026-08-30T07:08:16.440Z",
+      "event": "ORDER_SUBMITTED",
+      "orderId": "ORD-2",
+      "symbol": "USD/JPY",
+      "qty": 2000,
+      "limitPrice": null,
+      "user": "BOB",
+      "guardrailsApproved": true,
+      "reason": "Institutional Execution",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA_PAPER"
+      },
+      "previousHash": "95635819fb421a91d8603ceb810524ca2640d8ac462c0c2930b519bb3cd2d934",
+      "hash": "8c46715ab357d902f45f0d6317cbc8e481daaf94a31fc591d4ce6c78f17545a2",
+      "sequence": 101,
+      "serverTimestamp": "2026-08-30T07:08:16.440Z"
+    },
+    {
+      "id": "LOG-ORD-1788073696430-sk5vm",
+      "timestamp": "2026-08-30T07:08:16.430Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "EUR/USD",
+      "side": "BUY",
+      "notional": 10874,
+      "limitPrice": 1.0874,
+      "user": "TRADER-01",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "8c46715ab357d902f45f0d6317cbc8e481daaf94a31fc591d4ce6c78f17545a2",
+      "hash": "e6fe3c8d75b64261dc7810416e94f0cb42c77823cf5f88bd8f129e39908edb33",
+      "sequence": 102,
+      "serverTimestamp": "2026-08-30T07:08:16.443Z"
     }
   ]
 }
