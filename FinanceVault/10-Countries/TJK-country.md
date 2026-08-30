@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-30 09:38 UTC"
+last_updated: "2026-08-30 09:53 UTC"
 ---
 # 🏦 Tajikistan — Financial Tear Sheet
 

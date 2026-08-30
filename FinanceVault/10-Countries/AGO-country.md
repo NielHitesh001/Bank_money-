@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-30 09:38 UTC"
+last_updated: "2026-08-30 09:53 UTC"
 ---
 # 🏦 Angola — Financial Tear Sheet
 
