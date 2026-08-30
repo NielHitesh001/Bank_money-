@@ -2554,10 +2554,13 @@ fieldset legend { margin-bottom: 12px; }
   background: #050807;
   border: 1px solid #182821;
   border-radius: 3px;
-  padding: 12px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  height: 290px;
+  max-height: 290px;
+  box-sizing: border-box;
 }
 
 .candle-header {

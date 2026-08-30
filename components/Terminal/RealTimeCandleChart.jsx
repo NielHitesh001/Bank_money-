@@ -125,10 +125,10 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
   }, [candles, ticker.decimals]);
 
   // Chart Geometry
-  const rsiHeight = showRSI ? 55 : 0;
-  const padding = { top: 18, right: 55, bottom: 22, left: 10 };
-  const mainChartHeight = Math.max(160, dimensions.height - rsiHeight - 75);
-  const chartWidth = dimensions.width - 20;
+  const rsiHeight = showRSI ? 48 : 0;
+  const padding = { top: 14, right: 55, bottom: 18, left: 10 };
+  const mainChartHeight = showRSI ? 142 : 190;
+  const chartWidth = Math.max(380, dimensions.width - 20);
 
   const { minPrice, maxPrice, priceRange } = useMemo(() => {
     if (!candles.length) return { minPrice: 0, maxPrice: 1, priceRange: 1 };
@@ -151,7 +151,7 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
   const isOverallUp = priceChange >= 0;
 
   return (
-    <div ref={containerRef} className="terminal-candle-panel" style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
+    <div ref={containerRef} className="terminal-candle-panel" style={{ width: "100%", height: "290px", maxHeight: "290px", boxSizing: "border-box", display: "flex", flexDirection: "column", overflow: "hidden" }}>
       {/* Header Controls Bar */}
       <div className="candle-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", marginBottom: "4px" }}>
         <div className="candle-title-group" style={{ display: "flex", alignItems: "center", gap: "10px" }}>

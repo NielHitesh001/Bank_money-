@@ -6,7 +6,7 @@ currency_symbol: "G"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 07:08 UTC"
+last_updated: "2026-08-30 07:23 UTC"
 ---
 # Haitian gourde (HTG) Currency Hub
 
