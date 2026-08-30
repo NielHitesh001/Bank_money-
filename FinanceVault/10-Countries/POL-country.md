@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-30 09:08 UTC"
+last_updated: "2026-08-30 09:23 UTC"
 ---
 # 🏦 Poland — Financial Tear Sheet
 

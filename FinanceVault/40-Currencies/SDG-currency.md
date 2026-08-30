@@ -6,7 +6,7 @@ currency_symbol: "PT"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:08 UTC"
+last_updated: "2026-08-30 09:23 UTC"
 ---
 # Sudanese pound (SDG) Currency Hub
 
