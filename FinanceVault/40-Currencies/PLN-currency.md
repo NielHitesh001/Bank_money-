@@ -6,7 +6,7 @@ currency_symbol: "z\u0142"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 05:38 UTC"
+last_updated: "2026-08-30 06:08 UTC"
 ---
 # Polish złoty (PLN) Currency Hub
 

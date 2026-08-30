@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-30 05:38 UTC"
+last_updated: "2026-08-30 06:08 UTC"
 ---
 # 🏦 Antigua and Barbuda — Financial Tear Sheet
 

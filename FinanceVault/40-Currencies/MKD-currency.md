@@ -6,7 +6,7 @@ currency_symbol: "den"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 05:38 UTC"
+last_updated: "2026-08-30 06:08 UTC"
 ---
 # denar (MKD) Currency Hub
 

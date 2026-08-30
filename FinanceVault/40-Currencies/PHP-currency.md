@@ -6,7 +6,7 @@ currency_symbol: "\u20b1"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 05:38 UTC"
+last_updated: "2026-08-30 06:08 UTC"
 ---
 # Philippine peso (PHP) Currency Hub
 
