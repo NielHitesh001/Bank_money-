@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-30 06:08 UTC"
+last_updated: "2026-08-30 06:23 UTC"
 ---
 # 🏦 Kenya — Financial Tear Sheet
 

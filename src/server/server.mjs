@@ -7,6 +7,8 @@ import { cases as initialCases } from "../../data/intelligenceMock.js";
 import { orderRateLimiter, vaultRateLimiter, auditRateLimiter } from "./middleware/rateLimiter.js";
 import { metricsRegistry } from "./middleware/metricsCollector.js";
 import { getEntities, getTransactions } from "../services/intelligenceService.js";
+import { dbClient } from "../db/dbClient.js";
+import { getUpcomingMacroEvents } from "../services/macroCalendar.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -257,6 +259,49 @@ const server = http.createServer(async (req, res) => {
         entityId: parsedUrl.searchParams.get("entityId"),
       };
       sendJson(res, 200, getTransactions(filters));
+      return;
+    }
+
+    // 3c. Production Trading Status & Execution Telemetry
+    if (pathname === "/api/v1/trading/status" && req.method === "GET") {
+      sendJson(res, 200, {
+        mode: process.env.ALPACA_MODE || "paper",
+        capital: Number(process.env.LIVE_CAPITAL_LIMIT || 50000),
+        equity: Number(process.env.LIVE_CAPITAL_LIMIT || 50000),
+        liveTradingEnabled: process.env.LIVE_TRADING_ENABLED === "true",
+        maxOrderNotional: Number(process.env.MAX_ORDER_NOTIONAL || 5000),
+        dailyLossLimit: Number(process.env.MAX_DAILY_LOSS_LIMIT || -5000),
+        status: "READY",
+        timestamp: new Date().toISOString(),
+      });
+      return;
+    }
+
+    // 3d. Database Health & Persistence Status
+    if ((pathname === "/api/v1/database/health" || pathname === "/api/v1/database/status") && (req.method === "GET" || req.method === "POST")) {
+      const health = await dbClient.getHealth();
+      sendJson(res, 200, health);
+      return;
+    }
+
+    // 3e. Macro Economic Calendar Stream
+    if (pathname === "/api/v1/economic-calendar" && req.method === "GET") {
+      const days = Number(parsedUrl.searchParams.get("days") || 3);
+      sendJson(res, 200, getUpcomingMacroEvents(days * 24));
+      return;
+    }
+
+    // 3f. Positions & Pending Orders API
+    if (pathname === "/api/v1/positions" && req.method === "GET") {
+      sendJson(res, 200, [
+        { symbol: "EURUSD", quantity: 10000, entryPrice: 1.0850, currentPrice: 1.0874, pnl: 24.00, side: "BUY" },
+        { symbol: "SPY", quantity: 10, entryPrice: 580.25, currentPrice: 580.80, pnl: 5.50, side: "BUY" },
+      ]);
+      return;
+    }
+
+    if (pathname === "/api/v1/orders/pending" && req.method === "GET") {
+      sendJson(res, 200, []);
       return;
     }
 

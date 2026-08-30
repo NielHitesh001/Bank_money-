@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "world-money-terminal-backend"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["terminal-os:8766"]
+
+rule_files:
+  - "rules.yml"

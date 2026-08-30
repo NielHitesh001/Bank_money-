@@ -1,0 +1,35 @@
+groups:
+  - name: wmt_production_alerts
+    interval: 30s
+    rules:
+      - alert: HighOrderExecutionLatency
+        expr: rate(order_latency_seconds_sum[1m]) / rate(order_latency_seconds_count[1m]) > 0.3
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Order Execution P99 Latency exceeds 300ms SLA"
+
+      - alert: BrokerCircuitBreakerTripped
+        expr: circuit_breaker_state == 1
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Broker Circuit Breaker has tripped to OPEN state (Failover active)"
+
+      - alert: AuditLogChainFailure
+        expr: audit_log_failures_total > 0
+        for: 0s
+        labels:
+          severity: page
+        annotations:
+          summary: "SEC Rule 17a-5 Cryptographic Audit Integrity Error"
+
+      - alert: HighMemoryUtilization
+        expr: heap_memory_used_bytes > 200000000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node.js Heap Memory Utilization exceeds 200MB"

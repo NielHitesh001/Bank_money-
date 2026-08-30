@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-30 06:08 UTC"
+last_updated: "2026-08-30 06:23 UTC"
 ---
 # 🏦 Costa Rica — Financial Tear Sheet
 

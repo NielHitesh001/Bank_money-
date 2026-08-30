@@ -1,0 +1,93 @@
+version: "3.8"
+
+services:
+  terminal-os:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wmt-terminal-os-prod
+    restart: unless-stopped
+    ports:
+      - "8766:8766"
+      - "5173:5173"
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:wmt_secure_prod_2026@postgres:5432/world_money_terminal_production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - audit_data:/app/.deployment/audit_records
+      - vault_data:/app/FinanceVault/_system
+    networks:
+      - wmt-internal-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: wmt-postgres-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: wmt_secure_prod_2026
+      POSTGRES_DB: world_money_terminal_production
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./scripts/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - wmt-internal-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: wmt-prometheus-prod
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/rules.yml:/etc/prometheus/rules.yml:ro
+      - prom_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=90d"
+    depends_on:
+      - terminal-os
+    networks:
+      - wmt-internal-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: wmt-grafana-prod
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=wmt_operator_admin_2026
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - wmt-internal-network
+
+volumes:
+  pg_data:
+  audit_data:
+  vault_data:
+  prom_data:
+  grafana_data:
+
+networks:
+  wmt-internal-network:
+    driver: bridge
