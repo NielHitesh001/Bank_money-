@@ -6,7 +6,7 @@ currency_symbol: "\u060b"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 06:53 UTC"
+last_updated: "2026-08-30 07:08 UTC"
 ---
 # Afghan afghani (AFN) Currency Hub
 

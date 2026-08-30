@@ -6,7 +6,7 @@ currency_symbol: "\u00a3"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 06:53 UTC"
+last_updated: "2026-08-30 07:08 UTC"
 ---
 # Syrian pound (SYP) Currency Hub
 

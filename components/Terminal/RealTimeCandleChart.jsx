@@ -1,21 +1,33 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { wsMarketManager } from "../../src/services/wsManager.js";
 
-function generateInitialCandles(basePrice, decimals = 4, count = 30) {
-  const candles = [];
-  let current = basePrice;
-  const now = Date.now();
-  const step = 60 * 1000;
+const TIMEFRAME_CONFIG = {
+  "1M": { count: 35, stepMs: 60 * 1000, label: "1-Minute" },
+  "5M": { count: 40, stepMs: 5 * 60 * 1000, label: "5-Minute" },
+  "15M": { count: 45, stepMs: 15 * 60 * 1000, label: "15-Minute" },
+  "1H": { count: 30, stepMs: 60 * 60 * 1000, label: "1-Hour" },
+  "1D": { count: 30, stepMs: 24 * 60 * 60 * 1000, label: "Daily" },
+};
 
-  for (let i = count; i >= 0; i--) {
-    const time = new Date(now - i * step);
-    const timeStr = time.toTimeString().slice(0, 5);
-    const vol = (Math.random() - 0.49) * 0.003 * current;
+function generateRealisticCandles(basePrice, decimals = 2, timeframe = "1M") {
+  const config = TIMEFRAME_CONFIG[timeframe] || TIMEFRAME_CONFIG["1M"];
+  const candles = [];
+  let current = Number(basePrice) || 100;
+  const now = Date.now();
+
+  for (let i = config.count; i >= 0; i--) {
+    const time = new Date(now - i * config.stepMs);
+    const timeStr = timeframe === "1D" 
+      ? time.toISOString().slice(5, 10) 
+      : time.toTimeString().slice(0, 5);
+
+    const volatility = (Math.random() - 0.49) * 0.004 * current;
     const open = Number(current.toFixed(decimals));
-    const close = Number((current + vol).toFixed(decimals));
-    const high = Number((Math.max(open, close) + Math.random() * 0.0015 * current).toFixed(decimals));
-    const low = Number((Math.min(open, close) - Math.random() * 0.0015 * current).toFixed(decimals));
-    const volume = Math.floor(Math.random() * 25000) + 5000;
+    const close = Number((current + volatility).toFixed(decimals));
+    const wickSpread = Math.random() * 0.002 * current;
+    const high = Number((Math.max(open, close) + wickSpread).toFixed(decimals));
+    const low = Number((Math.min(open, close) - wickSpread).toFixed(decimals));
+    const volume = Math.floor(Math.random() * 45000) + 8000;
 
     candles.push({ time: timeStr, open, high, low, close, volume });
     current = close;
@@ -28,43 +40,74 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
   const [showSMA, setShowSMA] = useState(true);
   const [showRSI, setShowRSI] = useState(true);
   const [hoveredCandle, setHoveredCandle] = useState(null);
+  const [dimensions, setDimensions] = useState({ width: 620, height: 260 });
+  const containerRef = useRef(null);
 
-  const initialTicker = useMemo(() => wsMarketManager.getTicker(symbol) || { last: 1.0873, decimals: 4 }, [symbol]);
-  const [candles, setCandles] = useState(() => generateInitialCandles(initialTicker.last, initialTicker.decimals || 4));
+  // Retrieve initial ticker metadata
+  const ticker = useMemo(() => {
+    return wsMarketManager.getTicker(symbol) || {
+      symbol,
+      name: symbol,
+      last: symbol.includes("USD") && !symbol.includes("/") ? 580.25 : 1.0874,
+      decimals: symbol.includes("JPY") || !symbol.includes("/") ? 2 : 4,
+      pctChange: +0.45,
+    };
+  }, [symbol]);
 
-  // Listen for live ticks on selected symbol
+  const [candles, setCandles] = useState(() => 
+    generateRealisticCandles(ticker.last, ticker.decimals || 2, timeframe)
+  );
+
+  // Responsive container observer
   useEffect(() => {
-    setCandles(generateInitialCandles(initialTicker.last, initialTicker.decimals || 4));
+    if (!containerRef.current) return;
+    const updateSize = () => {
+      if (containerRef.current) {
+        setDimensions({
+          width: Math.max(380, containerRef.current.clientWidth || 620),
+          height: Math.max(220, containerRef.current.clientHeight || 260),
+        });
+      }
+    };
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Regenerate candles when symbol or timeframe changes
+  useEffect(() => {
+    const freshCandles = generateRealisticCandles(ticker.last, ticker.decimals || 2, timeframe);
+    setCandles(freshCandles);
 
     const unsubscribe = wsMarketManager.subscribeSymbol(symbol, (tick) => {
       setCandles((prev) => {
-        if (!prev.length) return prev;
+        if (!prev || !prev.length) return prev;
         const lastCandle = { ...prev[prev.length - 1] };
         const price = tick.last;
 
         lastCandle.close = price;
         lastCandle.high = Math.max(lastCandle.high, price);
         lastCandle.low = Math.min(lastCandle.low, price);
-        lastCandle.volume += 500;
+        lastCandle.volume += Math.floor(Math.random() * 800) + 200;
 
         return [...prev.slice(0, -1), lastCandle];
       });
     });
 
     return () => unsubscribe();
-  }, [symbol, initialTicker]);
+  }, [symbol, timeframe, ticker]);
 
-  // Compute SMA 20 & RSI 14
+  // Technical Indicators: SMA 20 & RSI 14
   const technicals = useMemo(() => {
     const closes = candles.map((c) => c.close);
     const sma20 = closes.map((_, i, arr) => {
       if (i < 19) return null;
       const slice = arr.slice(i - 19, i + 1);
-      return Number((slice.reduce((a, b) => a + b, 0) / 20).toFixed(initialTicker.decimals || 4));
+      return Number((slice.reduce((a, b) => a + b, 0) / 20).toFixed(ticker.decimals || 2));
     });
 
-    // Simple RSI 14 calculation
-    const rsi14 = closes.map((val, i, arr) => {
+    const rsi14 = closes.map((_, i, arr) => {
       if (i < 14) return 50;
       let gains = 0;
       let losses = 0;
@@ -79,57 +122,78 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
     });
 
     return { sma20, rsi14 };
-  }, [candles, initialTicker.decimals]);
+  }, [candles, ticker.decimals]);
 
-  // SVG Chart Geometry
-  const chartWidth = 580;
-  const chartHeight = 220;
-  const rsiHeight = showRSI ? 60 : 0;
-  const padding = { top: 15, right: 45, bottom: 25, left: 10 };
+  // Chart Geometry
+  const rsiHeight = showRSI ? 55 : 0;
+  const padding = { top: 18, right: 55, bottom: 22, left: 10 };
+  const mainChartHeight = Math.max(160, dimensions.height - rsiHeight - 75);
+  const chartWidth = dimensions.width - 20;
 
   const { minPrice, maxPrice, priceRange } = useMemo(() => {
+    if (!candles.length) return { minPrice: 0, maxPrice: 1, priceRange: 1 };
     const lows = candles.map((c) => c.low);
     const highs = candles.map((c) => c.high);
     const min = Math.min(...lows);
     const max = Math.max(...highs);
-    const range = max - min || 0.0001;
-    return { minPrice: min - range * 0.05, maxPrice: max + range * 0.05, priceRange: range * 1.1 };
+    const range = max - min || 0.01;
+    return { 
+      minPrice: min - range * 0.05, 
+      maxPrice: max + range * 0.05, 
+      priceRange: range * 1.1 
+    };
   }, [candles]);
 
-  const candleWidth = (chartWidth - padding.left - padding.right) / candles.length;
+  const candleWidth = Math.max(4, (chartWidth - padding.left - padding.right) / (candles.length || 1));
+  const latestPrice = candles[candles.length - 1]?.close || ticker.last;
+  const priceChange = candles.length > 1 ? latestPrice - candles[0].open : 0;
+  const priceChangePct = candles.length > 1 && candles[0].open > 0 ? (priceChange / candles[0].open) * 100 : 0;
+  const isOverallUp = priceChange >= 0;
 
   return (
-    <div className="terminal-candle-panel">
-      {/* Chart Header Bar */}
-      <div className="candle-header">
-        <div className="candle-title-group">
-          <span className="eyebrow">REAL-TIME CANDLESTICK & TECHNICALS</span>
-          <h3>{symbol}</h3>
+    <div ref={containerRef} className="terminal-candle-panel" style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
+      {/* Header Controls Bar */}
+      <div className="candle-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px", marginBottom: "4px" }}>
+        <div className="candle-title-group" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
+            <span className="eyebrow" style={{ fontSize: "9px", color: "#64dcb1", letterSpacing: "0.5px" }}>
+              LIVE TICKER STREAM
+            </span>
+            <h3 style={{ margin: 0, fontSize: "16px", color: "#f0fdf4", display: "flex", alignItems: "center", gap: "8px" }}>
+              {symbol}
+              <span style={{ fontSize: "13px", color: isOverallUp ? "#52d6aa" : "#ff5b6e" }}>
+                ${latestPrice.toFixed(ticker.decimals || 2)} ({isOverallUp ? "+" : ""}{priceChangePct.toFixed(2)}%)
+              </span>
+            </h3>
+          </div>
         </div>
 
-        <div className="candle-controls">
-          <div className="timeframe-buttons">
+        <div className="candle-controls" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div className="timeframe-buttons" style={{ display: "flex", gap: "2px" }}>
             {["1M", "5M", "15M", "1H", "1D"].map((tf) => (
               <button
                 key={tf}
                 className={`tf-btn ${timeframe === tf ? "active" : ""}`}
                 onClick={() => setTimeframe(tf)}
+                style={{ fontSize: "10px", padding: "2px 6px" }}
               >
                 {tf}
               </button>
             ))}
           </div>
 
-          <div className="tech-toggles">
+          <div className="tech-toggles" style={{ display: "flex", gap: "4px" }}>
             <button
               className={`tech-toggle-btn ${showSMA ? "active" : ""}`}
               onClick={() => setShowSMA(!showSMA)}
+              style={{ fontSize: "10px", padding: "2px 6px" }}
             >
               SMA 20
             </button>
             <button
               className={`tech-toggle-btn ${showRSI ? "active" : ""}`}
               onClick={() => setShowRSI(!showRSI)}
+              style={{ fontSize: "10px", padding: "2px 6px" }}
             >
               RSI 14
             </button>
@@ -137,38 +201,39 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
         </div>
       </div>
 
-      {/* Hover Info Bar */}
-      <div className="candle-hover-info">
+      {/* Hover OHLCV Status Strip */}
+      <div className="candle-hover-info" style={{ fontSize: "10px", background: "#060a08", padding: "3px 8px", borderRadius: "3px", marginBottom: "4px", display: "flex", gap: "12px", color: "#8da49c" }}>
         {hoveredCandle ? (
           <>
-            <span>TIME: <b>{hoveredCandle.time}</b></span>
-            <span>O: <b>{hoveredCandle.open}</b></span>
-            <span>H: <b>{hoveredCandle.high}</b></span>
-            <span>L: <b>{hoveredCandle.low}</b></span>
-            <span>C: <b>{hoveredCandle.close}</b></span>
-            <span>VOL: <b>{(hoveredCandle.volume / 1000).toFixed(1)}k</b></span>
+            <span>TIME: <b style={{ color: "#f0fdf4" }}>{hoveredCandle.time}</b></span>
+            <span>O: <b style={{ color: "#f0fdf4" }}>{hoveredCandle.open}</b></span>
+            <span>H: <b style={{ color: "#52d6aa" }}>{hoveredCandle.high}</b></span>
+            <span>L: <b style={{ color: "#ff5b6e" }}>{hoveredCandle.low}</b></span>
+            <span>C: <b style={{ color: "#f0fdf4" }}>{hoveredCandle.close}</b></span>
+            <span>VOL: <b style={{ color: "#76e2b5" }}>{(hoveredCandle.volume / 1000).toFixed(1)}k</b></span>
           </>
         ) : (
-          <span>Hover over candles to inspect OHLCV parameters</span>
+          <span>Hover over candles to inspect OHLCV parameters · Timeframe: {timeframe}</span>
         )}
       </div>
 
-      {/* Main SVG Candlestick Canvas */}
-      <div className="candle-svg-container">
+      {/* Responsive SVG Chart Canvas */}
+      <div className="candle-svg-container" style={{ flex: 1, minHeight: "180px", position: "relative" }}>
         <svg
-          viewBox={`0 0 ${chartWidth} ${chartHeight + rsiHeight}`}
+          viewBox={`0 0 ${chartWidth} ${mainChartHeight + rsiHeight}`}
           className="candle-svg"
+          style={{ width: "100%", height: "100%", display: "block" }}
           onMouseLeave={() => setHoveredCandle(null)}
         >
           {/* Price Gridlines */}
-          {[0.25, 0.5, 0.75].map((pct, i) => {
-            const y = padding.top + pct * (chartHeight - padding.top - padding.bottom);
+          {[0.2, 0.4, 0.6, 0.8].map((pct, i) => {
+            const y = padding.top + pct * (mainChartHeight - padding.top - padding.bottom);
             const price = maxPrice - pct * priceRange;
             return (
               <g key={i}>
-                <line x1={padding.left} y1={y} x2={chartWidth - padding.right} y2={y} stroke="#17221e" strokeDasharray="2 3" />
-                <text x={chartWidth - padding.right + 6} y={y + 3} fill="#5d726c" fontSize="8" fontFamily="DM Mono">
-                  {price.toFixed(initialTicker.decimals || 4)}
+                <line x1={padding.left} y1={y} x2={chartWidth - padding.right} y2={y} stroke="#13201a" strokeDasharray="2 3" />
+                <text x={chartWidth - padding.right + 6} y={y + 3} fill="#5d726c" fontSize="9" fontFamily="DM Mono">
+                  {price.toFixed(ticker.decimals || 2)}
                 </text>
               </g>
             );
@@ -177,13 +242,13 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
           {/* Candlesticks */}
           {candles.map((c, i) => {
             const x = padding.left + i * candleWidth + candleWidth / 2;
-            const openY = padding.top + ((maxPrice - c.open) / priceRange) * (chartHeight - padding.top - padding.bottom);
-            const closeY = padding.top + ((maxPrice - c.close) / priceRange) * (chartHeight - padding.top - padding.bottom);
-            const highY = padding.top + ((maxPrice - c.high) / priceRange) * (chartHeight - padding.top - padding.bottom);
-            const lowY = padding.top + ((maxPrice - c.low) / priceRange) * (chartHeight - padding.top - padding.bottom);
+            const openY = padding.top + ((maxPrice - c.open) / priceRange) * (mainChartHeight - padding.top - padding.bottom);
+            const closeY = padding.top + ((maxPrice - c.close) / priceRange) * (mainChartHeight - padding.top - padding.bottom);
+            const highY = padding.top + ((maxPrice - c.high) / priceRange) * (mainChartHeight - padding.top - padding.bottom);
+            const lowY = padding.top + ((maxPrice - c.low) / priceRange) * (mainChartHeight - padding.top - padding.bottom);
 
             const isUp = c.close >= c.open;
-            const color = isUp ? "#64dcb1" : "#ff5b6e";
+            const color = isUp ? "#52d6aa" : "#ff5b6e";
             const bodyY = Math.min(openY, closeY);
             const bodyHeight = Math.max(Math.abs(closeY - openY), 1.5);
 
@@ -195,24 +260,24 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
               >
                 {/* Wick */}
                 <line x1={x} y1={highY} x2={x} y2={lowY} stroke={color} strokeWidth="1" />
-                {/* Body */}
+                {/* Candle Body */}
                 <rect
                   x={x - candleWidth * 0.35}
                   y={bodyY}
-                  width={candleWidth * 0.7}
+                  width={Math.max(2, candleWidth * 0.7)}
                   height={bodyHeight}
                   fill={color}
                   stroke={color}
                   strokeWidth="0.5"
                 />
-                {/* Volume bar at bottom */}
+                {/* Volume Bar */}
                 <rect
                   x={x - candleWidth * 0.3}
-                  y={chartHeight - padding.bottom - (c.volume / 30000) * 22}
-                  width={candleWidth * 0.6}
-                  height={(c.volume / 30000) * 22}
+                  y={mainChartHeight - padding.bottom - (c.volume / 50000) * 20}
+                  width={Math.max(1, candleWidth * 0.6)}
+                  height={(c.volume / 50000) * 20}
                   fill={color}
-                  opacity="0.3"
+                  opacity="0.25"
                 />
               </g>
             );
@@ -225,7 +290,7 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
                 .map((val, i) => {
                   if (val === null) return "";
                   const x = padding.left + i * candleWidth + candleWidth / 2;
-                  const y = padding.top + ((maxPrice - val) / priceRange) * (chartHeight - padding.top - padding.bottom);
+                  const y = padding.top + ((maxPrice - val) / priceRange) * (mainChartHeight - padding.top - padding.bottom);
                   return `${i === 19 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
                 })
                 .filter(Boolean)
@@ -238,20 +303,21 @@ export default function RealTimeCandleChart({ symbol = "EUR/USD" }) {
 
           {/* RSI 14 Sub-panel */}
           {showRSI && (
-            <g transform={`translate(0, ${chartHeight})`}>
-              <line x1={padding.left} y1="0" x2={chartWidth - padding.right} y2="0" stroke="#22352d" />
-              {/* Overbought / Oversold thresholds */}
-              <line x1={padding.left} y1="18" x2={chartWidth - padding.right} y2="18" stroke="#ff5b6e" strokeDasharray="2 2" strokeWidth="0.7" />
-              <text x={chartWidth - padding.right + 6} y="21" fill="#ff5b6e" fontSize="7" fontFamily="DM Mono">70</text>
-              <line x1={padding.left} y1="42" x2={chartWidth - padding.right} y2="42" stroke="#64dcb1" strokeDasharray="2 2" strokeWidth="0.7" />
-              <text x={chartWidth - padding.right + 6} y="45" fill="#64dcb1" fontSize="7" fontFamily="DM Mono">30</text>
+            <g transform={`translate(0, ${mainChartHeight})`}>
+              <line x1={padding.left} y1="0" x2={chartWidth - padding.right} y2="0" stroke="#1a2c24" />
+              {/* 70 Overbought line */}
+              <line x1={padding.left} y1="15" x2={chartWidth - padding.right} y2="15" stroke="#ff5b6e" strokeDasharray="2 2" strokeWidth="0.7" />
+              <text x={chartWidth - padding.right + 6} y="18" fill="#ff5b6e" fontSize="7" fontFamily="DM Mono">70</text>
+              {/* 30 Oversold line */}
+              <line x1={padding.left} y1="38" x2={chartWidth - padding.right} y2="38" stroke="#52d6aa" strokeDasharray="2 2" strokeWidth="0.7" />
+              <text x={chartWidth - padding.right + 6} y="41" fill="#52d6aa" fontSize="7" fontFamily="DM Mono">30</text>
 
-              {/* RSI Path */}
+              {/* RSI Oscillating Path */}
               <path
                 d={technicals.rsi14
                   .map((val, i) => {
                     const x = padding.left + i * candleWidth + candleWidth / 2;
-                    const y = 60 - (val / 100) * 60;
+                    const y = 50 - (val / 100) * 50;
                     return `${i === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
                   })
                   .join(" ")}
