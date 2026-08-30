@@ -5,7 +5,7 @@ rail_type: "RTGS/hybrid"
 operator: "PBOC"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-30 09:35 UTC"
+last_updated: "2026-08-30 09:41 UTC"
 ---
 # 🔌 Cross-Border Interbank Payment System (CIPS)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-30 09:35 UTC"
 |---|---|
 | Status | 🔴 CLOSED |
 | Operating window | closed — weekend (Asia/Shanghai) |
-| Checked at | 2026-08-30 09:35 UTC |
+| Checked at | 2026-08-30 09:41 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

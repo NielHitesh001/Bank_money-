@@ -6,7 +6,7 @@ currency_symbol: "C$"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:23 UTC"
+last_updated: "2026-08-30 09:38 UTC"
 ---
 # Nicaraguan córdoba (NIO) Currency Hub
 

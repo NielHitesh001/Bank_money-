@@ -8,6 +8,7 @@ import LiveNewsFeed from "./LiveNewsFeed.jsx";
 import InstitutionalEntityBrowser from "./InstitutionalEntityBrowser.jsx";
 import LeftPanel from "./LeftPanel/LeftPanel.jsx";
 import RightPanel from "./RightPanel/RightPanel.jsx";
+import "../../src/styles/terminal-layout.css";
 
 export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, externalSymbol, focusedDossier }) {
   const [deskLayout, setDeskLayout] = useState("trading"); // "trading" | "risk" | "news" | "graph"

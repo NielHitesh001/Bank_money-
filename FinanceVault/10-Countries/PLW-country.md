@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/oceania
-last_updated: "2026-08-30 09:23 UTC"
+last_updated: "2026-08-30 09:38 UTC"
 ---
 # 🏦 Palau — Financial Tear Sheet
 

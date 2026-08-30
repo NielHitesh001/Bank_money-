@@ -6,7 +6,7 @@ currency_symbol: "\u20b8"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:23 UTC"
+last_updated: "2026-08-30 09:38 UTC"
 ---
 # Kazakhstani tenge (KZT) Currency Hub
 

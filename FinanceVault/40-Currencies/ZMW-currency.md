@@ -6,7 +6,7 @@ currency_symbol: "ZK"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:23 UTC"
+last_updated: "2026-08-30 09:38 UTC"
 ---
 # Zambian kwacha (ZMW) Currency Hub
 

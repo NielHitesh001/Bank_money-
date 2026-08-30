@@ -6,7 +6,7 @@ currency_symbol: "\u20a8"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:23 UTC"
+last_updated: "2026-08-30 09:38 UTC"
 ---
 # Pakistani rupee (PKR) Currency Hub
 
