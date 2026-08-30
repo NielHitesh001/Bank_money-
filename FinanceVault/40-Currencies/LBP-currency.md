@@ -6,7 +6,7 @@ currency_symbol: "\u0644.\u0644"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 05:08 UTC"
+last_updated: "2026-08-30 05:38 UTC"
 ---
 # Lebanese pound (LBP) Currency Hub
 

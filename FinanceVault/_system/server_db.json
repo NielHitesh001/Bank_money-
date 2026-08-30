@@ -39,6 +39,16 @@
   ],
   "audit": [
     {
+      "sequence": 65,
+      "event": "inspected entity Saudi Arabia Regional Bank 33 from live news feed wire",
+      "timestamp": "2026-08-30T05:19:42.792Z"
+    },
+    {
+      "sequence": 64,
+      "event": "inspected entity British Virgin Islands Asset Manager 35 from live news feed wire",
+      "timestamp": "2026-08-30T05:19:22.256Z"
+    },
+    {
       "sequence": 63,
       "event": "opened CASE-1837",
       "timestamp": "2026-08-29T14:55:00.844Z"
