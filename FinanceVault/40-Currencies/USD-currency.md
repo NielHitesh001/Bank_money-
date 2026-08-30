@@ -6,7 +6,7 @@ currency_symbol: "$"
 country_count: 6
 tags:
   - finance/currency
-last_updated: "2026-08-29 06:47 UTC"
+last_updated: "2026-08-30 05:08 UTC"
 ---
 # United States dollar (USD) Currency Hub
 

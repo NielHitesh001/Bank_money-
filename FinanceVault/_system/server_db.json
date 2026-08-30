@@ -39,6 +39,91 @@
   ],
   "audit": [
     {
+      "sequence": 63,
+      "event": "opened CASE-1837",
+      "timestamp": "2026-08-29T14:55:00.844Z"
+    },
+    {
+      "sequence": 62,
+      "event": "opened CASE-1829",
+      "timestamp": "2026-08-29T14:55:00.302Z"
+    },
+    {
+      "sequence": 61,
+      "event": "opened CASE-1837",
+      "timestamp": "2026-08-29T14:54:59.560Z"
+    },
+    {
+      "sequence": 60,
+      "event": "opened CASE-1829",
+      "timestamp": "2026-08-29T14:54:58.728Z"
+    },
+    {
+      "sequence": 59,
+      "event": "trace origin set to BLACKROCK-US",
+      "timestamp": "2026-08-29T14:54:56.369Z"
+    },
+    {
+      "sequence": 58,
+      "event": "trace origin set to BLACKROCK-US",
+      "timestamp": "2026-08-29T14:54:55.932Z"
+    },
+    {
+      "sequence": 57,
+      "event": "trace origin set to BLACKROCK-US",
+      "timestamp": "2026-08-29T14:54:54.977Z"
+    },
+    {
+      "sequence": 56,
+      "event": "trace origin set to BLACKROCK-US",
+      "timestamp": "2026-08-29T14:54:54.344Z"
+    },
+    {
+      "sequence": 55,
+      "event": "inspected entity ORION-KY",
+      "timestamp": "2026-08-29T14:54:52.549Z"
+    },
+    {
+      "sequence": 54,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-29T14:54:19.376Z"
+    },
+    {
+      "sequence": 53,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-29T14:54:19.252Z"
+    },
+    {
+      "sequence": 52,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-29T14:54:18.542Z"
+    },
+    {
+      "sequence": 51,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-29T14:54:16.226Z"
+    },
+    {
+      "sequence": 50,
+      "event": "inspected entity SBI-IN",
+      "timestamp": "2026-08-29T14:54:13.671Z"
+    },
+    {
+      "sequence": 49,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-29T13:02:15.315Z"
+    },
+    {
+      "sequence": 48,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-29T09:07:54.912Z"
+    },
+    {
+      "sequence": 47,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-29T09:07:54.190Z"
+    },
+    {
       "sequence": 46,
       "event": "executed Bloomberg function: FXFA",
       "timestamp": "2026-08-29T04:48:21.168Z"

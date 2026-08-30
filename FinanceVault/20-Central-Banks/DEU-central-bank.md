@@ -8,7 +8,7 @@ policy_rate_as_of: "2026-08-28"
 tags:
   - finance/central-bank
 data_quality: "curated"
-last_updated: "2026-08-29 02:11 UTC"
+last_updated: "2026-08-30 02:11 UTC"
 ---
 # 🏛️ Deutsche Bundesbank
 

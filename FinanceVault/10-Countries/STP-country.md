@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-29 06:47 UTC"
+last_updated: "2026-08-30 05:08 UTC"
 ---
 # 🏦 São Tomé and Príncipe — Financial Tear Sheet
 

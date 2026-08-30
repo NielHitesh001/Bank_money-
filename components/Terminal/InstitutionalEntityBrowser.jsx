@@ -1,5 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import ForceGraph2D from "react-force-graph-2d";
+import defaultEntities from "../../data/entities_large.json";
+import defaultTransactions from "../../data/transactions_large.json";
+
+const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8766";
 
 const TYPE_COLORS = {
   CENTRAL_BANK: "#38bdf8",
@@ -12,9 +16,9 @@ const TYPE_COLORS = {
 };
 
 export default function InstitutionalEntityBrowser({ onSelectEntity, onSelectTx }) {
-  const [entities, setEntities] = useState([]);
-  const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [entities, setEntities] = useState(defaultEntities || []);
+  const [transactions, setTransactions] = useState(defaultTransactions || []);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("graph"); // "graph" | "entities" | "transactions"
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("ALL");
@@ -49,16 +53,20 @@ export default function InstitutionalEntityBrowser({ onSelectEntity, onSelectTx 
     async function loadData() {
       try {
         const [entRes, txRes] = await Promise.all([
-          fetch("/api/v1/entities").then((r) => (r.ok ? r.json() : [])),
-          fetch("/api/v1/transactions").then((r) => (r.ok ? r.json() : [])),
+          fetch(`${API_BASE}/api/v1/entities`).then((r) => (r.ok ? r.json() : defaultEntities)),
+          fetch(`${API_BASE}/api/v1/transactions`).then((r) => (r.ok ? r.json() : defaultTransactions)),
         ]);
         if (isMounted) {
-          setEntities(entRes);
-          setTransactions(txRes);
+          if (Array.isArray(entRes) && entRes.length > 0) setEntities(entRes);
+          if (Array.isArray(txRes) && txRes.length > 0) setTransactions(txRes);
           setLoading(false);
         }
       } catch {
-        if (isMounted) setLoading(false);
+        if (isMounted) {
+          setEntities(defaultEntities);
+          setTransactions(defaultTransactions);
+          setLoading(false);
+        }
       }
     }
     loadData();

@@ -6,7 +6,7 @@ currency_symbol: "Le"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-29 06:47 UTC"
+last_updated: "2026-08-30 05:08 UTC"
 ---
 # Sierra Leonean leone (SLE) Currency Hub
 
