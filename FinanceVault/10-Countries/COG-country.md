@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-31 04:18 UTC"
+last_updated: "2026-08-31 04:48 UTC"
 ---
 # 🏦 Congo — Financial Tear Sheet
 

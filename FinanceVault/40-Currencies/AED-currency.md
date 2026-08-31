@@ -6,7 +6,7 @@ currency_symbol: "\u062f.\u0625"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 04:18 UTC"
+last_updated: "2026-08-31 04:48 UTC"
 ---
 # United Arab Emirates dirham (AED) Currency Hub
 

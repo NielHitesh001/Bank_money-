@@ -6,7 +6,7 @@ currency_symbol: "\u00a3"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 04:18 UTC"
+last_updated: "2026-08-31 04:48 UTC"
 ---
 # British pound (GBP) Currency Hub
 

@@ -11,6 +11,7 @@ import { dbClient } from "../db/dbClient.js";
 import { getUpcomingMacroEvents } from "../services/macroCalendar.js";
 import { getSearchSuggestions, resolveEntityDossier } from "../services/superSearchService.js";
 import { STRATEGY_TEMPLATES, runQuantitativeBacktest } from "../services/backtesterEngine.js";
+import { pythonBridge } from "../services/pythonBridge.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -328,8 +329,54 @@ const server = http.createServer(async (req, res) => {
 
     if (pathname === "/api/v1/strategy/backtest" && req.method === "POST") {
       const body = await parseJsonBody(req);
-      const results = runQuantitativeBacktest(body.code || "", body.params || {});
+      const results = await pythonBridge.call("run_backtest", {
+        strategy_code: body.code || "",
+        symbol: body.params?.symbol || "SPY",
+        initial_capital: body.params?.initialCapital || 100000,
+        commission: body.params?.commission || 0.0005,
+        slippage: body.params?.slippage || 0.0002,
+        preset: body.params?.preset || "mean_reversion",
+      });
       sendJson(res, 200, results);
+      return;
+    }
+
+    if (pathname === "/api/v1/strategy/walk-forward" && req.method === "POST") {
+      const body = await parseJsonBody(req);
+      const results = await pythonBridge.call("walk_forward", {
+        strategy_code: body.code || "",
+        symbol: body.params?.symbol || "SPY",
+        num_folds: body.params?.numFolds || 5,
+        preset: body.params?.preset || "mean_reversion",
+      });
+      sendJson(res, 200, results);
+      return;
+    }
+
+    if (pathname === "/api/v1/strategy/monte-carlo" && req.method === "POST") {
+      const body = await parseJsonBody(req);
+      const results = await pythonBridge.call("monte_carlo", {
+        trades: body.trades || [],
+        num_simulations: body.numSimulations || 500,
+        initial_capital: body.initialCapital || 100000,
+      });
+      sendJson(res, 200, results);
+      return;
+    }
+
+    if (pathname === "/api/v1/models/train" && req.method === "POST") {
+      const body = await parseJsonBody(req);
+      const results = await pythonBridge.call("train_model", {
+        model_type: body.modelType || "garch",
+        symbol: body.symbol || "SPY",
+      });
+      sendJson(res, 200, results);
+      return;
+    }
+
+    if (pathname === "/api/v1/datasets" && req.method === "GET") {
+      const results = await pythonBridge.call("list_datasets", {});
+      sendJson(res, 200, results.datasets || []);
       return;
     }
 

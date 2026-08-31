@@ -6,7 +6,7 @@ currency_symbol: "$"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 04:18 UTC"
+last_updated: "2026-08-31 04:48 UTC"
 ---
 # Bahamian dollar (BSD) Currency Hub
 
