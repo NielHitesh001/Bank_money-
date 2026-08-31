@@ -10,8 +10,9 @@
     "preview": "vite preview",
     "server": "node src/server/server.mjs",
     "test": "node --test tests/*.test.mjs",
-    "electron": "electron electron-main.cjs",
-    "desktop": "npm run build && electron electron-main.cjs"
+    "electron": "electron .",
+    "desktop": "npm run build && electron electron-main.cjs",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && npm run electron\""
   },
   "dependencies": {
     "@react-sigma/core": "^5.0.6",
@@ -24,6 +25,10 @@
     "react-force-graph-2d": "^1.29.1"
   },
   "devDependencies": {
-    "vite": "^8.2.2"
+    "concurrently": "^10.0.5",
+    "electron": "^44.0.0",
+    "electron-builder": "^26.15.3",
+    "vite": "^8.2.2",
+    "wait-on": "^9.1.0"
   }
 }

@@ -5,14 +5,15 @@
       "title": "Baltic routing anomaly",
       "severity": "Critical",
       "status": "Open",
-      "transactions": 5,
+      "transactions": 6,
       "updated": "just now",
       "itemIds": [
         "TX-2026-08492",
         "TX-2026-08493",
         "TX-2026-08494",
         "TX-2026-08495",
-        "JPM-US"
+        "JPM-US",
+        "SBI-IN"
       ],
       "notes": []
     },
@@ -38,6 +39,146 @@
     }
   ],
   "audit": [
+    {
+      "sequence": 130,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-31T07:25:59.063Z"
+    },
+    {
+      "sequence": 129,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-31T07:25:56.192Z"
+    },
+    {
+      "sequence": 128,
+      "event": "inspected entity JPM-US",
+      "timestamp": "2026-08-31T07:25:46.813Z"
+    },
+    {
+      "sequence": 127,
+      "event": "inspected entity SBI-IN",
+      "timestamp": "2026-08-31T07:25:45.979Z"
+    },
+    {
+      "sequence": 126,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-31T07:17:28.696Z"
+    },
+    {
+      "sequence": 125,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-31T07:17:27.644Z"
+    },
+    {
+      "sequence": 124,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-31T07:17:22.060Z"
+    },
+    {
+      "sequence": 123,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-31T07:17:21.691Z"
+    },
+    {
+      "sequence": 122,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-31T07:17:21.128Z"
+    },
+    {
+      "sequence": 121,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-31T07:17:20.943Z"
+    },
+    {
+      "sequence": 120,
+      "event": "inspected entity JIO-IN",
+      "timestamp": "2026-08-31T07:17:20.443Z"
+    },
+    {
+      "sequence": 119,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-31T07:17:19.860Z"
+    },
+    {
+      "sequence": 118,
+      "event": "inspected transaction TX-2026-08501",
+      "timestamp": "2026-08-31T07:17:19.329Z"
+    },
+    {
+      "sequence": 117,
+      "event": "trace origin set to SBI-IN",
+      "timestamp": "2026-08-31T07:17:15.294Z"
+    },
+    {
+      "sequence": 116,
+      "event": "inspected transaction TX-2026-08503",
+      "timestamp": "2026-08-31T07:17:13.727Z"
+    },
+    {
+      "sequence": 115,
+      "event": "inspected transaction TX-2026-08503",
+      "timestamp": "2026-08-31T07:17:12.864Z"
+    },
+    {
+      "sequence": 114,
+      "event": "SBI-IN added to CASE-1842",
+      "timestamp": "2026-08-31T07:17:04.102Z"
+    },
+    {
+      "sequence": 113,
+      "event": "investigator note saved to CASE-1842",
+      "timestamp": "2026-08-31T07:16:47.577Z"
+    },
+    {
+      "sequence": 112,
+      "event": "trace origin set to SBI-IN",
+      "timestamp": "2026-08-31T07:15:07.092Z"
+    },
+    {
+      "sequence": 111,
+      "event": "inspected entity SBI-IN",
+      "timestamp": "2026-08-31T07:15:06.393Z"
+    },
+    {
+      "sequence": 110,
+      "event": "trace origin set to SBI-IN",
+      "timestamp": "2026-08-31T07:15:04.960Z"
+    },
+    {
+      "sequence": 109,
+      "event": "inspected entity SBI-IN",
+      "timestamp": "2026-08-31T07:15:04.159Z"
+    },
+    {
+      "sequence": 108,
+      "event": "inspected entity SBI-IN",
+      "timestamp": "2026-08-31T07:15:02.246Z"
+    },
+    {
+      "sequence": 107,
+      "event": "inspected entity JPM-US",
+      "timestamp": "2026-08-31T07:15:00.681Z"
+    },
+    {
+      "sequence": 106,
+      "event": "inspected entity BLACKROCK-US",
+      "timestamp": "2026-08-31T07:14:57.247Z"
+    },
+    {
+      "sequence": 105,
+      "event": "inspected entity ORION-KY",
+      "timestamp": "2026-08-31T07:14:56.130Z"
+    },
+    {
+      "sequence": 104,
+      "event": "inspected entity HARBOR-AE",
+      "timestamp": "2026-08-31T07:14:54.530Z"
+    },
+    {
+      "sequence": 103,
+      "event": "inspected entity NORD-EE",
+      "timestamp": "2026-08-31T07:14:52.289Z"
+    },
     {
       "sequence": 102,
       "event": "role view switched to Admin",

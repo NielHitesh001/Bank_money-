@@ -244,6 +244,54 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // 3a-2. Large 25k Synthetic Cross-Border Transaction Network Graph API
+    if (pathname === "/api/v1/graph/large" && req.method === "GET") {
+      const LARGE_GRAPH_PATH = path.resolve("./FinanceVault/_system/graph_25k.json");
+      if (!fs.existsSync(LARGE_GRAPH_PATH)) {
+        sendJson(res, 404, { error: "Large graph dataset not found. Run scripts/generate_graph_25k.py first." });
+        return;
+      }
+      const raw = JSON.parse(fs.readFileSync(LARGE_GRAPH_PATH, "utf-8"));
+      const p = parsedUrl.searchParams;
+      const jurisdiction = p.get("jurisdiction") || null;
+      const entityType   = p.get("entity_type") || null;
+      const minRisk      = Number(p.get("min_risk") || 0);
+      const maxRisk      = Number(p.get("max_risk") || 100);
+      const flaggedOnly  = p.get("flagged") === "true";
+      const search       = (p.get("search") || "").toLowerCase();
+      const limit        = Math.min(Number(p.get("limit") || 2000), 25000);
+      const anchorId     = p.get("anchor") || null;
+
+      let nodes = raw.nodes.filter((n) => {
+        if (jurisdiction && n.jurisdiction !== jurisdiction) return false;
+        if (entityType && n.entity_type !== entityType) return false;
+        if (n.risk_score < minRisk || n.risk_score > maxRisk) return false;
+        if (flaggedOnly && n.pep_screening !== "Flagged" && n.sanctions_list !== "Match Found") return false;
+        if (search && !n.legal_name.toLowerCase().includes(search) && !n.id.toLowerCase().includes(search)) return false;
+        return true;
+      }).slice(0, limit);
+
+      const nodeIdSet = new Set(nodes.map((n) => n.id));
+
+      if (anchorId) {
+        raw.edges.filter((e) => e.source === anchorId || e.target === anchorId).forEach((e) => {
+          nodeIdSet.add(e.source);
+          nodeIdSet.add(e.target);
+        });
+        const extras = raw.nodes.filter((n) => nodeIdSet.has(n.id) && !nodes.find((x) => x.id === n.id));
+        nodes = [...nodes, ...extras];
+      }
+
+      const edges = raw.edges.filter((e) => nodeIdSet.has(e.source) && nodeIdSet.has(e.target));
+
+      sendJson(res, 200, {
+        meta: { total_nodes: raw.nodes.length, total_edges: raw.edges.length, returned_nodes: nodes.length, returned_edges: edges.length },
+        nodes,
+        edges,
+      });
+      return;
+    }
+
     // 3b. Large Entity & Transaction Graph API
     if (pathname === "/api/v1/entities" && req.method === "GET") {
       const filters = {

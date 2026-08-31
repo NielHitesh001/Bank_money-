@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-31 06:18 UTC"
+last_updated: "2026-08-31 07:33 UTC"
 ---
 # 🏦 Saint Kitts and Nevis — Financial Tear Sheet
 

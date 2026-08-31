@@ -6,7 +6,7 @@ currency_symbol: "\u20bc"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 06:18 UTC"
+last_updated: "2026-08-31 07:33 UTC"
 ---
 # Azerbaijani manat (AZN) Currency Hub
 
