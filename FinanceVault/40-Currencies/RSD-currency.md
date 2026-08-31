@@ -6,7 +6,7 @@ currency_symbol: "\u0434\u0438\u043d."
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 08:33 UTC"
+last_updated: "2026-08-31 08:48 UTC"
 ---
 # Serbian dinar (RSD) Currency Hub
 

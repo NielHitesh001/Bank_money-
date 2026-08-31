@@ -41,6 +41,11 @@
   ],
   "audit": [
     {
+      "sequence": 169,
+      "event": "inspected entity Cayman Islands Hedge Fund 23 from live news feed wire",
+      "timestamp": "2026-08-31T08:43:25.503Z"
+    },
+    {
       "sequence": 168,
       "event": "inspected entity United Kingdom Hedge Fund 27 from live news feed wire",
       "timestamp": "2026-08-31T08:14:06.962Z"

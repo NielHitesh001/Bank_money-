@@ -6,7 +6,7 @@ currency_symbol: "$"
 country_count: 4
 tags:
   - finance/currency
-last_updated: "2026-08-31 08:33 UTC"
+last_updated: "2026-08-31 08:48 UTC"
 ---
 # Australian dollar (AUD) Currency Hub
 

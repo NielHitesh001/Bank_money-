@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-31 08:33 UTC"
+last_updated: "2026-08-31 08:48 UTC"
 ---
 # 🏦 Netherlands — Financial Tear Sheet
 
