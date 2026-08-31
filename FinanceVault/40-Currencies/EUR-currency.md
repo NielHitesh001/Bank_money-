@@ -6,7 +6,7 @@ currency_symbol: "\u20ac"
 country_count: 26
 tags:
   - finance/currency
-last_updated: "2026-08-31 09:28 UTC"
+last_updated: "2026-08-31 09:43 UTC"
 ---
 # Euro (EUR) Currency Hub
 

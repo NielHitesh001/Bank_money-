@@ -1,0 +1,11 @@
+prospect_name,company,tier,title,channel,intro_source,contact_email,status,pain_score,call_date,loi_status,notes
+Sarah Chen,JPMorgan,Tier 1,VP Global Treasury Operations,Warm,Fintech Advisory Network,sarah.chen@jpmorgan.com,Intro Requested,,2026-09-04,Pending,Focus on USD->INR and EUR->BRL corridor latency
+Alex Rivera,Wise,Tier 1,Head of Settlement Operations,Cold,Direct Outreach (LinkedIn),alex.r@wise.com,Outreach Sent,,2026-09-03,Pending,Algorithmic routing optimization via API
+Marcus Vance,Remitly,Tier 1,VP Platform Engineering,Cold,Direct Outreach,m.vance@remitly.com,Outreach Sent,,2026-09-03,Pending,Corridor health telemetry for settlement delays
+Elena Rostova,Bank of America,Tier 1,Head of Emerging Markets Liquidity,Warm,Mutual Founder Intro,elena.rostova@bofa.com,Intro Requested,,2026-09-05,Pending,Spread tracking and clearing window alerts
+David Kim,Citigroup,Tier 2,Director Treasury Automation,Warm,Advisor Referral,david.kim@citi.com,Lead,,2026-09-08,Pending,Multi-region liquidity mesh visibility
+Priya Sharma,Payoneer,Tier 1,Head of Treasury Operations,Cold,Direct Outreach,priya.s@payoneer.com,Outreach Sent,,2026-09-04,Pending,APAC & LATAM corridor clearing tracking
+Julian Brandt,Revolut,Tier 1,Lead Settlement Architect,Cold,Direct Outreach,j.brandt@revolut.com,Lead,,,Pending,Real-time WebSocket corridor status feed
+Thomas Wright,HSBC,Tier 2,Senior EM Trader,Warm,Industry Peer,thomas.wright@hsbc.com,Lead,,,Pending,Intra-day corridor health
+Clara Dupont,Nestlé,Tier 2,Corporate Cash Manager,Warm,Advisor Network,clara.dupont@nestle.com,Lead,,,Pending,Centralized spreadsheet replacement
+Vikram Patel,Toyota Finance,Tier 2,VP Global Finance Ops,Warm,Advisory Board,vikram.patel@toyota.com,Lead,,,Pending,Global settlement visibility

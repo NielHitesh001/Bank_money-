@@ -6,7 +6,7 @@ currency_symbol: "Fr"
 country_count: 8
 tags:
   - finance/currency
-last_updated: "2026-08-31 09:28 UTC"
+last_updated: "2026-08-31 09:43 UTC"
 ---
 # West African CFA franc (XOF) Currency Hub
 

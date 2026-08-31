@@ -6,7 +6,7 @@ currency_symbol: "Rp"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 09:28 UTC"
+last_updated: "2026-08-31 09:43 UTC"
 ---
 # Indonesian rupiah (IDR) Currency Hub
 
