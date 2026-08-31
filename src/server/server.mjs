@@ -12,6 +12,8 @@ import { getUpcomingMacroEvents } from "../services/macroCalendar.js";
 import { getSearchSuggestions, resolveEntityDossier } from "../services/superSearchService.js";
 import { STRATEGY_TEMPLATES, runQuantitativeBacktest } from "../services/backtesterEngine.js";
 import { pythonBridge } from "../services/pythonBridge.js";
+import { processClaudeMessage, handleMCPToolCall } from "./mcpHandler.mjs";
+import { STRATEGY_IDE_MCP_TOOLS } from "../services/claudeMCPTools.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -377,6 +379,23 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/api/v1/datasets" && req.method === "GET") {
       const results = await pythonBridge.call("list_datasets", {});
       sendJson(res, 200, results.datasets || []);
+      return;
+    }
+
+    // 3i. Claude MCP Assistant Message & Tools Endpoints
+    if (pathname === "/api/v1/claude/message" && req.method === "POST") {
+      const body = await parseJsonBody(req);
+      const reply = await processClaudeMessage({
+        messages: body.messages || [],
+        system: body.system || "",
+        tools: body.tools || STRATEGY_IDE_MCP_TOOLS,
+      });
+      sendJson(res, 200, reply);
+      return;
+    }
+
+    if (pathname === "/api/v1/assistant/tools" && (req.method === "GET" || req.method === "POST")) {
+      sendJson(res, 200, { tools: STRATEGY_IDE_MCP_TOOLS, count: STRATEGY_IDE_MCP_TOOLS.length });
       return;
     }
 
