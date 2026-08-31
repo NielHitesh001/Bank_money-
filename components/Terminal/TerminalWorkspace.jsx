@@ -6,9 +6,6 @@ import FxCarryAnalytics from "./FxCarryAnalytics.jsx";
 import RiskVaRPanel from "./RiskVaRPanel.jsx";
 import LiveNewsFeed from "./LiveNewsFeed.jsx";
 import InstitutionalEntityBrowser from "./InstitutionalEntityBrowser.jsx";
-import LeftPanel from "./LeftPanel/LeftPanel.jsx";
-import RightPanel from "./RightPanel/RightPanel.jsx";
-import "../../src/styles/terminal-layout.css";
 
 export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, externalSymbol, focusedDossier }) {
   const [deskLayout, setDeskLayout] = useState("trading"); // "trading" | "risk" | "news" | "graph"
@@ -85,40 +82,28 @@ export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, exte
 
       {/* DESK 1: FX & MACRO TRADING DESK */}
       {deskLayout === "trading" && (
-        <div className="terminal-content" style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
-          {/* Left Watchlist Panel */}
-          <LeftPanel
-            selectedTicker={{ symbol: selectedSymbol }}
-            onSelectTicker={(t) => {
-              setSelectedSymbol(t.symbol);
-              if (onSelectSymbol) onSelectSymbol(t.symbol);
-            }}
-          />
-
-          {/* Center Chart + Blotter Panel */}
-          <div className="center-panel">
-            <div className="chart-container">
+        <div className="trading-desk-grid">
+          {/* Top Row: Chart (Left) + Order Ticket (Right) */}
+          <div className="trading-top-row">
+            <div className="pane-chart">
               <RealTimeCandleChart symbol={selectedSymbol} />
             </div>
+            <div className="pane-ticket">
+              <OrderTicket
+                onExecuteOrder={handleExecuteOrder}
+                accountBalance={accountBalance}
+              />
+            </div>
+          </div>
+
+          {/* Bottom Row: Portfolio Blotter */}
+          <div className="trading-bottom-row">
             <PortfolioBlotter
               positions={positions}
               onClosePosition={handleClosePosition}
               accountBalance={accountBalance}
             />
           </div>
-
-          {/* Right Risk & Execution Panel */}
-          <RightPanel
-            selectedTicker={{
-              symbol: selectedSymbol,
-              last: selectedSymbol.includes("USD") && !selectedSymbol.includes("/") ? 580.25 : 1.0874,
-              pctChange: 0.35,
-              high: selectedSymbol.includes("USD") && !selectedSymbol.includes("/") ? 582.00 : 1.0892,
-              low: selectedSymbol.includes("USD") && !selectedSymbol.includes("/") ? 578.00 : 1.0838,
-              decimals: selectedSymbol.includes("JPY") || !selectedSymbol.includes("/") ? 2 : 4,
-            }}
-            onExecuteOrder={handleExecuteOrder}
-          />
         </div>
       )}
 

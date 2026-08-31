@@ -6,7 +6,7 @@ currency_symbol: "Fr"
 country_count: 6
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:53 UTC"
+last_updated: "2026-08-31 04:03 UTC"
 ---
 # Central African CFA franc (XAF) Currency Hub
 

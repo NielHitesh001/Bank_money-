@@ -8,7 +8,7 @@ policy_rate_as_of: "2026-08-28"
 tags:
   - finance/central-bank
 data_quality: "curated"
-last_updated: "2026-08-30 08:11 UTC"
+last_updated: "2026-08-31 02:26 UTC"
 ---
 # 🏛️ Banco de España
 

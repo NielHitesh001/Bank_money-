@@ -5,7 +5,7 @@ rail_type: "Net settlement"
 operator: "The Clearing House"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-30 09:53 UTC"
+last_updated: "2026-08-31 04:02 UTC"
 ---
 # 🔌 Clearing House Interbank Payments System (CHIPS)
 
@@ -13,9 +13,9 @@ last_updated: "2026-08-30 09:53 UTC"
 <!-- LIVE:STATUS:START -->
 | Metric | Value |
 |---|---|
-| Status | 🔴 CLOSED |
-| Operating window | closed — weekend (America/New_York) |
-| Checked at | 2026-08-30 09:53 UTC |
+| Status | 🟢 OPEN |
+| Operating window | 00:00–17:00 America/New_York |
+| Checked at | 2026-08-31 04:02 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

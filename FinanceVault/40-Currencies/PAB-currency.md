@@ -6,7 +6,7 @@ currency_symbol: "B/."
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:53 UTC"
+last_updated: "2026-08-31 04:03 UTC"
 ---
 # Panamanian balboa (PAB) Currency Hub
 

@@ -15,7 +15,6 @@ import { cases as initialCases, entities as initialEntities, transactions as ini
 import { findBidirectionalPath, findDirectedPath, parseCsv } from "./lib/investigationUtils.mjs";
 import { addCaseNoteApi, checkServerHealth, fetchCasesApi, logAuditEventApi, syncCaseApi } from "./src/services/apiClient.js";
 import "./styles.css";
-import "./src/styles/terminal-layout.css";
 
 const formats = { entity: "Entity", transaction: "Transaction" };
 const riskLabel = (risk) => (risk >= 80 ? "Critical" : risk >= 55 ? "Elevated" : "Standard");

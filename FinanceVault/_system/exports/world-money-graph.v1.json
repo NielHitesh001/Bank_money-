@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30 09:53 UTC",
+  "generated_at": "2026-08-31 04:03 UTC",
   "links": [
     {
       "source": "country:AFG",
@@ -7737,7 +7737,7 @@
       "attributes": {
         "code": "CHAPS",
         "is_open": false,
-        "operating_window": "closed \u2014 weekend (Europe/London)",
+        "operating_window": "06:00\u201318:00 Europe/London",
         "operator": "Bank of England",
         "scope": "United Kingdom"
       },
@@ -7749,8 +7749,8 @@
     {
       "attributes": {
         "code": "CHIPS",
-        "is_open": false,
-        "operating_window": "closed \u2014 weekend (America/New_York)",
+        "is_open": true,
+        "operating_window": "00:00\u201317:00 America/New_York",
         "operator": "The Clearing House",
         "scope": "United States (large-value)"
       },
@@ -7762,8 +7762,8 @@
     {
       "attributes": {
         "code": "CIPS",
-        "is_open": false,
-        "operating_window": "closed \u2014 weekend (Asia/Shanghai)",
+        "is_open": true,
+        "operating_window": "09:00\u201320:00 Asia/Shanghai",
         "operator": "PBOC",
         "scope": "China (RMB cross-border)"
       },
@@ -7788,8 +7788,8 @@
     {
       "attributes": {
         "code": "FEDWIRE",
-        "is_open": false,
-        "operating_window": "closed \u2014 weekend (America/New_York)",
+        "is_open": true,
+        "operating_window": "21:00\u201319:00 America/New_York",
         "operator": "Federal Reserve Banks",
         "scope": "United States"
       },
@@ -7867,6 +7867,6 @@
   "schema_version": "1.0",
   "sources": {
     "fx_as_of": "2026-08-28",
-    "fx_fetched_at": "2026-08-30 09:53 UTC"
+    "fx_fetched_at": "2026-08-31 04:03 UTC"
   }
 }

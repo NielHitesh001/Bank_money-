@@ -6,7 +6,7 @@ currency_symbol: "$"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-30 09:53 UTC"
+last_updated: "2026-08-31 04:03 UTC"
 ---
 # Uruguayan peso (UYU) Currency Hub
 
