@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'world-money-terminal'
+    environment: 'production'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'alertmanager:9093'
+
+rule_files:
+  - 'alerts.yml'
+
+scrape_configs:
+  - job_name: 'api-server'
+    static_configs:
+      - targets: ['host.docker.internal:8766', '127.0.0.1:8766']
+    metrics_path: '/metrics'
+    scrape_interval: 10s

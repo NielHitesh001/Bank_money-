@@ -5,7 +5,7 @@ rail_type: "Instant payment (retail)"
 operator: "NPCI (National Payments Corporation of India)"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-31 09:56 UTC"
+last_updated: "2026-08-31 10:12 UTC"
 ---
 # 🔌 Unified Payments Interface (UPI)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-31 09:56 UTC"
 |---|---|
 | Status | 🟢 OPEN |
 | Operating window | 24/7 |
-| Checked at | 2026-08-31 09:56 UTC |
+| Checked at | 2026-08-31 10:12 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

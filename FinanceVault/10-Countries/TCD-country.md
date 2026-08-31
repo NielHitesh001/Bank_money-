@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-31 09:43 UTC"
+last_updated: "2026-08-31 09:58 UTC"
 ---
 # 🏦 Chad — Financial Tear Sheet
 

@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-31 09:43 UTC"
+last_updated: "2026-08-31 09:58 UTC"
 ---
 # 🏦 Indonesia — Financial Tear Sheet
 
