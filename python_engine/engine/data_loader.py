@@ -21,11 +21,16 @@ class DataLoader:
 
         # Base prices
         base_price = 580.25
-        if symbol == "AAPL": base_price = 228.30
-        elif symbol == "NVDA": base_price = 125.40
-        elif symbol == "EURUSD" or symbol == "EUR/USD": base_price = 1.0874
-        elif symbol == "BTC/USD": base_price = 63845.00
+        sym_upper = symbol.upper()
+        if sym_upper == "AAPL": base_price = 228.30
+        elif sym_upper == "NVDA": base_price = 125.40
+        elif "EUR" in sym_upper: base_price = 1.0874
+        elif "GBP" in sym_upper: base_price = 1.2950
+        elif "JPY" in sym_upper: base_price = 154.20
+        elif "BTC" in sym_upper: base_price = 63845.00
+        elif "ETH" in sym_upper: base_price = 3450.00
 
+        decimals = 4 if base_price < 10 else 2
         candles = []
         now = datetime.utcnow()
         step = timedelta(days=1 if timeframe == "1d" else 0, hours=1 if timeframe == "1h" else 0, minutes=15 if timeframe == "15m" else 0)
@@ -33,7 +38,7 @@ class DataLoader:
             step = timedelta(days=1)
 
         curr = base_price * 0.92
-        total_bars = min(lookback_days, 180)
+        total_bars = min(max(lookback_days, 60), 180)
 
         for i in range(total_bars, 0, -1):
             ts = (now - i * step).isoformat()[:10]
@@ -42,10 +47,10 @@ class DataLoader:
             drift = 0.001
             curr = curr * (1.0 + drift + cycle + noise)
 
-            open_p = round(curr, 2)
-            close_p = round(curr * (1.0 + cycle * 0.6), 2)
-            high_p = round(max(open_p, close_p) * 1.006, 2)
-            low_p = round(min(open_p, close_p) * 0.994, 2)
+            open_p = round(curr, decimals)
+            close_p = round(curr * (1.0 + cycle * 0.6), decimals)
+            high_p = round(max(open_p, close_p) * (1.004 if base_price < 10 else 1.006), decimals)
+            low_p = round(min(open_p, close_p) * (0.996 if base_price < 10 else 0.994), decimals)
             vol = int(35000000 + ((i * 47) % 15000000))
 
             candles.append({
@@ -66,7 +71,7 @@ class DataLoader:
             {"symbol": "SPY", "name": "SPDR S&P 500 ETF Trust", "timeframe": "1d", "rows": 2520, "assetClass": "Equities"},
             {"symbol": "AAPL", "name": "Apple Inc.", "timeframe": "1d", "rows": 2520, "assetClass": "Equities"},
             {"symbol": "NVDA", "name": "NVIDIA Corporation", "timeframe": "1d", "rows": 2520, "assetClass": "Equities"},
-            {"symbol": "EURUSD", "name": "Euro / US Dollar", "timeframe": "1h", "rows": 8760, "assetClass": "FX"},
+            {"symbol": "EUR/USD", "name": "Euro / US Dollar", "timeframe": "1h", "rows": 8760, "assetClass": "FX"},
             {"symbol": "BTC/USD", "name": "Bitcoin Spot", "timeframe": "1d", "rows": 1825, "assetClass": "Crypto"},
             {"symbol": "USYIELDS", "name": "US 10Y Treasury Curve", "timeframe": "1d", "rows": 2520, "assetClass": "Macro Rates"}
         ]

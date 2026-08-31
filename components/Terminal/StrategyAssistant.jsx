@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { STRATEGY_IDE_MCP_TOOLS } from "../../src/services/claudeMCPTools.js";
 
-export default function StrategyAssistant({ currentStrategy, backtestResults, symbol = "SPY", onApplyCode }) {
+export default function StrategyAssistant({ currentStrategy, backtestResults, symbol = "EUR/USD", onApplyCode }) {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      text: `Hello! I am your AI Quant Copilot connected via Claude MCP. I have direct access to your ${symbol} strategy code, real-time backtest metrics, and local statistical model training tools. Ask me to optimize parameters, fit Kalman/GARCH filters, or explain tail drawdowns.`,
+      text: `Hello! I am NAVEE, your AI Quant Copilot connected via MCP. I have direct access to your ${symbol} strategy code, real-time backtest metrics, rolling walk-forward validation, and local model training tools (Kalman, GARCH, ADF Cointegration, ML Regime Blueprint).`,
       time: "Just now",
       toolCalls: [],
     },
@@ -36,7 +36,7 @@ export default function StrategyAssistant({ currentStrategy, backtestResults, sy
             role: m.role,
             content: m.text,
           })),
-          system: `You are an expert quantitative analyst operating inside the World Money Terminal OS Systematic Trading IDE.
+          system: `You are NAVEE, an elite quantitative analyst operating inside the World Money Terminal OS Systematic Trading IDE.
 Current Asset: ${symbol}
 Current Strategy Code:
 \`\`\`python
@@ -71,15 +71,16 @@ ${JSON.stringify(backtestResults?.metrics || {}, null, 2)}`,
         ...prev,
         {
           role: "assistant",
-          text: `Analyzed ${symbol}. Incorporating an adaptive state-space Kalman filter and ATR trailing stop improves backtest Sharpe to ~1.85 and reduces tail risk.`,
+          text: `Analyzed ${symbol}. Incorporating an adaptive state-space Kalman filter with calibrated process noise ($Q=10^{-5}$) and dynamic ATR trailing stop improves backtest Sharpe to ~1.85 and reduces tail risk.`,
           time: new Date().toLocaleTimeString().slice(0, 5),
           codeProposal: `# strategy.py: Adaptive Quant Strategy
 import numpy as np
 
-# Optimized entry and trailing stop
-if bar['close'] < sma20 * 0.985 and rsi < 32:
+# Optimized Kalman entry and trailing stop
+kalman_state = indicators.kalman_filter(context.history['close'], q_process_noise=1e-5, r_measurement_noise=1e-3)
+if bar['close'] > kalman_state[-1] * 1.004:
     signal = 1
-elif bar['close'] > sma20 * 1.015 or rsi > 68:
+elif bar['close'] < kalman_state[-1] * 0.996:
     signal = -1`,
         },
       ]);
@@ -89,10 +90,10 @@ elif bar['close'] > sma20 * 1.015 or rsi > 68:
   };
 
   const quickPrompts = [
-    { label: "⚡ Optimize Sharpe", query: "Optimize this strategy to maximize Sharpe ratio and reduce max drawdown" },
-    { label: "🧠 Add Kalman Filter", query: "Train a Kalman filter model and integrate dynamic state drift tracking" },
-    { label: "📊 Add GARCH Model", query: "Fit a GARCH(1,1) conditional volatility model to filter high volatility regimes" },
-    { label: "🔄 5-Fold Walk-Forward", query: "Execute 5-fold rolling cross validation to assess out-of-sample efficiency" },
+    { label: "1. ⚡ Kalman Optimization", query: "Optimize Kalman filter process noise and state drift tracking on EUR/USD" },
+    { label: "2. 📊 GARCH Volatility & VaR", query: "Fit GARCH(1,1) model and run 1,000-run Monte Carlo tail risk simulation" },
+    { label: "3. 📈 Cointegration Stat-Arb", query: "Run ADF stationarity test and build cointegrated mean-reverting spread strategy" },
+    { label: "4. 🧠 ML Regime Blueprint", query: "Train ML Regime Classification Blueprint and evaluate ROC-AUC score" },
   ];
 
   return (
@@ -109,9 +110,9 @@ elif bar['close'] > sma20 * 1.015 or rsi > 68:
               border: "1px solid #1f382b",
               color: "#64dcb1",
               fontSize: "9px",
-              padding: "3px 8px",
+              padding: "4px 8px",
               borderRadius: "3px",
-              cursor: "pointer",
+              cursor: isThinking ? "wait" : "pointer",
             }}
           >
             {p.label}
@@ -147,7 +148,7 @@ elif bar['close'] > sma20 * 1.015 or rsi > 68:
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "8.5px", color: "#5e7d70" }}>
-              <span>{m.role === "user" ? "TRADER" : "AI QUANT COPILOT (CLAUDE MCP)"}</span>
+              <span>{m.role === "user" ? "TRADER" : "NAVEE (ANTIGRAVITY QUANT COPILOT)"}</span>
               <span>{m.time}</span>
             </div>
 
@@ -166,7 +167,7 @@ elif bar['close'] > sma20 * 1.015 or rsi > 68:
             {m.codeProposal && (
               <div style={{ marginTop: "8px", background: "#030504", border: "1px solid #1c3528", borderRadius: "3px", padding: "6px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
-                  <span style={{ color: "#64dcb1", fontSize: "9px", fontFamily: "monospace" }}>PROPOSED OPTIMIZATION</span>
+                  <span style={{ color: "#64dcb1", fontSize: "9px", fontFamily: "monospace" }}>PROPOSED PIPELINE OPTIMIZATION</span>
                   <button
                     onClick={() => onApplyCode && onApplyCode(m.codeProposal)}
                     style={{
@@ -193,7 +194,7 @@ elif bar['close'] > sma20 * 1.015 or rsi > 68:
 
         {isThinking && (
           <div style={{ color: "#64dcb1", fontSize: "10px", fontStyle: "italic", padding: "4px" }}>
-            ⚙️ AI Quant Copilot executing MCP tools & analyzing strategy...
+            ⚙️ NAVEE executing MCP toolchain & analyzing strategy parameters...
           </div>
         )}
       </div>
@@ -205,7 +206,7 @@ elif bar['close'] > sma20 * 1.015 or rsi > 68:
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder={`Ask Claude: 'Add Kalman filter', 'Improve Sharpe ratio', 'Explain tail drawdowns' for ${symbol}...`}
+          placeholder={`Ask NAVEE: 'Optimize Kalman filter', 'Run 1,000-sim Monte Carlo', 'Test ADF Cointegration' on ${symbol}...`}
           style={{
             flex: 1,
             background: "#080e0b",

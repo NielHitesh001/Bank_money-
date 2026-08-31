@@ -6,7 +6,7 @@ currency_symbol: "\u20a9"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 04:48 UTC"
+last_updated: "2026-08-31 06:03 UTC"
 ---
 # South Korean won (KRW) Currency Hub
 

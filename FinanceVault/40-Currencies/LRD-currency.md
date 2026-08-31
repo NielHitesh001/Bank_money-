@@ -6,7 +6,7 @@ currency_symbol: "$"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 04:48 UTC"
+last_updated: "2026-08-31 06:03 UTC"
 ---
 # Liberian dollar (LRD) Currency Hub
 

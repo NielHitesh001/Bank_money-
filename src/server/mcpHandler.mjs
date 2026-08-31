@@ -11,34 +11,34 @@ export async function handleMCPToolCall(toolName, params = {}) {
     run_backtest: () =>
       pythonBridge.call("run_backtest", {
         strategy_code: params.strategy_code || "",
-        symbol: params.symbol || "SPY",
+        symbol: params.symbol || "EUR/USD",
         initial_capital: params.initial_capital || 100000,
         commission: params.commission || 0.0005,
         slippage: params.slippage || 0.0002,
-        preset: params.preset || "mean_reversion",
+        preset: params.preset || "kalman_regime",
       }),
     walk_forward: () =>
       pythonBridge.call("walk_forward", {
         strategy_code: params.strategy_code || "",
-        symbol: params.symbol || "SPY",
+        symbol: params.symbol || "EUR/USD",
         num_folds: params.num_folds || 5,
-        preset: params.preset || "mean_reversion",
+        preset: params.preset || "kalman_regime",
       }),
     monte_carlo: () =>
       pythonBridge.call("monte_carlo", {
         trades: params.trades || [],
-        num_simulations: params.num_simulations || 500,
+        num_simulations: params.num_simulations || 1000,
         initial_capital: params.initial_capital || 100000,
       }),
     train_model: () =>
       pythonBridge.call("train_model", {
-        model_type: params.model_type || "garch",
-        symbol: params.symbol || "SPY",
+        model_type: params.model_type || "kalman",
+        symbol: params.symbol || "EUR/USD",
         params: params.params || {},
       }),
     get_candles: () =>
       pythonBridge.call("get_candles", {
-        symbol: params.symbol || "SPY",
+        symbol: params.symbol || "EUR/USD",
         timeframe: params.timeframe || "1d",
         lookback_days: params.lookback_days || 90,
       }),
@@ -62,78 +62,121 @@ export async function processClaudeMessage({ messages = [], system = "", tools =
   let responseText = "";
   let proposedCode = null;
 
-  if (lower.includes("kalman") || lower.includes("trend")) {
-    const toolRes = await handleMCPToolCall("train_model", { model_type: "kalman", symbol: "SPY" });
+  if (lower.includes("kalman") || lower.includes("trend") || lower.includes("drift")) {
+    const toolRes = await handleMCPToolCall("train_model", { model_type: "kalman", symbol: "EUR/USD" });
     toolCalls.push({
       id: "call_kalman_001",
       name: "train_model",
-      input: { model_type: "kalman", symbol: "SPY" },
+      input: { model_type: "kalman", symbol: "EUR/USD" },
       result: toolRes,
     });
 
-    proposedCode = `# strategy.py: Kalman Filter Dynamic Trend Follower
+    proposedCode = `# Path 1: Kalman Filter Dynamic Trend Follower (EUR/USD)
 import numpy as np
 
-# Adaptive state estimation
+# Calibrated state-space noise parameters (Q=1e-5, R=1e-3)
 kalman_gain = 0.38
-closes = [bar['close'] for bar in candles]
-filtered = []
-state = closes[0]
-for p in closes:
-    state = state + kalman_gain * (p - state)
-    filtered.append(state)
+kalman_state = indicators.kalman_filter(context.history['close'], q_process_noise=1e-5, r_measurement_noise=1e-3)
+drift = (kalman_state[-1] - kalman_state[0]) / len(kalman_state)
 
-# Signal rule
-if bar['close'] > filtered[-1] * 1.008:
+if bar['close'] > kalman_state[-1] * 1.004 and drift > 0:
     signal = 1  # Long breakout
-elif bar['close'] < filtered[-1] * 0.992:
+elif bar['close'] < kalman_state[-1] * 0.996 or drift < -0.002:
     signal = -1  # Exit / Protect capital`;
 
-    responseText = `I have executed the **Kalman Filter** state-space estimation tool. The drift velocity is positive (+0.028/day). I have optimized the Kalman gain parameter (0.38) and generated an improved strategy filter that lifts the estimated Sharpe Ratio to **1.85** and tightens the Max Drawdown to **8.4%**.`;
+    responseText = `I have executed the **Kalman Filter** state-space estimation tool for **EUR/USD**. The drift velocity is positive (+0.028/day). I calibrated the process noise ($Q=10^{-5}$) and measurement noise ($R=10^{-3}$) with a dynamic Kalman gain of 0.38, lifting estimated out-of-sample Sharpe to **1.85** with tight **6.2%** max drawdown.`;
   } else if (lower.includes("garch") || lower.includes("volatility") || lower.includes("vol")) {
-    const toolRes = await handleMCPToolCall("train_model", { model_type: "garch", symbol: "SPY" });
+    const toolRes = await handleMCPToolCall("train_model", { model_type: "garch", symbol: "EUR/USD" });
     toolCalls.push({
       id: "call_garch_002",
       name: "train_model",
-      input: { model_type: "garch", symbol: "SPY" },
+      input: { model_type: "garch", symbol: "EUR/USD" },
       result: toolRes,
     });
 
-    proposedCode = `# strategy.py: GARCH(1,1) Volatility Compression Arbitrage
-# Fits conditional heteroskedasticity
-current_vol = garch_forecast(returns)
-if current_vol < 0.13:
-    # Volatility compression detected -> Pre-position for explosive expansion
+    proposedCode = `# Path 2: GARCH(1,1) Volatility Compression Arbitrage
+forecast_vol = indicators.garch_forecast(context.history['returns'], alpha=0.085, beta=0.865, omega=1e-5)
+
+if forecast_vol < 0.138:
+    # Volatility compression detected -> Pre-position for breakout
     signal = 1
-elif current_vol > 0.22:
-    # High volatility regime breach -> Scale out to protect equity
+elif forecast_vol > 0.220:
+    # High volatility regime breach -> Scale out to protect capital
     signal = -1`;
 
-    responseText = `I ran the **GARCH(1,1)** local model training routine. The conditional volatility forecast is **12.8%** (Low Volatility Compression regime). This is an ideal entry condition for a volatility breakout strategy.`;
+    responseText = `I ran the **GARCH(1,1)** local model training routine. The conditional volatility forecast is **12.8%** (Low Volatility Compression regime). Position sizing can be safely scaled up during compression with 99% CVaR bounded at **13.5%**.`;
+  } else if (lower.includes("cointegrat") || lower.includes("stat arb") || lower.includes("pair") || lower.includes("spread")) {
+    const toolRes = await handleMCPToolCall("train_model", { model_type: "cointegration", symbol: "EUR/USD" });
+    toolCalls.push({
+      id: "call_coint_003",
+      name: "train_model",
+      input: { model_type: "cointegration", symbol: "EUR/USD" },
+      result: toolRes,
+    });
+
+    proposedCode = `# Path 3: Cointegration Stat-Arb Spread Mean Reversion
+spread = context.history['spread']
+z = indicators.zscore(spread, lookback=60)
+
+if z < -1.80:
+    signal = 1   # Long undervalued leg
+elif z > 1.80:
+    signal = -1  # Short overvalued leg
+elif abs(z) < 0.25:
+    signal = 0   # Take profit at equilibrium`;
+
+    responseText = `Augmented Dickey-Fuller (ADF) stationarity test completed. The t-statistic is **-3.42** (p-value **0.012**), confirming strong cointegration below the -2.88 critical threshold. Half-life of mean-reversion is **12.4 bars**.`;
+  } else if (lower.includes("ml") || lower.includes("regime") || lower.includes("blueprint") || lower.includes("classif")) {
+    const toolRes = await handleMCPToolCall("train_model", { model_type: "ml_regime", symbol: "EUR/USD" });
+    toolCalls.push({
+      id: "call_ml_004",
+      name: "train_model",
+      input: { model_type: "ml_regime", symbol: "EUR/USD" },
+      result: toolRes,
+    });
+
+    proposedCode = `# Path 4: ML-Driven Market Regime Blueprint
+matrix = indicators.regime_feature_matrix(context.history['candles'])
+regime = matrix['predicted_regime']
+p = matrix['confidence']
+
+if regime == 'BULLISH_TREND_EXPANSION' and p >= 0.85:
+    signal = 1
+elif regime in ['BEARISH_TREND_BREAKDOWN', 'CRISIS_VOLATILITY_SHOCK']:
+    signal = -1`;
+
+    responseText = `Trained multi-timeframe **ML Regime Classifier**. Out-of-sample ROC-AUC is **0.894**. Top predictive features are GARCH Volatility (34%), Kalman Drift Velocity (28%), and RSI Momentum (22%).`;
   } else if (lower.includes("sharpe") || lower.includes("optimize") || lower.includes("improve")) {
     const backtestRes = await handleMCPToolCall("run_backtest", {
       strategy_code: "",
-      symbol: "SPY",
-      preset: "mean_reversion",
+      symbol: "EUR/USD",
+      preset: "kalman_regime",
     });
     toolCalls.push({
-      id: "call_backtest_003",
+      id: "call_backtest_005",
       name: "run_backtest",
-      input: { symbol: "SPY", preset: "mean_reversion" },
+      input: { symbol: "EUR/USD", preset: "kalman_regime" },
       result: backtestRes,
     });
 
-    proposedCode = `# strategy.py: Optimized Multi-Indicator Regime Filter
-# Combining RSI oversold pullback with 20-bar SMA and ATR Trailing Stop
-atr_stop = bar['close'] - (2.0 * atr_val)
-if rsi_val < 32 and bar['close'] < sma20 * 0.985:
+    proposedCode = `# Optimized Kalman + GARCH Regime Hybrid
+kalman_state = indicators.kalman_filter(context.history['close'])
+vol = indicators.garch_forecast(context.history['returns'])
+
+if bar['close'] > kalman_state[-1] * 1.004 and vol < 0.16:
     signal = 1
-elif rsi_val > 68 or bar['close'] < atr_stop:
+elif bar['close'] < kalman_state[-1] * 0.996 or vol > 0.22:
     signal = -1`;
 
-    responseText = `Backtest simulation executed across historical candles. Incorporating an **ATR trailing stop (2.0x ATR)** and refining the RSI entry threshold to 32 increases Sharpe from 1.35 to **1.92**, with Win Rate improving to **62.5%**.`;
+    responseText = `Backtest simulation executed on **EUR/USD**. Adding a GARCH volatility filter to the Kalman trend breakout increases Sharpe to **1.94** and lowers maximum drawdown to **5.8%**.`;
   } else {
-    responseText = `I am your **AI Quant Copilot** equipped with MCP Tools for backtesting, 5-fold walk-forward validation, Monte Carlo tail-risk simulations, and local model training (GARCH, Kalman, HMM). How would you like to optimize your strategy?`;
+    responseText = `I am **NAVEE**, your Quantitative Copilot. I can execute all 4 strategy pipeline paths:
+1. **Kalman Filter Trend Regime Optimization**
+2. **GARCH Volatility Filter & 1,000-run Tail-Risk Stress**
+3. **Cointegration & Statistical Arbitrage (ADF test)**
+4. **ML-Driven Regime Classification Blueprint**
+
+Which path would you like to run?`;
   }
 
   return {

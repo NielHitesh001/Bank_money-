@@ -39,6 +39,11 @@
   ],
   "audit": [
     {
+      "sequence": 102,
+      "event": "role view switched to Admin",
+      "timestamp": "2026-08-31T05:09:04.713Z"
+    },
+    {
       "sequence": 101,
       "event": "exported filtered JSON report",
       "timestamp": "2026-08-31T05:01:07.784Z"
@@ -4392,6 +4397,27 @@
       "hash": "b39ca94bf752a431ec6c27699dee89ffdd104789646a50072291498736403e97",
       "sequence": 181,
       "serverTimestamp": "2026-08-31T05:01:23.734Z"
+    },
+    {
+      "id": "LOG-ORD-1788153809645-k6gde",
+      "timestamp": "2026-08-31T05:23:29.645Z",
+      "event": "ORDER_SUBMITTED",
+      "symbol": "EUR/USD",
+      "side": "BUY",
+      "notional": 50000,
+      "limitPrice": 1.0874,
+      "user": "TRADER-01",
+      "guardrailsApproved": true,
+      "reason": "Broker Order Executed",
+      "compliance": {
+        "rule17a5": true,
+        "brokerApproved": true,
+        "executionMode": "ALPACA"
+      },
+      "previousHash": "b39ca94bf752a431ec6c27699dee89ffdd104789646a50072291498736403e97",
+      "hash": "9bceabd1d8eff8a7b3e1d720916bd3089c7d496f75eddeac2ac4c2085e866896",
+      "sequence": 182,
+      "serverTimestamp": "2026-08-31T05:23:29.649Z"
     }
   ]
 }

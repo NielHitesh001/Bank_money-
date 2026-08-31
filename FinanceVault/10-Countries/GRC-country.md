@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-31 04:48 UTC"
+last_updated: "2026-08-31 06:03 UTC"
 ---
 # 🏦 Greece — Financial Tear Sheet
 

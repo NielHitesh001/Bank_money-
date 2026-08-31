@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/africa
-last_updated: "2026-08-31 04:48 UTC"
+last_updated: "2026-08-31 06:03 UTC"
 ---
 # 🏦 Eritrea — Financial Tear Sheet
 

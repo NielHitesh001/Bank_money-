@@ -1,5 +1,5 @@
 {
-  "last_cycle_utc": "2026-08-31 05:00 UTC",
+  "last_cycle_utc": "2026-08-31 06:14 UTC",
   "jobs": {
     "countries": {
       "interval_s": 86400,
@@ -7,11 +7,11 @@
     },
     "fx": {
       "interval_s": 900,
-      "next_run_utc": "2026-08-31T05:03:05.681671+00:00"
+      "next_run_utc": "2026-08-31T06:18:10.088983+00:00"
     },
     "rail_status": {
       "interval_s": 60,
-      "next_run_utc": "2026-08-31T05:01:56.934193+00:00"
+      "next_run_utc": "2026-08-31T06:15:54.110601+00:00"
     },
     "policy_rates": {
       "interval_s": 21600,
