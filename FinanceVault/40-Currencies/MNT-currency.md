@@ -6,7 +6,7 @@ currency_symbol: "\u20ae"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 06:03 UTC"
+last_updated: "2026-08-31 06:18 UTC"
 ---
 # Mongolian tögrög (MNT) Currency Hub
 

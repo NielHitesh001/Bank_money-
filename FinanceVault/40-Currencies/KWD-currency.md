@@ -6,7 +6,7 @@ currency_symbol: "\u062f.\u0643"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 06:03 UTC"
+last_updated: "2026-08-31 06:18 UTC"
 ---
 # Kuwaiti dinar (KWD) Currency Hub
 

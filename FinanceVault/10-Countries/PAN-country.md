@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/americas
-last_updated: "2026-08-31 06:03 UTC"
+last_updated: "2026-08-31 06:18 UTC"
 ---
 # 🏦 Panama — Financial Tear Sheet
 
