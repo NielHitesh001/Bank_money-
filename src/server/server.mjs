@@ -10,6 +10,7 @@ import { getEntities, getTransactions } from "../services/intelligenceService.js
 import { dbClient } from "../db/dbClient.js";
 import { getUpcomingMacroEvents } from "../services/macroCalendar.js";
 import { getSearchSuggestions, resolveEntityDossier } from "../services/superSearchService.js";
+import { STRATEGY_TEMPLATES, runQuantitativeBacktest } from "../services/backtesterEngine.js";
 
 // Load .env.local or .env if present
 function loadEnv() {
@@ -316,6 +317,19 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/api/v1/search/entity" && req.method === "GET") {
       const q = parsedUrl.searchParams.get("q") || "SPY";
       sendJson(res, 200, resolveEntityDossier(q));
+      return;
+    }
+
+    // 3h. Systematic Trading IDE Backtester API
+    if (pathname === "/api/v1/strategy/templates" && req.method === "GET") {
+      sendJson(res, 200, STRATEGY_TEMPLATES);
+      return;
+    }
+
+    if (pathname === "/api/v1/strategy/backtest" && req.method === "POST") {
+      const body = await parseJsonBody(req);
+      const results = runQuantitativeBacktest(body.code || "", body.params || {});
+      sendJson(res, 200, results);
       return;
     }
 

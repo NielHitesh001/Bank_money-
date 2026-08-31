@@ -14,6 +14,8 @@ export const BLOOMBERG_COMMANDS = [
   { code: "RAIL", name: "Global Payment Rails & RTGS Matrix", category: "Infrastructure", shortcut: "9" },
   { code: "AML", name: "MoneyTrace Forensics & Multi-Hop Path Finder", category: "Compliance", shortcut: "A" },
   { code: "GRPH", name: "Institutional Entity & Clearing Network Graph (274 Nodes)", category: "Network", shortcut: "G" },
+  { code: "IDE", name: "Systematic Trading IDE & AI Quant Copilot", category: "Quantitative", shortcut: "Q" },
+  { code: "QUAN", name: "Quantitative Strategy Backtester & Simulation", category: "Quantitative", shortcut: "S" },
   { code: "CORP", name: "Corporate Cash Reserves & Treasury Balance Sheets", category: "Corporate", shortcut: "C" },
   { code: "NEWS", name: "Live Financial News Wire & Entity Feeds", category: "News", shortcut: "N" },
   { code: "HELP", name: "Terminal Keyboard Shortcuts & Guide", category: "System", shortcut: "H" },

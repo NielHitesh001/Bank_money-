@@ -6,6 +6,7 @@ import FxCarryAnalytics from "./FxCarryAnalytics.jsx";
 import RiskVaRPanel from "./RiskVaRPanel.jsx";
 import LiveNewsFeed from "./LiveNewsFeed.jsx";
 import InstitutionalEntityBrowser from "./InstitutionalEntityBrowser.jsx";
+import StrategyIDETab from "./StrategyIDETab.jsx";
 
 export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, externalSymbol, focusedDossier }) {
   const [deskLayout, setDeskLayout] = useState("trading"); // "trading" | "risk" | "news" | "graph"
@@ -71,6 +72,12 @@ export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, exte
             onClick={() => setDeskLayout("graph")}
           >
             🌐 INSTITUTIONAL GRAPH (274 NODES)
+          </button>
+          <button
+            className={`desk-tab-btn ${deskLayout === "ide" ? "active" : ""}`}
+            onClick={() => setDeskLayout("ide")}
+          >
+            💻 STRATEGY IDE (AI QUANT)
           </button>
         </div>
 
@@ -150,6 +157,13 @@ export default function TerminalWorkspace({ onSelectSymbol, onFilterEntity, exte
               if (onFilterEntity) onFilterEntity(entity.name);
             }}
           />
+        </div>
+      )}
+
+      {/* DESK 5: SYSTEMATIC TRADING IDE & QUANT COPILOT */}
+      {deskLayout === "ide" && (
+        <div style={{ padding: "0", minHeight: "650px", height: "calc(100vh - 180px)" }}>
+          <StrategyIDETab initialSymbol={selectedSymbol} />
         </div>
       )}
     </section>
