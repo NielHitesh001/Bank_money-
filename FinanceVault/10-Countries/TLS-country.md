@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/asia
-last_updated: "2026-08-31 08:48 UTC"
+last_updated: "2026-08-31 09:28 UTC"
 ---
 # 🏦 Timor-Leste — Financial Tear Sheet
 

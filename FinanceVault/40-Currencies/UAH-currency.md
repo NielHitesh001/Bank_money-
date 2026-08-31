@@ -6,7 +6,7 @@ currency_symbol: "\u20b4"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 08:48 UTC"
+last_updated: "2026-08-31 09:28 UTC"
 ---
 # Ukrainian hryvnia (UAH) Currency Hub
 

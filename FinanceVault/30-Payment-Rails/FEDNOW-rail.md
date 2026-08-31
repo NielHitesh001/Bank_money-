@@ -5,7 +5,7 @@ rail_type: "Instant payment (RTGS, retail)"
 operator: "Federal Reserve Banks"
 tags:
   - finance/payment-rail
-last_updated: "2026-08-31 08:51 UTC"
+last_updated: "2026-08-31 09:28 UTC"
 ---
 # 🔌 FedNow Service (FEDNOW)
 
@@ -15,7 +15,7 @@ last_updated: "2026-08-31 08:51 UTC"
 |---|---|
 | Status | 🟢 OPEN |
 | Operating window | 24/7 |
-| Checked at | 2026-08-31 08:51 UTC |
+| Checked at | 2026-08-31 09:28 UTC |
 <!-- LIVE:STATUS:END -->
 
 ## ℹ️ Overview

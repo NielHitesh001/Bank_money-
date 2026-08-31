@@ -6,7 +6,7 @@ currency_symbol: "\u062f.\u0645."
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 08:48 UTC"
+last_updated: "2026-08-31 09:28 UTC"
 ---
 # Moroccan dirham (MAD) Currency Hub
 
