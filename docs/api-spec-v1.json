@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "World Money Institutional Terminal API",
+    "version": "1.0.0",
+    "description": "High-frequency non-custodial financial intelligence, corridor liquidity status, and quantitative execution API."
+  },
+  "servers": [
+    { "url": "http://127.0.0.1:8766", "description": "Local Production Gateway" },
+    { "url": "https://api.worldmoney.internal", "description": "Institutional Dedicated VPC" }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Gateway Health Check",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "summary": "Prometheus Telemetry Stream",
+        "responses": { "200": { "description": "Prometheus text payload" } }
+      }
+    },
+    "/api/v1/corridors": {
+      "get": {
+        "summary": "List Global Payment Corridors",
+        "responses": {
+          "200": {
+            "description": "Array of payment corridors with live settlement states",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "source_currency": { "type": "string" },
+                      "dest_currency": { "type": "string" },
+                      "status": { "type": "string", "enum": ["live", "degraded", "offline"] },
+                      "p99_latency_ms": { "type": "number" },
+                      "updated_at": { "type": "string", "format": "date-time" }
+                    },
+                    "required": ["id", "source_currency", "dest_currency", "status"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/strategy/backtest": {
+      "post": {
+        "summary": "Execute Quantitative Strategy Simulation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": { "type": "string" },
+                  "params": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": { "type": "string" },
+                      "initialCapital": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Backtest Performance Metrics" } }
+      }
+    }
+  }
+}
