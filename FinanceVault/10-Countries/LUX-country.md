@@ -10,7 +10,7 @@ population: "N/A"
 tags:
   - finance/country
   - region/europe
-last_updated: "2026-08-31 04:03 UTC"
+last_updated: "2026-08-31 04:18 UTC"
 ---
 # 🏦 Luxembourg — Financial Tear Sheet
 

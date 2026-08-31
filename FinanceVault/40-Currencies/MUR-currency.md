@@ -6,7 +6,7 @@ currency_symbol: "\u20a8"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 04:03 UTC"
+last_updated: "2026-08-31 04:18 UTC"
 ---
 # Mauritian rupee (MUR) Currency Hub
 
