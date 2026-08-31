@@ -689,13 +689,18 @@ class ManagedFileWriter:
         path.parent.mkdir(parents=True, exist_ok=True)
 
         with self._lock_for(path):
-            user_notes = self._extract_user_notes(path)
-            full_content = generated_body.rstrip() + "\n\n" + NOTES_SENTINEL + "\n" + user_notes
-
+            existing = None
             if path.exists():
                 existing = path.read_text(encoding="utf-8")
-                if _hash(existing) == _hash(full_content):
-                    return False  # no change — don't touch mtime, don't trigger re-index
+                idx = existing.find(NOTES_SENTINEL)
+                user_notes = existing[idx + len(NOTES_SENTINEL):].lstrip("\n") if idx != -1 else "\n> Add your own notes below this line — the daemon never touches this section.\n"
+            else:
+                user_notes = "\n> Add your own notes below this line — the daemon never touches this section.\n"
+
+            full_content = generated_body.rstrip() + "\n\n" + NOTES_SENTINEL + "\n" + user_notes
+
+            if existing is not None and existing == full_content:
+                return False  # no change — don't touch mtime, don't trigger re-index
 
             tmp_path = path.with_suffix(path.suffix + ".tmp")
             tmp_path.write_text(full_content, encoding="utf-8")
@@ -995,17 +1000,20 @@ class VaultBuilder:
         self._set_countries(countries)
 
         changed = 0
+        fx = self.fx_source._load_cache() or {"rates": {}}
         for c in countries:
-            fx = self.fx_source._load_cache() or {"rates": {}}
             cb = CURATED_CENTRAL_BANKS.get(c["cca3"])
             body = render_country_md(c, fx, cb)
             path = self.cfg.vault_path / "10-Countries" / f"{c['cca3']}-country.md"
             if self.writer.write(path, body):
                 changed += 1
-        self._build_central_banks()
-        self._build_currencies()
-        self._build_moc()
-        self._export_graph()
+
+        # Only cascade full rebuilds if country data actually changed
+        if changed > 0 or not (self.cfg.vault_path / "00-MOC" / "Countries-MOC.md").exists():
+            self._build_central_banks()
+            self._build_currencies()
+            self._build_moc()
+            self._export_graph()
         log.info("job_countries: %s/%s files updated", changed, len(countries))
 
     def job_fx(self) -> None:
@@ -1018,8 +1026,10 @@ class VaultBuilder:
             path = self.cfg.vault_path / "10-Countries" / f"{c['cca3']}-country.md"
             if self.writer.write(path, body):
                 changed += 1
-        self._build_currencies()
-        self._export_graph(fx)
+
+        if changed > 0:
+            self._build_currencies()
+            self._export_graph(fx)
         log.info("job_fx: %s/%s country files refreshed with new rates", changed, len(countries))
 
     def job_rail_status(self) -> None:
@@ -1029,7 +1039,8 @@ class VaultBuilder:
             path = self.cfg.vault_path / "30-Payment-Rails" / f"{key}-rail.md"
             if self.writer.write(path, body):
                 changed += 1
-        self._export_graph()
+        if changed > 0:
+            self._export_graph()
         log.info("job_rail_status: %s/%s rail files refreshed", changed, len(CURATED_PAYMENT_RAILS))
 
     def job_policy_rates(self) -> None:

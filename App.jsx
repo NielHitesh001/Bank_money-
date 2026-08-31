@@ -111,39 +111,61 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(savedViewStorageKey, JSON.stringify(savedViews.slice(0, 5)));
+    const handler = setTimeout(() => {
+      window.localStorage.setItem(savedViewStorageKey, JSON.stringify(savedViews.slice(0, 5)));
+    }, 300);
+    return () => clearTimeout(handler);
   }, [savedViews]);
 
   const entityById = useMemo(() => new Map(entities.map((entity) => [entity.id, entity])), [entities]);
+
+  // Pre-index search tokens to avoid N^2 string allocations on every keystroke
+  const txSearchIndex = useMemo(() => {
+    const map = new Map();
+    for (let i = 0; i < transactions.length; i++) {
+      const tx = transactions[i];
+      const source = entityById.get(tx.source);
+      const target = entityById.get(tx.target);
+      const str = `${tx.id} ${tx.currency || ""} ${tx.rail || ""} ${tx.flag || ""} ${source?.name || ""} ${target?.name || ""}`.toLowerCase();
+      map.set(tx.id, str);
+    }
+    return map;
+  }, [transactions, entityById]);
+
   const datasetNow = useMemo(
     () => transactions.reduce((latest, item) => Math.max(latest, Date.parse(item.date || "") || 0), 0),
     [transactions]
   );
 
   const matchingTransactions = useMemo(() => {
+    const normalizedQuery = deferredQuery.trim().toLowerCase();
+    const windowCutoff =
+      dateWindow === "Last 24 hours" ? datasetNow - 86_400_000 : dateWindow === "Last 7 days" ? datasetNow - 604_800_000 : 0;
+
     return transactions.filter((tx) => {
-      const source = entityById.get(tx.source);
-      const target = entityById.get(tx.target);
-      const normalizedQuery = deferredQuery.toLowerCase();
-      const transactionDate = Date.parse(tx.date || "");
-      const windowCutoff =
-        dateWindow === "Last 24 hours" ? datasetNow - 86_400_000 : dateWindow === "Last 7 days" ? datasetNow - 604_800_000 : 0;
-      return (
-        tx.risk >= minimumRisk &&
-        tx.amount >= minimumAmount &&
-        (currency === "All currencies" || tx.currency === currency) &&
-        (!windowCutoff || (Number.isFinite(transactionDate) && transactionDate >= windowCutoff)) &&
-        (!crossBorderOnly || source?.country !== target?.country) &&
-        (!flaggedOnly || Boolean(tx.flag)) &&
-        (!normalizedQuery ||
-          [tx.id, tx.currency, tx.rail, tx.flag, source?.name, target?.name]
-            .filter(Boolean)
-            .join(" ")
-            .toLowerCase()
-            .includes(normalizedQuery))
-      );
+      if (tx.risk < minimumRisk || tx.amount < minimumAmount) return false;
+      if (currency !== "All currencies" && tx.currency !== currency) return false;
+      if (flaggedOnly && !tx.flag) return false;
+
+      if (windowCutoff) {
+        const transactionDate = Date.parse(tx.date || "");
+        if (!Number.isFinite(transactionDate) || transactionDate < windowCutoff) return false;
+      }
+
+      if (crossBorderOnly) {
+        const source = entityById.get(tx.source);
+        const target = entityById.get(tx.target);
+        if (source && target && source.country === target.country) return false;
+      }
+
+      if (normalizedQuery) {
+        const cachedStr = txSearchIndex.get(tx.id);
+        if (!cachedStr || !cachedStr.includes(normalizedQuery)) return false;
+      }
+
+      return true;
     });
-  }, [transactions, entityById, datasetNow, deferredQuery, minimumRisk, minimumAmount, currency, dateWindow, crossBorderOnly, flaggedOnly]);
+  }, [transactions, entityById, txSearchIndex, datasetNow, deferredQuery, minimumRisk, minimumAmount, currency, dateWindow, crossBorderOnly, flaggedOnly]);
 
   const candidateEntityIds = useMemo(() => new Set(matchingTransactions.flatMap((tx) => [tx.source, tx.target])), [matchingTransactions]);
   const visibleEntities = useMemo(
@@ -296,10 +318,20 @@ export default function Dashboard() {
         display: tx.display || formatDisplayAmount(tx.amount, tx.currency),
         flag: tx.flag || null,
       }));
-      setWorkspace((current) => ({
-        entities: [...current.entities.filter((item) => !normalizedEntities.some((next) => next.id === item.id)), ...normalizedEntities],
-        transactions: [...current.transactions.filter((item) => !normalizedTransactions.some((next) => next.id === item.id)), ...normalizedTransactions],
-      }));
+      setWorkspace((current) => {
+        const entityMap = new Map(current.entities.map((e) => [e.id, e]));
+        for (let i = 0; i < normalizedEntities.length; i++) {
+          entityMap.set(normalizedEntities[i].id, normalizedEntities[i]);
+        }
+        const txMap = new Map(current.transactions.map((t) => [t.id, t]));
+        for (let i = 0; i < normalizedTransactions.length; i++) {
+          txMap.set(normalizedTransactions[i].id, normalizedTransactions[i]);
+        }
+        return {
+          entities: Array.from(entityMap.values()),
+          transactions: Array.from(txMap.values()),
+        };
+      });
       setIntakeMessage(`Batch accepted — ${normalizedEntities.length} entities, ${normalizedTransactions.length} transactions`);
       recordAudit(`batch ingested: ${normalizedTransactions.length} transactions`);
     } catch (error) {
@@ -742,7 +774,6 @@ export default function Dashboard() {
                 onSelectEntity={(id) => select({ type: "entity", value: id })}
                 onSelectTransaction={(id) => select({ type: "transaction", value: id })}
                 onSetTrace={(result) => {
-                  setTrace(result);
                   setTraceMode(true);
                   if (result.nodeIds[0]) setTraceOrigin(result.nodeIds[0]);
                   recordAudit(`multi-entity trace path evaluated: ${result.nodeIds.join(" -> ")}`);

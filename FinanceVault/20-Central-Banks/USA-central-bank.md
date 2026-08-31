@@ -8,7 +8,7 @@ policy_rate_as_of: "2026-08-27"
 tags:
   - finance/central-bank
 data_quality: "curated"
-last_updated: "2026-08-31 02:26 UTC"
+last_updated: "2026-08-31 08:26 UTC"
 ---
 # 🏛️ Federal Reserve System
 

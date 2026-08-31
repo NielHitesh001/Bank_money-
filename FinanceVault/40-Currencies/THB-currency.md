@@ -6,7 +6,7 @@ currency_symbol: "\u0e3f"
 country_count: 1
 tags:
   - finance/currency
-last_updated: "2026-08-31 07:33 UTC"
+last_updated: "2026-08-31 08:33 UTC"
 ---
 # Thai baht (THB) Currency Hub
 
